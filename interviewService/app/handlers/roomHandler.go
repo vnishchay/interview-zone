@@ -21,7 +21,7 @@ type RoomMap struct {
 
 // init initialises the room struct
 func (r *RoomMap) Init() {
-	r.Mutex.Lock()
+	r.Map = make(map[string][]Participant)
 }
 
 //Get all the array of participants in room
@@ -34,7 +34,7 @@ func (r *RoomMap) Get(roomID string) []Participant {
 // generate the unique id and insert in hashmap
 func (r *RoomMap) CreateRoom() string {
 	r.Mutex.Lock()
-	defer r.Mutex.RUnlock()
+	defer r.Mutex.Unlock()
 	rand.Seed(time.Now().UnixNano())
 	var letters = []rune("abdenfigniklmnopqurstowxfg")
 	b := make([]rune, 8)

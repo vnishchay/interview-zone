@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 
@@ -13,19 +14,24 @@ import (
 var AllRooms RoomMap
 
 func CreateRoomRequestHandler(c *gin.Context) {
+
 	c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
 
 	roomID := AllRooms.CreateRoom()
 
 	type res struct {
-		RoomID string `json: "room_id"`
+		RoomID string `json: "roomID"`
 	}
+
+	// log.Println(AllRooms.Map)
 	json.NewEncoder(c.Writer).Encode(res{RoomID: roomID})
 	// crete a room and return room id
 }
 
 var upgrader = websocket.Upgrader{
+
 	CheckOrigin: func(r *http.Request) bool {
+
 		return true
 	},
 }
@@ -62,18 +68,28 @@ func JoinRoomRequestHandler(c *gin.Context) {
 		log.Println("Room ID missing")
 		return
 	}
+	fmt.Println("WebSocket Connecting")
 	ws, err := upgrader.Upgrade(c.Writer, c.Request, nil)
+	fmt.Println("Every thing fine here")
 	if err != nil {
-		log.Fatal("Web Socket Upgrade failed")
+		log.Println("Error getting websockets connection")
+		log.Fatal(err)
 	}
+
 	AllRooms.InsertInRoom(roomID[0], false, ws)
+	fmt.Println(" H ere all fine")
+
 	go broadcaster()
+	fmt.Println("WHere is the issue")
+
 	for {
 		var msg broadCastMsg
-		err := ws.ReadJSON(msg.Message)
+		err := ws.ReadJSON(&msg.Message)
+		fmt.Println(err)
 		if err != nil {
 			log.Fatal("Read Error")
 		}
+		msg.Client = ws
 		msg.RoomID = roomID[0]
 		broadCast <- msg
 	}
