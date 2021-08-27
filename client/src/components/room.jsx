@@ -8,16 +8,11 @@ const Room = (props) => {
     const webSocketRef = useRef();
 
     const openCamera = async () => {
-        const allDevices = await navigator.mediaDevices.enumerateDevices();
-        const cameras = allDevices.filter(
-            (device) => device.kind == "videoinput"
-        );
-        console.log(cameras);
-
-        const constraints = {
+        const cameras = await navigator.mediaDevices.getUserMedia.deviceId || navigator.mediaDevices.enumerateDevices.deviceId;
+            const constraints = {
             audio: true,
             video: {
-                deviceId: cameras[1].deviceId,
+                deviceId: cameras,
             },
         };
 
@@ -105,7 +100,7 @@ const Room = (props) => {
     const createPeer = () => {
         console.log("Creating Peer Connection");
         const peer = new RTCPeerConnection({
-            iceServers: [{ urls: "stun:stun.l.google.com:19302" }],
+            iceServers: [{ urls: "stun:stun2.l.google.com:19302" }],
         });
 
         peer.onnegotiationneeded = handleNegotiationNeeded;
@@ -145,9 +140,14 @@ const Room = (props) => {
 
     return (
         <div>
+            <div>
             <video autoPlay controls={true} ref={userVideo}></video>
-            <video autoPlay controls={true} ref={partnerVideo}></video>
-        </div>
+       
+            </div>
+            <div>
+                   <video autoPlay controls={true} ref={partnerVideo}></video>
+       </div>
+          </div>
     );
 };
 
