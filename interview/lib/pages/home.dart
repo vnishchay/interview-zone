@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:interview/pages/langingPage.dart';
 import 'package:interview/pages/pairFinder.dart';
+import 'package:interview/pages/problemPage.dart';
 import 'package:interview/pages/userAccount.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
@@ -47,7 +49,8 @@ class Home extends StatelessWidget {
 
   List<Widget> _buildScreens() {
     return [
-      PairFinderPage(),
+      LandingPage(),
+      ProblemsPage(),
       UserAccount(),
     ];
   }
@@ -57,6 +60,12 @@ class Home extends StatelessWidget {
       PersistentBottomNavBarItem(
         icon: Icon(CupertinoIcons.home),
         title: ("Home"),
+        activeColorPrimary: CupertinoColors.activeBlue,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: Icon(CupertinoIcons.question),
+        title: ("Problems"),
         activeColorPrimary: CupertinoColors.activeBlue,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
