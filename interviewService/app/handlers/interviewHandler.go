@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 
@@ -10,87 +9,84 @@ import (
 	"github.com/gorilla/websocket"
 )
 
-// this is global for the server
+// AllRooms is the global hashmap for the server
 var AllRooms RoomMap
 
+// CreateRoomRequestHandler Create a Room and return roomID
 func CreateRoomRequestHandler(c *gin.Context) {
-
 	c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
-
 	roomID := AllRooms.CreateRoom()
 
-	type res struct {
-		RoomID string `json: "roomID"`
+	type resp struct {
+		RoomID string `json:"room_id"`
 	}
 
-	// log.Println(AllRooms.Map)
-	json.NewEncoder(c.Writer).Encode(res{RoomID: roomID})
-	// crete a room and return room id
+	log.Println(AllRooms.Map)
+	json.NewEncoder(c.Writer).Encode(resp{RoomID: roomID})
 }
 
 var upgrader = websocket.Upgrader{
-
 	CheckOrigin: func(r *http.Request) bool {
-
 		return true
 	},
 }
 
-type broadCastMsg struct {
+type broadcastMsg struct {
 	Message map[string]interface{}
 	RoomID  string
 	Client  *websocket.Conn
 }
 
-var broadCast = make(chan broadCastMsg)
+var broadcast = make(chan broadcastMsg)
 
 func broadcaster() {
 	for {
-		msg := <-broadCast
-		for _, cliet := range AllRooms.Map[msg.RoomID] {
-			if cliet.Conn != msg.Client {
-				err := cliet.Conn.WriteJSON(msg.Message)
+		msg := <-broadcast
+
+		for _, client := range AllRooms.Map[msg.RoomID] {
+			if client.Conn != msg.Client {
+				err := client.Conn.WriteJSON(msg.Message)
 
 				if err != nil {
 					log.Fatal(err)
-					cliet.Conn.Close()
+					client.Conn.Close()
 				}
 			}
 		}
 	}
 }
 
-// join room request hadnelr : helper to join room
+// JoinRoomRequestHandler will join the client in a particular room
 func JoinRoomRequestHandler(c *gin.Context) {
 	roomID, ok := c.Request.URL.Query()["roomID"]
 
 	if !ok {
-		log.Println("Room ID missing")
+		log.Println("roomID missing in URL Parameters")
 		return
 	}
-	fmt.Println("WebSocket Connecting")
+
 	ws, err := upgrader.Upgrade(c.Writer, c.Request, nil)
-	fmt.Println("Every thing fine here")
 	if err != nil {
-		log.Println("Error getting websockets connection")
-		log.Fatal(err)
+		log.Fatal("Web Socket Upgrade Error", err)
 	}
 
-	AllRooms.InsertInRoom(roomID[0], false, ws)
-	fmt.Println(" H ere all fine")
+	AllRooms.InsertIntoRoom(roomID[0], false, ws)
 
 	go broadcaster()
-	fmt.Println("WHere is the issue")
 
 	for {
-		var msg broadCastMsg
+		var msg broadcastMsg
+
 		err := ws.ReadJSON(&msg.Message)
-		fmt.Println(err)
 		if err != nil {
-			log.Fatal("Read Error")
+			log.Fatal("Read Error: ", err)
 		}
+
 		msg.Client = ws
 		msg.RoomID = roomID[0]
-		broadCast <- msg
+
+		log.Println(msg.Message)
+
+		broadcast <- msg
 	}
 }
