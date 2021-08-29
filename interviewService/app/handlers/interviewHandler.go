@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
 
@@ -40,19 +41,36 @@ type broadcastMsg struct {
 var broadcast = make(chan broadcastMsg)
 
 func broadcaster() {
+	fmt.Println("BroadCastMessage")
 	for {
 		msg := <-broadcast
+		cl1 := AllRooms.Map[msg.RoomID].P1
+		cl2 := AllRooms.Map[msg.RoomID].P2
+		fmt.Println(cl1, cl2, "7")
+		// for _, client := range AllRooms.Map[msg.RoomID] {
+		if cl1.Conn != nil {
+			if cl1.Conn != msg.Client {
+				err := cl1.Conn.WriteJSON(msg.Message)
+				fmt.Println("Message", err)
+				if err != nil {
+					log.Fatal(err)
+					cl1.Conn.Close()
+				}
+			}
 
-		for _, client := range AllRooms.Map[msg.RoomID] {
-			if client.Conn != msg.Client {
-				err := client.Conn.WriteJSON(msg.Message)
+		}
+		if cl2.Conn != nil {
+			if cl2.Conn != msg.Client {
+				err := cl2.Conn.WriteJSON(msg.Message)
 
 				if err != nil {
 					log.Fatal(err)
-					client.Conn.Close()
+					cl2.Conn.Close()
 				}
 			}
 		}
+		// }
+
 	}
 }
 
@@ -60,8 +78,14 @@ func broadcaster() {
 func JoinRoomRequestHandler(c *gin.Context) {
 	roomID, ok := c.Request.URL.Query()["roomID"]
 
+	fmt.Println(roomID, "ROOMID")
+
 	if !ok {
 		log.Println("roomID missing in URL Parameters")
+		return
+	}
+
+	if AllRooms.Map[roomID[0]].P1.inRoom && AllRooms.Map[roomID[0]].P2.inRoom {
 		return
 	}
 
@@ -69,7 +93,7 @@ func JoinRoomRequestHandler(c *gin.Context) {
 	if err != nil {
 		log.Fatal("Web Socket Upgrade Error", err)
 	}
-
+	fmt.Println(ws, "web sockets upgrade")
 	AllRooms.InsertIntoRoom(roomID[0], false, ws)
 
 	go broadcaster()
@@ -85,8 +109,10 @@ func JoinRoomRequestHandler(c *gin.Context) {
 		msg.Client = ws
 		msg.RoomID = roomID[0]
 
-		log.Println(msg.Message)
+		fmt.Println(msg.Message, "message here!!!")
 
 		broadcast <- msg
+		// data race??  // sending data to broadcaster go routine...
+		//
 	}
 }

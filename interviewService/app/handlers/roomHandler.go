@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"fmt"
 	"log"
 	"math/rand"
 	"sync"
@@ -11,23 +12,29 @@ import (
 
 // Participant describes a single entity in the hashmap
 type Participant struct {
-	Host bool
-	Conn *websocket.Conn
+	Host   bool
+	inRoom bool
+	Conn   *websocket.Conn
+}
+
+type Room struct {
+	P1 Participant
+	P2 Participant
 }
 
 // RoomMap is the main hashmap [roomID string] -> [[]Participant]
 type RoomMap struct {
 	Mutex sync.RWMutex
-	Map   map[string][]Participant
+	Map   map[string]Room
 }
 
 // Init initialises the RoomMap struct
 func (r *RoomMap) Init() {
-	r.Map = make(map[string][]Participant)
+	r.Map = make(map[string]Room)
 }
 
 // Get will return the array of participants in the room
-func (r *RoomMap) Get(roomID string) []Participant {
+func (r *RoomMap) Get(roomID string) Room {
 	r.Mutex.RLock()
 	defer r.Mutex.RUnlock()
 
@@ -48,7 +55,7 @@ func (r *RoomMap) CreateRoom() string {
 	}
 
 	roomID := string(b)
-	r.Map[roomID] = []Participant{}
+	r.Map[roomID] = Room{}
 
 	return roomID
 }
@@ -57,11 +64,24 @@ func (r *RoomMap) CreateRoom() string {
 func (r *RoomMap) InsertIntoRoom(roomID string, host bool, conn *websocket.Conn) {
 	r.Mutex.Lock()
 	defer r.Mutex.Unlock()
-
-	p := Participant{host, conn}
-
+	fmt.Println(r.Map[roomID], "1")
 	log.Println("Inserting into Room with RoomID: ", roomID)
-	r.Map[roomID] = append(r.Map[roomID], p)
+	if r.Map[roomID].P1.inRoom && r.Map[roomID].P2.inRoom {
+		fmt.Println(r.Map[roomID], "2")
+		return
+	}
+	if !r.Map[roomID].P1.inRoom {
+		fmt.Println(r.Map[roomID], "3")
+		r.Map[roomID] = Room{P1: Participant{host, true, conn}, P2: Participant{}}
+		fmt.Println(r.Map[roomID], "4")
+		// fmt.Println("heree some error ??", "joined as users")
+	} else {
+		fmt.Println(r.Map[roomID], "5")
+		p := r.Map[roomID].P1
+		r.Map[roomID] = Room{P2: Participant{host, true, conn}, P1: p}
+		fmt.Println(r.Map[roomID], "6")
+	}
+
 }
 
 // DeleteRoom deletes the room with the roomID
