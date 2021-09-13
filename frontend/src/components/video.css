@@ -1,0 +1,23 @@
+.container {
+	display: grid;
+	grid-template-columns: 7fr 3fr;
+}
+
+
+.call-button {
+	text-align: center;
+}
+
+.video-container {
+	z-index: 1;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	justify-content: center;
+	align-content: center;
+}
+
+.caller {
+	text-align: center;
+	color: #fff;
+}
+

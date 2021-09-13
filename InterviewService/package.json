@@ -1,0 +1,30 @@
+{
+  "name": "userservice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "moment": "^2.29.1",
+    "mongoose": "^6.0.1",
+    "react-router": "^5.2.1",
+    "react-router-dom": "^5.3.0",
+    "socket.io": "^4.2.0",
+    "socket.io-client": "^4.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  },
+  "optionalDependencies": {
+    "bufferutil": "^4.0.3",
+    "utf-8-validate": "^5.0.5"
+  }
+}
