@@ -36,7 +36,7 @@ export default function Texteditor(props) {
          return () => {
              socket.off('recv-changes', handler)
          }
-     }, [socket, quill])
+     }, [socket, quill, documentID])
 
 
 
@@ -57,7 +57,7 @@ export default function Texteditor(props) {
          return () => {
              quill.off('text-change', handler)
          }
-     }, [socket, quill])
+     },[socket, quill, documentID])
 
 
      useEffect(() => { 

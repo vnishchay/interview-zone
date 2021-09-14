@@ -1,10 +1,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-
-import "./chat.css";
+import "../styles/chat.css";
 import useChat from "./useChat";
 
-const ChatRoom = (props) => {
+const ChatRoom = () => {
   const { id : chatID } =  useParams();
   const { messages, sendMessage } = useChat(chatID);
   const [newMessage, setNewMessage] = React.useState("");

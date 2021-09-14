@@ -1,13 +1,14 @@
 .chat-room-container {
+   min-height: 100px;
+   width: 300px;
   position: relative;
   display: flex;
   flex-direction: column;
-  margin: 16px;
+  /* margin: 16px; */
 }
 
 .messages-container {
   flex: 1;
-  /* min-height: 100px; */
   overflow: auto;
   border: 1px solid black;
   border-radius: 7px 7px 0 0;
@@ -27,7 +28,7 @@
 }
 
 .message-item {
-  width: 55%;
+  /* width: 55%; */
   margin: 8px;
   padding: 12px 8px;
   word-break: break-word;

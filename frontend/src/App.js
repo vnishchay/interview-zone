@@ -1,36 +1,23 @@
 
 // import './App.css';
-import CommChannels from './components/CommChannel';
-import { Redirect,BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import Texteditor from './components/texteditor'; 
-import {v4 as uuidV4} from 'uuid'; 
-import Video from './components/video';
+import HomePage from "./pages/home";
+import InterviewPage from "./pages/InterviewPage";
+import {BrowserRouter, Route,Switch } from 'react-router-dom'
+import Landing from "./pages/landing";
+
 function App() {
   return (
-    <div className="App">
-      <Router>
-        <Switch>
-          <Route path="/" exact >
-          {/* here we will provide our own route address */}
-          <Redirect to={`/documents/${uuidV4()}`} />
-          </Route>
-          <Route path="/documents/:id" >
-          <div style={{display: 'flex'}}>
-            <Texteditor/>
-           <div style={{display: 'flex', flexDirection:'column'}}>
-            <div>
-            <Video/>
-          
-            </div>
-             <CommChannels/>
-           </div>
-            </div>
-          </Route>
-        </Switch>
-      </Router>
-  
-    </div>
+
+      <BrowserRouter>
+      <Route exact path='/' />
+
+        <Route exact path='/home' component={HomePage} />
+        
+        <Route exact path='/interview/:id' component={InterviewPage} />
+      
+        <Route exact path='/landing' component={Landing} />
+      </BrowserRouter>
   );
 }
 
