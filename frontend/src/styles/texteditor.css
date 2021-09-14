@@ -1,15 +1,6 @@
-*, *::before *::after {
-    box-sizing: border-box;
-}
-
-body {
-    background-color: #F3F3F3;
-    margin: 0;
-}
-
 .container .ql-editor {
     width: 8.5in;
-    height: 11in;
+    max-height: 10in;
     padding: 1in;
     margin: 1rem;
     box-shadow: 0 0 5px 0 rgba(0,0,0,0.5);
@@ -27,7 +18,7 @@ body {
     display: flex;
     position:absolute; 
     top: 0;
-    width:  9.0in;
+    /* width:  9.0in; */
     z-index: 1;
     background-color: rgb(255, 255, 255);
     box-shadow: 0 0 5px 0 rgba(0,0,0,0.5);

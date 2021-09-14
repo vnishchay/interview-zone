@@ -7,3 +7,5 @@ const Landing = ()=>{
 }
 
 export default Landing;
+
+// https://mdbootstrap.com/docs/b4/jquery/plugins/draggable/

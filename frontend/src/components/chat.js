@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import "../styles/chat.css";
+// import "../styles/chat.css";
 import useChat from "./useChat";
 
 const ChatRoom = () => {

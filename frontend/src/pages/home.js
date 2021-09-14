@@ -67,19 +67,7 @@ export default function HomePage(props) {
                    Let's do it !   
             </Typography>
             <div className={classes.heroButtons}>
-              <Grid container spacing={2} justifyContent="center">
-
-            {/* <Router>
-            <Switch>
-            <Route path="/" exact > 
-            <Redirect to={`/documents/${v4()}`} />
-            </Route>
-            <Route path="/documents/:id" >
-            </Route>
-            </Switch>
-            </Router> */}
-
-           
+              <Grid container spacing={2} justifyContent="center">        
 
                   <Link  to = {`/interview/${v4()}`} > 
                       <Button variant="contained" color="primary" style={{padding: '3%'}}>

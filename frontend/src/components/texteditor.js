@@ -4,7 +4,7 @@ import Quill from "quill";
 import "quill/dist/quill.snow.css"
 import { useParams } from "react-router-dom";
 import sock from '..';
-import "../index.css"
+import "../styles/texteditor.css"
 
 export default function Texteditor(props) {
     const {id : documentID}  = useParams(); 
