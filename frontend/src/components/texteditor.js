@@ -81,9 +81,10 @@ export default function Texteditor(props) {
     }, [])
 
     return (
-
+        <div>
         <div className="container" ref={wrapperref}>
         </div>
-        
+        </div>
+    
     )
 }

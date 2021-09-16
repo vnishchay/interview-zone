@@ -1,4 +1,4 @@
-const userDatabase = require("./models/userModel.js");
+const userDatabase = require("../models/userModel.js");
 
 exports.savingUser = async (req,res)=>{
     await userDatabase.save(req.body);

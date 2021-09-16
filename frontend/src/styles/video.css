@@ -1,19 +1,10 @@
-/* .container {
-	display: grid;
-	grid-template-columns: 7fr 3fr;
-} */
-
-
-.call-button {
-	text-align: center;
+.ccontainer {
+  padding: 0;
+  margin: 0;
 }
 
-.video-container {
-	z-index: 1;
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	justify-content: center;
-	align-content: center;
+.root-container {
+     background-color: pink;
 }
 
 .caller {

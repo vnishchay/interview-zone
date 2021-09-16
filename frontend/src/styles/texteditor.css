@@ -1,8 +1,10 @@
 .container .ql-editor {
-    width: 8.5in;
-    max-height: 10in;
-    padding: 1in;
-    margin: 1rem;
+     
+
+     height: 6.0in;
+    width: 7.0in;
+    /* padding: 1in; */
+    margin: 0.3rem;
     box-shadow: 0 0 5px 0 rgba(0,0,0,0.5);
     background-color: white;
 }
@@ -16,9 +18,9 @@
 .container .ql-toolbar.ql-snow 
 {
     display: flex;
-    position:absolute; 
+    position:static; 
     top: 0;
-    /* width:  9.0in; */
+    width: auto;
     z-index: 1;
     background-color: rgb(255, 255, 255);
     box-shadow: 0 0 5px 0 rgba(0,0,0,0.5);

@@ -85,41 +85,44 @@ export default function Video() {
 
 	return (
 		<>
-		<div className="container" style={{ display:"flex" ,  flexDirection: 'column'}}>
-			<div className="video-container">
+		<div className="root-container" style={{ display:"flex" ,  flexDirection: 'row', height: "100%"}}>
+			{/* <div className="video-container"> */}
+			  
 				<div className="video">
-					{stream &&  <video playsInline muted ref={myVideo} autoPlay style={{ width: "300px" }} />}
+					{stream &&  <video playsInline muted ref={myVideo} autoPlay style={{ width:"30%"}} />}
 				</div>
 				<div className="video">
 					{callAccepted && !callEnded ?
-					<video playsInline ref={userVideo} autoPlay style={{ width: "300px"}} />:
+					<video playsInline ref={userVideo} autoPlay style={{ width:"70%", height:"60"}} />:
 					null}
-				</div>
+				{/* </div> */}
 			</div>
-			<div className="myId">
+
+		
+		</div>
+		<div className="myId">
 			
-				<div className="call-button">
-					{callAccepted && !callEnded ? (
-						<Button variant="contained" color="secondary" onClick={leaveCall}>
-							End Call
-						</Button>
-					) : (
-						<IconButton color="primary" aria-label="call" onClick={() => callUser(videoID)}>
-							<PhoneIcon fontSize="large" />
-						</IconButton>
-					)}
+			<div className="call-button">
+				{callAccepted && !callEnded ? (
+					<Button variant="contained" color="secondary" onClick={leaveCall}>
+						End Call
+					</Button>
+				) : (
+					<IconButton color="primary" aria-label="call" onClick={() => callUser(videoID)}>
+						<PhoneIcon fontSize="large" />
+					</IconButton>
+				)}
+			</div>
+		</div>
+		<div>
+			{receivingCall && !callAccepted ? (
+					<div className="caller">
+					<h1 >{name} is calling...</h1>
+					<Button variant="contained" color="primary" onClick={answerCall}>
+						Answer
+					</Button>
 				</div>
-			</div>
-			<div>
-				{receivingCall && !callAccepted ? (
-						<div className="caller">
-						<h1 >{name} is calling...</h1>
-						<Button variant="contained" color="primary" onClick={answerCall}>
-							Answer
-						</Button>
-					</div>
-				) : null}
-			</div>
+			) : null}
 		</div>
 		</>
 	)

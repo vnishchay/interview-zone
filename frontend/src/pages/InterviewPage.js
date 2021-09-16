@@ -1,38 +1,38 @@
-import ChatRoom from '../components/chat';
-import { Grid } from '@material-ui/core';
-import Texteditor from '../components/texteditor'; 
-import Video from '../components/video';
-import Questions from '../components/questions';
-
+import React from 'react'
+import ResizePanel from "react-resize-panel";
+import TextEditor from "../components/texteditor"
+import ChatRoom from "../components/chat"
+import Video from "../components/video"
 
 export default function InterviewPage() {
-    return (
-      <div>
-      <div>
-       <div className="container">
-  <div className="row main" style={{height:"100vh"}}>
-  <div className="col-6">
-     <Texteditor/>
-  </div>
-  <div className="col-6">
-    <div className="container-fluid d-flex flex-column" style={{height :"100%" }}>
-      <div className="card flex-grow-1">
-        <div className="card-body">
-          <Video/>
-        </div>
-      </div>
-      <div className="card flex-grow-1">
-        <div className="card-body">
-          <ChatRoom/>
-        </div>
-      </div>
-    </div> 
-   </div>
-  </div>
-</div>
-</div>
+
+  
+  return (
+    <div style={{display:'flex', flexDirection:'row', width:"100%", height:"100vh", justifyContent:'flex-start'}}>
+    <div style={{backgroundColor:"blue", width:"50%", height:"100%"}}>
+   <TextEditor/>
+    </div>
+    <div style={{backgroundColor:"purple", width:"50%", height:"100%"}}>
+    <div  style={{height:"30%", backgroundColor:"grey"}}>
+        <Video/>
+    </div>
+    <div style={{display:'flex', flexDirection:'row', height:"70%" ,width: "100%", justifyContent:'flex-start'}} >
+  
+    <div style={{ backgroundColor:"white", width: "50%"}}>
+     Question Service
+
+    </div>
+    <div style={{backgroundColor:"yellow", width: "50%"}}>
+        <ChatRoom/>
+
+    </div>
+   
+    </div>
+  
+  
+
+    </div>
+
     </div>
   )
 }
-
-<ChatRoom/>
