@@ -1,3 +1,5 @@
+
+
 .chat-room-container {
   position: relative;
   max-height: 68vh;
@@ -53,5 +55,5 @@
 }
 
 .messages-container, .new-message-input-field, .send-message-button {
-  border-color: #9a9a9a;
+  border-color: #ffffff;
 }

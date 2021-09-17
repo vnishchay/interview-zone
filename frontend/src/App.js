@@ -3,14 +3,18 @@
 
 import HomePage from "./pages/home";
 import InterviewPage from "./pages/InterviewPage";
-import {BrowserRouter, Route} from 'react-router-dom'
+import {BrowserRouter, Redirect, Route} from 'react-router-dom'
 import Landing from "./pages/landing";
 
 function App() {
   return (
 
       <BrowserRouter>
-      {/* <Route exact path='/' /> */}
+      <Route exact path='/' render={()=>{
+        return (
+          <Redirect to="/home" />
+        )
+      }} />
 
         <Route exact path='/home' component={HomePage} />
         

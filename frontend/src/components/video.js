@@ -102,7 +102,7 @@ export default function Video() {
 		</div>
 		<div className="myId">
 			
-			<div className="call-button">
+			<div className="call-button" style={{}}>
 				{callAccepted && !callEnded ? (
 					<Button variant="contained" color="secondary" onClick={leaveCall}>
 						End Call

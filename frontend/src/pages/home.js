@@ -1,15 +1,14 @@
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
-import CameraIcon from '@material-ui/icons/PhotoCamera';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link } from 'react-router-dom';
 import {v4} from 'uuid'
+import MenuAppBar from '../components/appbar';
+import { AppBar, IconButton, Toolbar } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -50,14 +49,13 @@ export default function HomePage(props) {
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar position="relative">
+      <AppBar> 
         <Toolbar>
-          <CameraIcon className={classes.icon} />
-          <Typography variant="h6" color="inherit" noWrap>
-            Interview-Zone
-          </Typography>
+          <IconButton size="small" edge="start" color="grey" sx={{mr:2}}> 
+          
+          </IconButton>
         </Toolbar>
-      </AppBar>
+        </AppBar> 
       <main>
 
         <div className={classes.heroContent}>
