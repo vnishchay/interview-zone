@@ -35,7 +35,7 @@ exports.userLogin = async (req,res)=>{
     },"key",
         {expiresIn: "24h"}
     );
-     return  res.status(200).json({
+    res.status(200).json({
         jwt : token ,
         successfulLogin : true
     });
