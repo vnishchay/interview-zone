@@ -84,16 +84,18 @@ export default function Video() {
 	}
 
 	return (
-		<>
-		<div className="root-container" style={{ display:"flex" ,  flexDirection: 'row', height: "100%"}}>
+		<div className="root-container" style={{ display:"flex" ,  flexDirection: 'row', height: "100%" }}>
+		
+		<div className="root-container" style={{ display:"flex" ,  flexDirection: 'row', height: "100%" ,width:"90%"}}>
+
 			{/* <div className="video-container"> */}
 			  
 				<div className="video">
-					{stream &&  <video playsInline muted ref={myVideo} autoPlay style={{ width:"30%"}} />}
+					{stream &&  <video playsInline muted ref={myVideo} autoPlay style={{ height:"100%"}} />}
 				</div>
 				<div className="video">
 					{callAccepted && !callEnded ?
-					<video playsInline ref={userVideo} autoPlay style={{ width:"70%", height:"60"}} />:
+					<video playsInline ref={userVideo} autoPlay style={{ height:"100%" }} />:
 					null}
 				{/* </div> */}
 			</div>
@@ -124,7 +126,7 @@ export default function Video() {
 				</div>
 			) : null}
 		</div>
-		</>
+		</div>
 	)
 }
 
