@@ -17,13 +17,13 @@ export default function InterviewPage() {
     <div style={{backgroundColor:"blue", width:"50%", height:"100%"}}>
    <TextEditor/>
     </div>
-    <div style={{backgroundColor:"purple", width:"50%", height:"100%"}}>
+    <div style={{backgroundColor:"grey", width:"50%", height:"100%"}}>
     <div  style={{height:"30%", backgroundColor:"grey"}}>
         <Video/>
     </div>
     <div style={{display:'flex', flexDirection:'row', height:"70%" ,width: "100%", justifyContent:'flex-start'}} >
   
-    <div style={{ backgroundColor:"white", width: "60%" , height:"100%"}}>
+    <div style={{ backgroundColor:"grey", width: "60%" , height:"100%"}}>
     <Questions/>
 
     </div>

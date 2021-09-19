@@ -1,13 +1,10 @@
 .container .ql-editor {
-     
-
-     height: 6.0in;
+    height: 6.0in;
     width: 7.0in;
-    /* padding: 1in; */
     margin: 0.3rem;
     margin-top: auto;
     box-shadow: 0 0 5px 0 rgba(0,0,0,0.5);
-    background-color: white;
+    background-color: rgb(64, 65, 88);
 }
 
 .container .ql-container.ql-snow {
@@ -23,7 +20,7 @@
     top: 0;
     width: auto;
     z-index: 1;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(51, 46, 46);
     box-shadow: 0 0 5px 0 rgba(0,0,0,0.5);
     border: none;
 }

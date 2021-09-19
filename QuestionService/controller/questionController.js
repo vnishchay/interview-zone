@@ -15,7 +15,7 @@ exports.savingQuestion = async (req,res)=>{
           }
     });
 }
-
+// this will reaturn a bunch of questions for a interview 
 exports.getQuestions  = async (req, res)=>{    
     // calling this function should give me 5 questions 
     // at once 

@@ -5,16 +5,5 @@
 
 .root-container {
      
-     background-color: pink;
+     background-color: rgb(44, 35, 37);
 }
-
-.caller {
-  background-color: black;
-  z-index: 1;
-  color: #000;
-  margin: 0;
-  padding: auto;
-	text-align: center;
-	color: #fff;
-}
-

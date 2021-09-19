@@ -32,8 +32,9 @@
 .message-item {
   margin: 8px;
   word-break: break-word;
+  color: rgb(139, 133, 187);
   border-radius: 4px;
-  color: white;
+  background-color: rgb(46, 53, 112);
 }
 
 .my-message {
@@ -47,7 +48,8 @@
 }
 
 .send-message-button {
-  font-size: 9px;
+  font-size: 14px;
+  
   font-weight:120;
   color: white;
   background: #31a24c;
@@ -55,5 +57,5 @@
 }
 
 .messages-container, .new-message-input-field, .send-message-button {
-  border-color: #ffffff;
+  border-color: #201850;
 }
