@@ -1,26 +1,32 @@
 .container .ql-editor {
-    height: 6.0in;
+     
+     height: 6.0in;
     width: 7.0in;
+    /* padding: 1in; */
     margin: 0.3rem;
     margin-top: auto;
+    color: rgb(70, 96, 209);
     box-shadow: 0 0 5px 0 rgba(0,0,0,0.5);
-    background-color: rgb(64, 65, 88);
+    background-color: rgb(52, 36, 78);
 }
 
 .container .ql-container.ql-snow {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     border: none;
     display: flex;
     justify-content: center;
+    z-index: -1;
+    background-color: rgb(43, 43, 61);
 }
 
 .container .ql-toolbar.ql-snow 
 {
-    display: flex;
+
+     display: flex;
     position:static; 
     top: 0;
     width: auto;
-    z-index: 1;
-    background-color: rgb(51, 46, 46);
-    box-shadow: 0 0 5px 0 rgba(0,0,0,0.5);
+    z-index: inherit;
+    background-color: rgb(16, 3, 39);
     border: none;
 }

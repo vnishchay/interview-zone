@@ -8,26 +8,24 @@ export default function InterviewPage() {
 
   
   return (
-    <div>
+    <div style={{backgroundColor:"rgb(36, 8, 43)"}}>
        
-    <div style={{display:"flex", width:"100%", height:"3vh" , zIndex:2 , backgroundColor:"grey"}}>
-      <div></div>
-    </div>
+
     <div style={{display:'flex', flexDirection:'row', width:"100%", height:"100vh", justifyContent:'flex-start'}}>
-    <div style={{backgroundColor:"blue", width:"50%", height:"100%"}}>
+    <div style={{ width:"50%", height:"100%", padding:"1%"}}>
    <TextEditor/>
     </div>
-    <div style={{backgroundColor:"grey", width:"50%", height:"100%"}}>
-    <div  style={{height:"30%", backgroundColor:"grey"}}>
+    <div style={{ width:"50%", height:"100%"}}>
+    <div  style={{height:"30%", padding:"1%"}}>
         <Video/>
     </div>
     <div style={{display:'flex', flexDirection:'row', height:"70%" ,width: "100%", justifyContent:'flex-start'}} >
   
-    <div style={{ backgroundColor:"grey", width: "60%" , height:"100%"}}>
+    <div style={{ width: "60%" , height:"100%", padding: "1%"}}>
     <Questions/>
 
     </div>
-    <div style={{width: "40%"}}>
+    <div style={{width: "40%" , padding:"1%"}}>
         <ChatRoom/>
 
     </div>

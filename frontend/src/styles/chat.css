@@ -1,22 +1,17 @@
 
 
 .chat-room-container {
-  position: relative;
-  max-height: 68vh;
-  margin: 0%;
-  padding: 0%;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
   display: flex;
+  background-color: rgb(25, 25, 29);
   flex-direction: column;
 
 }
 
 .messages-container {
-  height: 65vh;
-  padding: 0;
-  margin: 0;
+  height: 58vh;
+
   overflow: auto;
-  border: 1px solid black;
-  border-radius: 7px 7px 0 0;
 }
 
 .messages-list {
@@ -25,16 +20,17 @@
 }
 
 .new-message-input-field {
+  background-color: rgb(12, 3, 20);
   font-size: 10px;
+  color: white;
   resize: none;
 }
 
 .message-item {
   margin: 8px;
   word-break: break-word;
-  color: rgb(139, 133, 187);
-  border-radius: 4px;
-  background-color: rgb(46, 53, 112);
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  color: rgb(1, 0, 5);
 }
 
 .my-message {
@@ -52,7 +48,7 @@
   
   font-weight:120;
   color: white;
-  background: #31a24c;
+  background: #09070a;
   border: none;
 }
 
