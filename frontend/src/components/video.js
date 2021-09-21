@@ -20,7 +20,6 @@ export default function Video() {
 	const userVideo = useRef()
 	const connectionRef= useRef()
 
-
 	useEffect(() => {
 		navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((stream) => {
 			setStream(stream)

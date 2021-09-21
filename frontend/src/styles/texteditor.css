@@ -7,11 +7,11 @@
     margin-top: auto;
     color: rgb(70, 96, 209);
     box-shadow: 0 0 5px 0 rgba(0,0,0,0.5);
-    background-color: rgb(52, 36, 78);
+    background-color: rgba(72, 66, 100, 0.712);
 }
 
 .container .ql-container.ql-snow {
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(80, 73, 73, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
     border: none;
     display: flex;
     justify-content: center;

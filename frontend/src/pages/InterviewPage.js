@@ -8,7 +8,7 @@ export default function InterviewPage() {
 
   
   return (
-    <div style={{backgroundColor:"rgb(36, 8, 43)"}}>
+    <div style={{backgroundColor:"rgb(59, 61, 38)"}}>
        
 
     <div style={{display:'flex', flexDirection:'row', width:"100%", height:"100vh", justifyContent:'flex-start'}}>
