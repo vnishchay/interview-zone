@@ -1,14 +1,15 @@
 import React from 'react'
 import TextEditor from "../components/texteditor"
 import ChatRoom from "../components/chat"
-import Video from "../components/video"
 import Questions from '../components/questions'
 import { AppBar, IconButton, Toolbar } from '@material-ui/core'
+import Video from '../components/video'
+import Audio from '../components/Audio'
 export default function InterviewPage() {
 
   
   return (
-    <div style={{backgroundColor:"rgb(59, 61, 38)"}}>
+    <div style={{backgroundColor:"whitesmoke"}}>
        
 
     <div style={{display:'flex', flexDirection:'row', width:"100%", height:"100vh", justifyContent:'flex-start'}}>

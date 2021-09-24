@@ -1,4 +1,4 @@
-const authDatabase = require("./models/authModel.js");
+const authDatabase = require("../models/authModel.js");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 

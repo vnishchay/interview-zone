@@ -7,7 +7,7 @@
     margin-top: auto;
     color: rgb(70, 96, 209);
     box-shadow: 0 0 5px 0 rgba(0,0,0,0.5);
-    background-color: rgba(72, 66, 100, 0.712);
+    background-color: rgba(255, 255, 255, 0.712);
 }
 
 .container .ql-container.ql-snow {
@@ -16,7 +16,7 @@
     display: flex;
     justify-content: center;
     z-index: -1;
-    background-color: rgb(43, 43, 61);
+    background-color: rgb(181, 181, 189);
 }
 
 .container .ql-toolbar.ql-snow 
@@ -27,6 +27,6 @@
     top: 0;
     width: auto;
     z-index: inherit;
-    background-color: rgb(16, 3, 39);
+    background-color: rgb(173, 168, 182);
     border: none;
 }

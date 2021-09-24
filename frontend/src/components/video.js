@@ -7,6 +7,7 @@ import sock from ".."
 
 import "../styles/video.css"
 import { useParams } from "react-router"
+import { formatMs } from "@material-ui/core"
 
 export default function Video() {
     const {id: videoID} = useParams(); 
@@ -19,12 +20,10 @@ export default function Video() {
 	const myVideo = useRef()
 	const userVideo = useRef()
 	const connectionRef= useRef()
+	const [isvedio, setisvedio] = useState(false)
+	const [isaudio, setisaudio] = useState(false)
 
 	useEffect(() => {
-		navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((stream) => {
-			setStream(stream)
-				myVideo.current.srcObject = stream
-		})
         sock.emit('video-call', videoID); 
 		sock.on("callUser", (data) => {
 			setReceivingCall(true)
@@ -33,7 +32,25 @@ export default function Video() {
 		})
 	}, [])
 
+	useEffect(() => {
+        console.log(isvedio + "    " + isaudio); 
+	    if(isvedio){	
+			console.log(" I am sgetting streamed")			
+		navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((stream) => {
+			setStream(stream)
+				myVideo.current.srcObject = stream
+		})
+		}
+	}, [])
+
+
+
+
 	const callUser = (id) => {
+		navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((stream) => {
+			setStream(stream)
+				myVideo.current.srcObject = stream
+		})
 		const peer = new Peer({
 			initiator: true,
 			trickle: false,
@@ -59,6 +76,13 @@ export default function Video() {
 	}
 
 	const answerCall =() =>  {
+	    setisvedio(true)
+		navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((stream) => {
+			setStream(stream)
+				myVideo.current.srcObject = stream
+		})
+	
+
 		setCallAccepted(true)
 		const peer = new Peer({
 			initiator: false,

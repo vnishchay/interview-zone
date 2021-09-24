@@ -15,6 +15,9 @@ const dotEnv = require("dotenv");
 dotEnv.config({path : "/config/config.env"});
 const databaseConfiguration = require("./config/dbconfig")
 const router = require("./routes/interviewRoutes");
+const { connection } = require("mongoose");
+
+ // socket part here ________________
 
 io.on("connection", socket => {
    console.log("connected to socket 1")
@@ -40,26 +43,31 @@ io.on("connection", socket => {
 
   socket.on('video-call', videoID =>{
       socket.join(videoID)
+
       socket.on("callUser", (data) => {
         console.log("call user")
-        socket.to(data.userToCall).emit("callUser", { signal: data.signalData, from: data.from, name: data.name })
+        socket.to(data.userToCall).emit("callUser", { signal: data.signalData, from: data.from})
       })
-    
+      socket.on("audiocallUser", (data) => {
+      console.log("audio call user")
+      socket.to(data.userToCall).emit("audiocallUser", { signal: data.signalData, from: data.from})
+      })
       socket.on("answerCall", (data) => {
         console.log("answer call ")
         socket.to(data.to).emit("callAccepted", data.signal)
       })
-       
+
   })
 })
 
+// database connection 
 
  
 databaseConfiguration()
-    .then(()=>console.log("Interview Service Connected To Database"))
-    .catch(()=>console.log("Interview Service Failed To Connect To Database"));
+    .then((e)=>console.log("Interview Service Connected To Database"))
+    .catch((e)=>console.log("Interview Service Failed To Connect To Database" + e));
 
-
+// router not needed to be defined here;
 app.use(express.json());
 app.use("/interview",router);
 

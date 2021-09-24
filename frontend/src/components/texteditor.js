@@ -43,9 +43,9 @@ export default function Texteditor(props) {
 
 
      useEffect(() => {
-        if(socket == null || quill == null) return
+    if(socket == null || quill == null) return
         
-        const handler = (delta, oldDelta, source)=>{
+    const handler = (delta, oldDelta, source)=>{
             console.log("handler")
             if(source!== 'user') return ; 
             socket.emit('send-changes', delta)
@@ -53,17 +53,17 @@ export default function Texteditor(props) {
             const data = JSON.stringify(quill.getContents())
             localStorage.setItem(documentID, data);
          }
-         quill.on('text-change', handler)
-         return () => {
-             quill.off('text-change', handler)
-         }
+        quill.on('text-change', handler)
+        return () => {
+            quill.off('text-change', handler)
+        }
      },[socket, quill, documentID])
 
 
      useEffect(() => { 
         const s = sock ; 
         setSocket(s)
-         return () => {
+        return () => {
             s.disconnect(); 
          }
      }, [])
