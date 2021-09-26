@@ -4,10 +4,8 @@ import PhoneIcon from "@material-ui/icons/Phone"
 import React, { useEffect, useRef, useState } from "react"
 import Peer from "simple-peer"
 import sock from ".."
-
 import "../styles/video.css"
 import { useParams } from "react-router"
-import { formatMs } from "@material-ui/core"
 
 export default function Video() {
     const {id: videoID} = useParams(); 
@@ -20,12 +18,24 @@ export default function Video() {
 	const myVideo = useRef()
 	const userVideo = useRef()
 	const connectionRef= useRef()
-	const [isvedio, setisvedio] = useState(false)
-	const [isaudio, setisaudio] = useState(false)
+	const [isvedio, setisvedio] = useState(false); 
 
+	// this will listen to the sockets always for events
 	useEffect(() => {
-        sock.emit('video-call', videoID); 
+		console.log(" I am sgetting streamed")
+		console.log(isvedio + "this is isvedio")
+
+		sock.emit('video-call', videoID); 
 		sock.on("callUser", (data) => {
+            setisvedio(true); 
+			setReceivingCall(true)
+			setName(data.name)
+			setCallerSignal(data.signal)
+		})
+
+		sock.on("audiocallUser", (data) => {
+	
+		    setisvedio(false); 
 			setReceivingCall(true)
 			setName(data.name)
 			setCallerSignal(data.signal)
@@ -33,24 +43,19 @@ export default function Video() {
 	}, [])
 
 	useEffect(() => {
-        console.log(isvedio + "    " + isaudio); 
-	    if(isvedio){	
-			console.log(" I am sgetting streamed")			
-		navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((stream) => {
-			setStream(stream)
-				myVideo.current.srcObject = stream
+		console.log(isvedio + "this is really a video call? ")
+		navigator.mediaDevices.getUserMedia({ video: isvedio,  audio: true }).then((stream) => {
+			console.log(isvedio + "dsfsdfdsfsdfsdfsdfsd")
+				setStream(stream)
+					myVideo.current.srcObject = stream
 		})
-		}
-	}, [])
+	}, [isvedio ])
 
 
 
-
-	const callUser = (id) => {
-		navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((stream) => {
-			setStream(stream)
-				myVideo.current.srcObject = stream
-		})
+// to create call 
+	const callUser = () => {
+        setisvedio(true); 
 		const peer = new Peer({
 			initiator: true,
 			trickle: false,
@@ -75,14 +80,38 @@ export default function Video() {
 		connectionRef.current = peer
 	}
 
-	const answerCall =() =>  {
-	    setisvedio(true)
-		navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((stream) => {
-			setStream(stream)
-				myVideo.current.srcObject = stream
+	const audiocallUser = () => {
+	    setisvedio(false); 
+		const peer = new Peer({
+			initiator: true,
+			trickle: false,
+			stream: stream
 		})
-	
+		peer.on("signal", (data) => {
+			
+			sock.emit("audiocallUser", {
+				userToCall: videoID,
+				signalData: data,
+				name: name
+			})
+		})
+		if(userVideo == null) return ; 
+		peer.on("stream", (stream) => {
+			userVideo.current.srcObject = stream	
+		})
+		sock.on("callAccepted", (signal) => {
+			setCallAccepted(true)
+			peer.signal(signal)
+		})
 
+		connectionRef.current = peer
+	}
+
+
+
+// to answer the calls 
+	const answerCall =() =>  {
+		
 		setCallAccepted(true)
 		const peer = new Peer({
 			initiator: false,
@@ -100,19 +129,16 @@ export default function Video() {
 		peer.signal(callerSignal)
 		connectionRef.current = peer
 	}
-
+  // to leave the  call 
 	const leaveCall = () => {
+
 		setCallEnded(true)
 		connectionRef.current.destroy()
 	}
 
 	return (
-		<div className="root-container" style={{ display:"flex" ,  flexDirection: 'row', height: "100%" }}>
-		
+		<div className="root-container" style={{ display:"flex" ,  flexDirection: 'row', height: "100%" }}>	
 		<div className="root-container" style={{ display:"flex" ,  flexDirection: 'row', height: "100%" ,width:"90%"}}>
-
-			{/* <div className="video-container"> */}
-			  
 				<div className="video">
 					{stream &&  <video playsInline muted ref={myVideo} autoPlay style={{ height:"100%"}} />}
 				</div>
@@ -122,21 +148,21 @@ export default function Video() {
 					null}
 				{/* </div> */}
 			</div>
-
-		
 		</div>
-		<div className="myId">
-			
+		<div className="myId">	
 			<div className="call-button" >
 				{callAccepted && !callEnded ? (
 					<Button variant="contained" color="secondary" onClick={leaveCall}>
 						End Call
 					</Button>
 				) : (
-					<IconButton color="primary" aria-label="call" onClick={() => callUser(videoID)}>
+					<IconButton color="primary" aria-label="call" onClick={() => callUser()}>
 						<PhoneIcon fontSize="large" />
 					</IconButton>
 				)}
+					<IconButton color="primary" aria-label="call" onClick={() => audiocallUser()}>
+						<PhoneIcon fontSize="large" />
+					</IconButton>
 			</div>
 		</div>
 		<div>

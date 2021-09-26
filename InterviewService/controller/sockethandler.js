@@ -35,17 +35,17 @@ io.on("connection", socket => {
  
    socket.on('video-call', videoID =>{
        socket.join(videoID)
- 
+       console.log("Joined video chat")
        socket.on("callUser", (data) => {
-         console.log("call user")
+         console.log("call user is called ")
          socket.to(data.userToCall).emit("callUser", { signal: data.signalData, from: data.from})
        })
        socket.on("audiocallUser", (data) => {
-       console.log("audio call user")
+       console.log("audio call user is done")
        socket.to(data.userToCall).emit("audiocallUser", { signal: data.signalData, from: data.from})
        })
        socket.on("answerCall", (data) => {
-         console.log("answer call ")
+         console.log("answer call, answering the incoming call ")
          socket.to(data.to).emit("callAccepted", data.signal)
        })
  

@@ -32,5 +32,3 @@ const schema = new mongoose.Schema({
     }
 });
 module.exports = mongoose.model("interview",schema);
-
-// https://codepen.io/vsync/pen/gOOjovv
