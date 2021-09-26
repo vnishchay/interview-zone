@@ -6,6 +6,11 @@ dotEnv.config({path : "/config/config.env"});
 const databaseConfiguration = require("./config/dbconfig")
 const router = require("./routes/interviewRoutes");
 const socketconnection = require("./controller/sockethandler");
+var cors = require('cors')
+
+
+
+app.use(cors()) //
 app.use(express.json());
 
 // socket connection handler  
@@ -17,7 +22,7 @@ databaseConfiguration()
 
 
 // router not needed to be defined here;
-app.use("/interview",router);
+app.use("/",router);
 
 
 const PORT = 3001 || process.env.PORT;

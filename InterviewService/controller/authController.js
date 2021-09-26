@@ -1,13 +1,14 @@
 const authDatabase = require("../models/authModel.js");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const AuthModel = require("../models/authModel.js");
 
 exports.userAddition = async (req,res)=>{
 
     const salt = await bcrypt.genSalt(10);
     req.body.password = await bcrypt.hash(req.body.password , salt);
-
-    await authDatabase.save();
+    var auth = authDatabase(req.body)
+    await auth.save(); 
 
     return res.status(201).json({
         status : "Passed",
@@ -16,6 +17,8 @@ exports.userAddition = async (req,res)=>{
 }
 
 exports.userLogin = async (req,res)=>{
+    console.log(req.body); 
+    console.log("hello there");
     const userFound  = await authDatabase.findOne({username : req.body.username});
 
     if(!userFound) return res.status(400).json({

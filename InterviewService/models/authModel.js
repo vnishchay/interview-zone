@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const schema = new mongoose.Schema({
+const Auth = new mongoose.Schema({
     username : {
         type : String ,
         required : true
@@ -10,4 +10,5 @@ const schema = new mongoose.Schema({
         required : true
     }
 });
-module.exports = mongoose.model("authDetails",schema);
+const AuthModel = mongoose.model("authDetails",Auth);
+module.exports = AuthModel; 

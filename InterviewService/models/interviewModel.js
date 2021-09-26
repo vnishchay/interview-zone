@@ -31,4 +31,6 @@ const schema = new mongoose.Schema({
         default : date
     }
 });
-module.exports = mongoose.model("interview",schema);
+const InterviewModel =  mongoose.model("interview",schema);
+
+module.exports = InterviewModel ; 

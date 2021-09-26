@@ -49,6 +49,9 @@ export default function Video() {
 				setStream(stream)
 					myVideo.current.srcObject = stream
 		})
+		return ()=>{
+			setisvedio(false)
+		}
 	}, [isvedio ])
 
 

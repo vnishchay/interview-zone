@@ -8,7 +8,7 @@ const {userAddition,userLogin} = require("../controller/authController");
 
 const {savingUser} = require("../controller/userController");
 
-router.route("/addition")
+router.route("/signup")
     .post(userAddition);
 
 router.route("/login")
