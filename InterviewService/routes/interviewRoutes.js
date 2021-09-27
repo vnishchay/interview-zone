@@ -7,7 +7,8 @@ const {savingQuestion, getQuestions} = require("../controller/questionController
 const {userAddition,userLogin} = require("../controller/authController");
 
 const {savingUser} = require("../controller/userController");
-const {auth}  = require("../middleware/auth")
+const {auth}  = require("../middleware/auth");
+const { webscrapping } = require("../controller/webscraping");
 
 router.route("/signup")
     .post(userAddition);
@@ -23,7 +24,7 @@ router.route("/addUser")
 
 router.route("/addquestion").post( savingQuestion);
 router.route("/getquestion").post( getQuestions);
-
+router.route("/scrap").get(webscrapping); 
 
 router.route("/addInterviewDetails")
     .post(savingInterviewDetails);
