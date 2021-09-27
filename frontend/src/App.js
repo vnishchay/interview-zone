@@ -8,6 +8,7 @@ import Landing from "./pages/landing";
 import page_not_found from "./components/page_not_found";
 import Login from "./pages/login";
 import Register from "./pages/register";
+import addQuestion from "./pages/addQuestion";
 function App() {
   return (
       <BrowserRouter>
@@ -20,6 +21,7 @@ function App() {
         <Route exact path='/home' component={HomePage} />
         <Route exact path='/signup' component={Register} /> 
         <Route exact path='/login' component={Login} />
+        <Route exact path="/addproblem" component={addQuestion}/>
         <Route exact path='/interview/:id' component={InterviewPage} />
       
         <Route exact path='/landing' component={Landing} />

@@ -1,6 +1,7 @@
 const QuestionSchema = require("../models/questionModel");
-
-exports.savingQuestion = async (req,res)=>{
+const {auth} = require("../middleware/auth")
+exports.savingQuestion = async (req,res,auth)=>{
+    
     var question = new QuestionSchema(); 
     question.question = req.body.question; 
     question.questionLevel = req.body.questionLevel; 
@@ -16,7 +17,7 @@ exports.savingQuestion = async (req,res)=>{
     });
 }
 // this will reaturn a bunch of questions for a interview 
-exports.getQuestions  = async (req, res)=>{    
+exports.getQuestions  = async (req, res, auth)=>{    
     // calling this function should give me 5 questions 
     // at once 
     if(req.body.level == 'easy'){

@@ -2,6 +2,7 @@ const authDatabase = require("../models/authModel.js");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const AuthModel = require("../models/authModel.js");
+const config = process.env;
 
 exports.userAddition = async (req,res)=>{
 
@@ -35,7 +36,7 @@ exports.userLogin = async (req,res)=>{
     const token = await jwt.sign({
             userID : userFound._id ,
             userName : userFound.username
-    },"key",
+    },process.TOKEN_KEY ,
         {expiresIn: "24h"}
     );
     res.status(200).json({
