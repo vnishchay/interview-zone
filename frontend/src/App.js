@@ -20,7 +20,7 @@ function App() {
          <Route exact path='/notfound' component={page_not_found}></Route>
         <Route exact path='/home' component={HomePage} />
         <Route exact path='/signup' component={Register} /> 
-        <Route exact path='/login' component={Login} />
+        <Route exact path='/signin' component={Login}/>
         <Route exact path="/addproblem" component={addQuestion}/>
         <Route exact path='/interview/:id' component={InterviewPage} />
       

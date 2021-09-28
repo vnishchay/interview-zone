@@ -1,30 +1,52 @@
 import React from 'react'
 import "../styles/register.css"; 
 import { useRef } from 'react';
-
-import { Redirect } from 'react-router';
+import { Redirect, useHistory } from 'react-router';
 const axios = require("axios"); 
+
 export default function Login() {
    const username = useRef(); 
    const password = useRef(); 
    const url = "http://localhost:3001/login" ;
-   
+   const history = useHistory(); 
 
-   const checklogin = async ()=>{
-       console.log("this function is called" + username.current.value+ password.current.value)
-       const response = await axios.post(url, {
+   const submitlogin = async ()=>{
+    console.log("this function is called" + username.current.value+ password.current.value)
+       try {
+       await axios.post(url, {
            username : username.current.value, 
            password : password.current.value, 
-       }).then((r)=>{
-         console.log(r); 
-       })
-         if(response.body.successfulLogin == true ) {
-          <Redirect to="/home" />
-         }
+       }).then((response)=>{
+            console.log(response.data)
+               if(response.data.successfulLogin){
+             return   <Redirect to="/home" />
+
+               } 
+       }) 
+      
+      } catch(e){
+             alert(e.message); 
+      }
     }   
+
+    // async function handleSubmit(event) {
+    //   event.preventDefault();
+    
+    //   try {
+    //     await Auth.signIn(email, password);
+    //     userHasAuthenticated(true);
+    //     history.push("/");
+    //   } catch (e) {
+    //     alert(e.message);
+    //   }
+    // }
+
+
+
+
     return (
 
-  <div className="login-container" style={{  marginBottom: "2%" }}>
+       <div className="login-container" style={{  marginBottom: "2%" }}>
   <form action="" className="form-login">
     <ul className="login-nav">
       <li className="login-nav__item active">
@@ -43,8 +65,9 @@ export default function Login() {
       <input id="login-sign-up" type="checkbox" className="login__input--checkbox" />
       Keep me Signed in
     </label>
-    <button className="login__submit" onClick={()=>checklogin()}> Sign in</button>
+    <button className="login__submit" onClick={()=>submitlogin()}> Sign in</button>
   </form>
+  {/* <a href="#" className="login__forgot">Forgot Password?</a> */}
 </div>
     )
 }
