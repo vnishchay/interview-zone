@@ -8,14 +8,13 @@ const { webscrapping } = require("../controller/webscraping");
 const verifyToken  = require("../middleware/auth.js");
 
 router.route("/addUser")
-        .post(savingUser);
-
-router.route("/addquestion").post(savingQuestion);
+        .post(verifyToken, savingUser);
+router.route("/addquestion").post(verifyToken, savingQuestion);
 router.route("/getquestion")
     .post(verifyToken, getQuestions);
-router.route("/scrap").get(webscrapping); 
+router.route("/scrap").get(verifyToken, webscrapping); 
 
 router.route("/addInterviewDetails")
-    .post(savingInterviewDetails);
+    .post(verifyToken, savingInterviewDetails);
 
 module.exports = router;
