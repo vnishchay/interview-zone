@@ -1,8 +1,6 @@
 const QuestionSchema = require("../models/questionModel");
-const {verifyToken } = require("../middleware/auth")
-exports.savingQuestion = async (req,res,verifyToken)=>{
-    verifyToken(); 
-    
+
+exports.savingQuestion = async (req,res)=>{
     var question = new QuestionSchema(); 
     question.question = req.body.question; 
     question.questionLevel = req.body.questionLevel; 
@@ -18,8 +16,7 @@ exports.savingQuestion = async (req,res,verifyToken)=>{
     });
 }
 // this will reaturn a bunch of questions for a interview 
-exports.getQuestions  = async (req, res, verifyToken)=>{  
-    verifyToken()   
+exports.getQuestions  = async (req, res)=>{    
     if(req.body.level == 'easy'){
         QuestionSchema.aggregate([
             {$match: {questionLevel: "easy"}},

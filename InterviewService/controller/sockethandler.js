@@ -1,16 +1,12 @@
 
 
 const socketconnection = (Server) =>{
-
-
 const io = require("socket.io")(Server, {
         cors : {
             origin: "http://localhost:3000", 
             methods: ["GET, POST"], 
         }
     })
-    
-
 io.on("connection", socket => {
     console.log("connected to socket 1")
     socket.on('get-document', documentID =>{

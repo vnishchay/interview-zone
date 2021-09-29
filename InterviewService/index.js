@@ -16,7 +16,6 @@ app.use(cors()) //
 app.use(express.json());
 
 app.use("/",authroute);
-app.use(verifyToken); 
 // socket connection handler  
 socketconnection(Server); // if authenticated and  on the create interview page only then turn this on  
 // database configuration 
