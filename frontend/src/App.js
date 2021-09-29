@@ -13,8 +13,12 @@ function App() {
   return (
       <BrowserRouter>
       <Route exact path='/' render={()=>{
+        if(localStorage.getItem("jwt")){
+          return <Redirect to="/home" />
+        }
         return (
-          <Redirect to="/home" />
+          
+          <Redirect to="/signin" />
         )
       }} />
          <Route exact path='/notfound' component={page_not_found}></Route>
@@ -23,7 +27,6 @@ function App() {
         <Route exact path='/signin' component={Login}/>
         <Route exact path="/addproblem" component={addQuestion}/>
         <Route exact path='/interview/:id' component={InterviewPage} />
-      
         <Route exact path='/landing' component={Landing} />
       </BrowserRouter>
   );

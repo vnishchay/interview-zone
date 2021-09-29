@@ -1,5 +1,6 @@
 const userDatabase = require("../models/userModel.js");
 const argon2 = require('argon2')
+
 exports.savingUser = async (req,res)=>{
     req.body.password = await argon2.hash(req.body.password);
     const user =new userDatabase({
@@ -16,8 +17,7 @@ exports.savingUser = async (req,res)=>{
                 success : true ,
                 message : "User Added To Database", 
                 data : req.body
-            });
-    
+            }); 
          }
     })
     

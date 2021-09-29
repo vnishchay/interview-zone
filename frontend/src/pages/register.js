@@ -26,7 +26,7 @@ export default function Register() {
   <form action="" className="form-login">
     <ul className="login-nav">
       <li className="login-nav__item active">
-        <a href="#">Sign Up</a>
+        <div>Sign Up</div>
       </li>
     </ul>
     <label className="login__label">

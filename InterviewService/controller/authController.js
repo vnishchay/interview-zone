@@ -8,7 +8,6 @@ const dotEnv = require("dotenv");
 dotEnv.config()
 
 exports.userAddition = async (req,res)=>{
-
     const salt = await bcrypt.genSalt(10);
     req.body.password = await bcrypt.hash(req.body.password , salt);
     var auth = authDatabase(req.body)

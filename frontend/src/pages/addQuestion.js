@@ -1,7 +1,5 @@
 import React from 'react'
 import "../styles/register.css"; 
-import { useRef } from 'react';
-const axios = require("axios"); 
 
 export default function addQuestion() {
    

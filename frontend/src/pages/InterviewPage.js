@@ -2,7 +2,6 @@ import React from 'react'
 import TextEditor from "../components/texteditor"
 import ChatRoom from "../components/chat"
 import Questions from '../components/questions'
-import { AppBar, IconButton, Toolbar } from '@material-ui/core'
 import Video from '../components/video'
 
 export default function InterviewPage() {

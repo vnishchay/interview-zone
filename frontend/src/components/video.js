@@ -40,7 +40,7 @@ export default function Video() {
 			setName(data.name)
 			setCallerSignal(data.signal)
 		})
-	}, [])
+	},[])
 
 	useEffect(() => {
 		console.log(isvedio + "this is really a video call? ")

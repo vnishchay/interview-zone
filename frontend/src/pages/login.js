@@ -1,7 +1,7 @@
 import React from 'react'
 import "../styles/register.css"; 
 import { useRef } from 'react';
-import { Redirect, useHistory } from 'react-router';
+import {useHistory } from 'react-router';
 const axios = require("axios"); 
 
 export default function Login() {
@@ -17,10 +17,11 @@ export default function Login() {
            username : username.current.value, 
            password : password.current.value, 
        }).then((response)=>{
-            console.log(response.data)
+            // console.log(response.data)
+             console.log(response.data.jwt)
                if(response.data.successfulLogin){
-             return   <Redirect to="/home" />
-
+                 localStorage.setItem("jwt", response.data.jwt); 
+                 history.push("/home")
                } 
        }) 
       
@@ -28,29 +29,13 @@ export default function Login() {
              alert(e.message); 
       }
     }   
-
-    // async function handleSubmit(event) {
-    //   event.preventDefault();
-    
-    //   try {
-    //     await Auth.signIn(email, password);
-    //     userHasAuthenticated(true);
-    //     history.push("/");
-    //   } catch (e) {
-    //     alert(e.message);
-    //   }
-    // }
-
-
-
-
     return (
 
        <div className="login-container" style={{  marginBottom: "2%" }}>
   <form action="" className="form-login">
     <ul className="login-nav">
       <li className="login-nav__item active">
-        <a href="#">Sign In</a>
+        <div>Sign In</div>
       </li>
     </ul>
     <label className="login__label">
