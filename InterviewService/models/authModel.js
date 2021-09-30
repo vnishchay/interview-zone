@@ -12,3 +12,5 @@ const Auth = new mongoose.Schema({
 });
 const AuthModel = mongoose.model("authDetails",Auth);
 module.exports = AuthModel; 
+
+

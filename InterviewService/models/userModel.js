@@ -3,7 +3,7 @@ const moment = require("moment");
 const date = `${moment().format("DD/MM/YYYY").split("/")[0]}-${moment().format("DD/MM/YYYY").split("/")[1]}-${moment().format("DD/MM/YYYY").split("/")[2]}`
 
 const schema = new mongoose.Schema({
-    userName : {
+    username : {
         type : String ,
         unique : true,
         required : true
@@ -11,6 +11,10 @@ const schema = new mongoose.Schema({
     normalName : String ,
     country : String ,
     language : String ,
+    email : {
+        type: String, 
+      required : true,  
+    }, 
     ratings : Number ,
     password : {
         type : String ,

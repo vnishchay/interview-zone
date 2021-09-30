@@ -4,9 +4,9 @@ import "../styles/questions.css"
 import {useEffect, useState } from 'react';
 const axios = require("axios") ; 
 
-export default function Questions(props) {
+export default function Questions() {
   
-    const [questions, setquestions] = useState(""); 
+    const [questions, setquestions] = useState(); 
     useEffect(() => {
       const getquestion = async()=>{
         const url = "http://localhost:3001/getquestion" ; 
@@ -22,21 +22,19 @@ export default function Questions(props) {
             if(res.message === "Invalid Token"){
                 console.log("Invalid Token")
             }
-            console.log(res); 
-              setquestions(res.data.Questions); 
+            setquestions(res.data);             
         })
     }
     getquestion(); 
-       return ()=>{
-           setquestions(null); 
-       }
 }, [])
+console.log(questions)
 
-
-
-    return (
+return (
         <div className="question-container"> 
-     
-         </div>
+        {
+         
+        }
+        </div> 
+         
      )
 }

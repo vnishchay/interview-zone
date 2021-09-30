@@ -17,8 +17,7 @@ export default function Login() {
            username : username.current.value, 
            password : password.current.value, 
        }).then((response)=>{
-            // console.log(response.data)
-             console.log(response.data.jwt)
+               console.log(response.data.jwt)
                if(response.data.successfulLogin){
                  localStorage.setItem("jwt", response.data.jwt); 
                  history.push("/home")

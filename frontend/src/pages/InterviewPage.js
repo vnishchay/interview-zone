@@ -5,7 +5,6 @@ import Questions from '../components/questions'
 import Video from '../components/video'
 import { useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
-import { red } from '@material-ui/core/colors'
 const axios = require("axios")
 
 export default function InterviewPage() {
