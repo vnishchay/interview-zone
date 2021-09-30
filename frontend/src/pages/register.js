@@ -1,6 +1,7 @@
 import React from 'react'
 import "../styles/signup.css"
 import { useRef } from 'react';
+import { Redirect } from 'react-router-dom';
 const axios = require("axios"); 
 
 
@@ -14,8 +15,7 @@ export default function Register() {
    
    const url = "http://localhost:3001/signup" ;
    
-
-   const checklogin = async ()=>{
+  const checklogin = async ()=>{
     if(username.current.value ===null || password.current.value === null || email.current.value === null || fname.current.value === null ) return ;   
       
        await axios.post(url, {
@@ -26,7 +26,9 @@ export default function Register() {
            normalName : fname.current.value, 
        }).then(function(response){
                console.log(response); 
+               return <Redirect to="/home" />
        }).catch(function(params) {
+           console.log("this is getting called ")
            console.log(params); 
        })
     }   
@@ -65,9 +67,7 @@ export default function Register() {
 
     </form></div>        
   </div>      
-</div>
-    
-    
+</div> 
     </div>
  
     )
