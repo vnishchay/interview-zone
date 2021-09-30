@@ -1,16 +1,17 @@
 const authDatabase = require("../models/authModel.js");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const AuthModel = require("../models/authModel.js");
-
+const userModel = require("../models/userModel"); 
 const dotEnv = require("dotenv");
 
 dotEnv.config()
 
 exports.userAddition = async (req,res)=>{
+    if(req.body.password === null || req.body.username === null || req.body.email == null || req.body.userName === null) res.status(403).json({data : "all empty"}) 
+    console.log(req.body)
     const salt = await bcrypt.genSalt(10);
     req.body.password = await bcrypt.hash(req.body.password , salt);
-    var auth = authDatabase(req.body)
+    var  auth = userModel(req.body)
     await auth.save(); 
 
     return res.status(201).json({
@@ -23,7 +24,7 @@ exports.userLogin = async (req,res)=>{
     console.log(req.body); 
     console.log(process.env.TOKEN_KEY)
     console.log("hello there");
-    const userFound  = await authDatabase.findOne({username : req.body.username});
+    const userFound  = await userModel.findOne({username : req.body.username});
 
     if(!userFound) return res.status(400).json({
         status : "Failed",
@@ -39,7 +40,7 @@ exports.userLogin = async (req,res)=>{
     console.log(validatePassword)
     const token = await jwt.sign({
             userID : userFound._id ,
-            userName : userFound.username
+            username : userFound.username
     },  `${process.env.TOKEN_KEY}` ,
         {expiresIn: "24h"}
     );

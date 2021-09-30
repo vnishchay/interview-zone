@@ -5,19 +5,16 @@ import "quill/dist/quill.snow.css"
 import { useParams } from "react-router-dom";
 import sock from '.';
 
-export default function Texteditor() {
-  
+export default function Texteditor() {  
     const {id : documentID}  = useParams(); 
     const [socket , setSocket] = useState()
     const [quill, setquill] = useState(); 
-
    useEffect(()=>{
        const s = sock
        setSocket(s)
        return ()=>{
            s.disconnect()
        }
-
    }, [])
 
     useEffect(() => {  
@@ -43,7 +40,6 @@ export default function Texteditor() {
          }
      }, [socket, quill, documentID])
 
-
      useEffect(() => {
         if(socket == null || quill == null) return
         
@@ -61,8 +57,7 @@ export default function Texteditor() {
          }
      }, [socket, quill, documentID])
 
-
-
+     
     const wrapperref = useCallback(
        (wrapper) => {
        if(wrapper == null) return ; 
@@ -74,7 +69,6 @@ export default function Texteditor() {
       q.setText('loading ...')
       setquill(q)
     }, [])
-
     return (
         <div className="container" style={{display: 'flex'}} ref={wrapperref}>
         </div>    

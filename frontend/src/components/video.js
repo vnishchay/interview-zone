@@ -21,10 +21,9 @@ export default function Video() {
 	const [isvedio, setisvedio] = useState(false); 
 
 	// this will listen to the sockets always for events
-	useEffect(() => {
-		console.log(" I am sgetting streamed")
-		console.log(isvedio + "this is isvedio")
+   
 
+	useEffect(() => {
 		sock.emit('video-call', videoID); 
 		sock.on("callUser", (data) => {
             setisvedio(true); 
@@ -34,8 +33,6 @@ export default function Video() {
 		})
 
 		sock.on("audiocallUser", (data) => {
-	
-		    setisvedio(false); 
 			setReceivingCall(true)
 			setName(data.name)
 			setCallerSignal(data.signal)
@@ -43,15 +40,10 @@ export default function Video() {
 	},[])
 
 	useEffect(() => {
-		console.log(isvedio + "this is really a video call? ")
-		navigator.mediaDevices.getUserMedia({ video: isvedio,  audio: true }).then((stream) => {
-			console.log(isvedio + "dsfsdfdsfsdfsdfsdfsd")
+			navigator.mediaDevices.getUserMedia({ video: isvedio,  audio: true }).then((stream) => {
 				setStream(stream)
 					myVideo.current.srcObject = stream
 		})
-		return ()=>{
-			setisvedio(false)
-		}
 	}, [isvedio ])
 
 
@@ -134,7 +126,7 @@ export default function Video() {
 	}
   // to leave the  call 
 	const leaveCall = () => {
-
+		setisvedio(false); 
 		setCallEnded(true)
 		connectionRef.current.destroy()
 	}

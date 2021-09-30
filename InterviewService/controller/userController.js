@@ -4,7 +4,7 @@ const argon2 = require('argon2')
 exports.savingUser = async (req,res)=>{
     req.body.password = await argon2.hash(req.body.password);
     const user =new userDatabase({
-        userName : req.body.userName,
+        username : req.body.username,
         password : req.body.password
     } )  
     const data = req.body; 
@@ -20,5 +20,4 @@ exports.savingUser = async (req,res)=>{
             }); 
          }
     })
-    
 }
