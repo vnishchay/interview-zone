@@ -41,7 +41,7 @@ exports.userLogin = async (req,res)=>{
     const token = await jwt.sign({
             userID : userFound._id ,
             username : userFound.username
-    },  `${process.env.TOKEN_KEY}` ,
+    }, `${process.env.TOKEN_KEY}` ,
         {expiresIn: "24h"}
     );
     console.log(token) ; 
