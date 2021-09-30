@@ -8,6 +8,7 @@ import page_not_found from "./components/page_not_found";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import addQuestion from "./pages/addQuestion";
+import Timer from "./components/timer";
 function App() {
 
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route  path='/signin' component={Login}/>
         <Route  path="/addproblem" component={addQuestion}/>
         <Route  path='/interview/:id' component={InterviewPage} />
+        <Route path='/timer' component={Timer} />
         </Switch>
       </BrowserRouter>
   );
