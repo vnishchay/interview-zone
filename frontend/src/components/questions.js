@@ -34,8 +34,9 @@ export default function Questions() {
         <div className="question-container" style={{height:"100%"}}> 
             {questions.map((data, key) => {
                 return (
-                    <div key={key} className="question-container">
-                        { data.questionLevel + " , " + data.question }
+                    <div key={key} >
+                        {
+                         data.questionLevel + " , " + data.question }
                     </div>
                 );
             })}
