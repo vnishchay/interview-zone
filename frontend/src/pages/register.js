@@ -13,7 +13,7 @@ export default function Register() {
 
   const url = "http://localhost:3001/signup";
 
-  const checklogin = async () => {
+  const signup = async () => {
     if (
       username.current.value === null ||
       password.current.value === null ||
@@ -21,7 +21,7 @@ export default function Register() {
       fname.current.value === null
     )
       return;
-
+    try {
     await axios
       .post(url, {
         username: username.current.value,
@@ -29,30 +29,26 @@ export default function Register() {
         email: email.current.value,
         country: country.current.value,
         normalName: fname.current.value,
+      },)
+      .then(()=> {
+        return <Redirect to="/signin" />;
       })
-      .then(function (response) {
-        console.log(response);
-        return <Redirect to="/home" />;
-      })
-      .catch(function (params) {
+    }
+      catch(e) {
         console.log("this is getting called ");
-        console.log(params);
-      });
+        console.log(e);
+      };
   };
   return (
     <div>
-      <div className="container">
+      <div className="signup-container">
         <div className="sidenav">
           <div className="content">
             <h1>Welcome!</h1>
             <br />
             <p className="line"></p> <br />
-            <p>
-              Already a member? <br />
-              Login!
-            </p>
+       
             <br />
-            <button className="signupbtn">Login</button>
           </div>
         </div>
 
@@ -80,7 +76,7 @@ export default function Register() {
               <input
                 type="text"
                 placeholder="Country"
-                id="email"
+                id="country"
                 ref={country}
                 name="country"
               />
@@ -103,7 +99,7 @@ export default function Register() {
                 minLength="5"
               />
               <br />
-              <button id="signup" onClick={() => checklogin()}>
+              <button id="signup" onClick={() => signup()}>
                 <span className="signup">Sign up</span>
               </button>
               <div id="btnmodal" className="modal">
