@@ -8,14 +8,10 @@ const router = require("./routes/interviewRoutes");
 const authroute = require("./routes/authRoutes")
 const socketconnection = require("./controller/sockethandler");
 var cors = require('cors');
-const verifyToken = require("./middleware/auth");
-
 
 
 app.use(cors()) //
 app.use(express.json());
-
-app.use("/",authroute);
 // socket connection handler  
 socketconnection(Server); // if authenticated and  on the create interview page only then turn this on  
 // database configuration 

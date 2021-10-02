@@ -9,7 +9,9 @@ const schema = new mongoose.Schema({
         required : true
     },
     normalName : String ,
-    country : String ,
+    country :{
+        type: String ,
+    } , 
     language : String ,
     email : {
         type: String, 

@@ -11,26 +11,31 @@ import { AppContext, AppContextUpdate, AppLogout } from "../components/context";
 export default function HomePage() {
   const history = useHistory();
   const data = useContext(AppContext);
-  const [usedata, setusedata] = useState(data);
-  const [link, setlink] = useState(""); 
-  useEffect(() => {
-    const data = localStorage.getItem("appContextdata");
-    setusedata(data);
-  }, [usedata]);
-  function logout(){ 
-      localStorage.removeItem("jwt"); 
-      localStorage.removeItem("appContextdata"); 
-       if(!localStorage.getItem("jwt")){
-        history.push("/signin");
-      }   
+  const [usedata, setusedata] = useState(
+    localStorage.getItem("appContextdata")
+  );
+  const [link, setlink] = useState("");
+  function logout() {
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("appContextdata");
+    if (!localStorage.getItem("jwt")) {
+      history.push("/signin");
+    }
   }
+
+
   return (
-    <React.Fragment>
-      <CssBaseline />
+    <div>
       <AppBar>
         <Toolbar>
-          <IconButton size="small" edge="start" color="grey" sx={{ mr: 2 }}  onClick={logout}>
-            {usedata ? "logout" : "login"} 
+          <IconButton
+            size="small"
+            edge="start"
+            color="grey"
+            sx={{ mr: 2 }}
+            onClick={logout}
+          >
+            {usedata ? "logout" : "login"}
           </IconButton>
         </Toolbar>
       </AppBar>
@@ -42,17 +47,18 @@ export default function HomePage() {
           >
             <div>
               <Grid container spacing={2} justifyContent="center">
-                  
-                  <Button
-                    onClick={()=> setlink(`/interview/${v4()}`)}
-                    variant="contained"
-                    color="primary"
-                    style={{ padding: "3%" }}
-                  >
-                    {link!=="" ? "http://localhost:3000"+ link : "Create Link"} 
-                  </Button>
-             
+                <Button
+                  onClick={() =>   navigator.clipboard.writeText( 'http://localhost:3000'+link)}
+                  variant="contained"
+                  color="primary"
+                  style={{ padding: "3%" }}
+                >
+                  {link !== "" ? "http://localhost:3000" + link : "Create Link"}
+                </Button>
               </Grid>
+
+              <Button onClick={()=>  setlink(`/interview/${v4()}`)}>Generate Link</Button>
+
               <Grid container spacing={2} justifyContent="center">
                 <Link to={link}>
                   <Button
@@ -69,6 +75,6 @@ export default function HomePage() {
         </div>
         <Container maxWidth="md"></Container>
       </main>
-    </React.Fragment>
+    </div>
   );
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/signup.css";
 import { useRef } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 const axios = require("axios");
 
 export default function Register() {
@@ -10,17 +10,29 @@ export default function Register() {
   const fname = useRef();
   const country = useRef();
   const email = useRef();
-
+  const history = useHistory(); 
   const url = "http://localhost:3001/signup";
 
-  const signup = async () => {
+  const signup = async (event) => {
+    
+    // const handleSubmit = event => {
+    //   if (value) {
+    //     setList(list.concat(value));
+    //   }
+   
+    //   setValue('');
+   
+      event.preventDefault();
+    // };
+
+
     if (
       username.current.value === null ||
       password.current.value === null ||
       email.current.value === null ||
       fname.current.value === null
-    )
-      return;
+    ) return;
+
     try {
     await axios
       .post(url, {
@@ -31,13 +43,13 @@ export default function Register() {
         normalName: fname.current.value,
       },)
       .then(()=> {
-        return <Redirect to="/signin" />;
+          history.push('/signin');
       })
     }
-      catch(e) {
-        console.log("this is getting called ");
-        console.log(e);
-      };
+    catch(e) {
+      console.log("this is getting called ");
+      console.log(e);
+    };
   };
   return (
     <div>
@@ -99,7 +111,7 @@ export default function Register() {
                 minLength="5"
               />
               <br />
-              <button id="signup" onClick={() => signup()}>
+              <button id="signup" onClick={(e)=>signup(e)}>
                 <span className="signup">Sign up</span>
               </button>
               <div id="btnmodal" className="modal">
