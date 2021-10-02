@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import { useContext, useState } from "react/cjs/react.development";
 import { AppContext } from "../components/context";
+import UserTile from "../components/userTile";
 const axios = require("axios");
 
 export default function InterviewPage() {
@@ -40,10 +41,10 @@ export default function InterviewPage() {
           justifyContent: "flex-start",
         }}
       >
-        <div>{useData}</div>
+
         <div style={{ width: "50%", height: "100%", padding: "1%" }}>
           <TextEditor />
-        </div>
+         </div>
         <div style={{ width: "50%", height: "100%" }}>
           <div style={{ height: "30%", padding: "1%" }}>
             <Video />

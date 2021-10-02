@@ -28,7 +28,7 @@ function App() {
           <Route path="/notfound" component={page_not_found}></Route>
           <Route path="/home" component={HomePage} />
           <Route path="/signup" component={Register} />
-          <Route path="/signin?#" component={Login} />
+          <Route path="/signin" component={Login} />
           <Route path="/addproblem" component={addQuestion} />
           <Route path="/interview/:id" component={InterviewPage} />
           <Route path="/timer" component={Timer} />

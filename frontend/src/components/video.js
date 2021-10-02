@@ -6,6 +6,8 @@ import Peer from "simple-peer"
 import sock from ".."
 import "../styles/video.css"
 import { useParams } from "react-router"
+import UserTile from "./userTile"
+import Timer from "./timer"
 
 export default function Video() {
     const {id: videoID} = useParams(); 
@@ -135,7 +137,7 @@ export default function Video() {
 		<div className="root-container" style={{ display:"flex" ,  flexDirection: 'row', height: "100%" }}>	
 		<div className="root-container" style={{ display:"flex" ,  flexDirection: 'row', height: "100%" ,width:"90%"}}>
 				<div className="video">
-					{stream &&  <video playsInline muted ref={myVideo} autoPlay style={{ height:"100%"}} />}
+					{stream ? <video playsInline muted ref={myVideo} autoPlay style={{ height:"100%"}} /> : <UserTile name={"nishchay"}/>}
 				</div>
 				<div className="video">
 					{callAccepted && !callEnded ?
@@ -145,18 +147,20 @@ export default function Video() {
 			</div>
 		</div>
 		<div className="myId">	
+		<Timer time={100}/>
 			<div className="call-button" >
+				
 				{callAccepted && !callEnded ? (
 					<Button variant="contained" color="secondary" onClick={leaveCall}>
 						End Call
 					</Button>
 				) : (
 					<IconButton color="primary" aria-label="call" onClick={() => callUser()}>
-						<PhoneIcon fontSize="large" />
+						<PhoneIcon fontSize="small" />
 					</IconButton>
 				)}
 					<IconButton color="primary" aria-label="call" onClick={() => audiocallUser()}>
-						<PhoneIcon fontSize="large" />
+						<PhoneIcon fontSize="small" />
 					</IconButton>
 			</div>
 

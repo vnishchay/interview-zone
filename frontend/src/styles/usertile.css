@@ -1,0 +1,59 @@
+.grid{
+    display: grid;
+    gap: 2.2em;
+    grid-template-columns: repeat(3, 1fr);
+}
+.card{
+    height: 300px;
+    width: 270px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .3),
+                0 10px 20px rgba(0, 0, 0, .2);
+    border-radius: 1em;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.c-1{
+    background: url('https://images8.alphacoders.com/658/thumb-1920-658228.jpg') no-repeat center/cover;
+}
+.c-2{
+    background: url('https://images7.alphacoders.com/914/thumb-1920-914709.jpg') no-repeat center/cover;
+}
+.c-3{
+    background: url('https://images.alphacoders.com/100/thumb-1920-1002775.jpg') no-repeat center/cover;
+}
+
+.gif-container{
+    position: absolute;
+    width: 0%;
+    height: 0%;
+    border-radius: 1em;
+    
+    transition: width .3s linear,
+                height .3s linear;
+
+    overflow: hidden;
+}
+.card:hover .gif-container{
+    width: 100%;
+    height: 100%;
+}
+.gc-1{
+    top: 0;
+    left: 0;
+}
+.gc-2{
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+.gc-3{
+    bottom: 0;
+    right: 0;
+}
+img{
+    width: 100%;
+    height: 100%;
+  object-fit: cover;
+}

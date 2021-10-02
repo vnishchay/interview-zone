@@ -5,12 +5,13 @@ import "../styles/timer.css";
 
 const element = <FontAwesomeIcon icon={faClock} />;
 
-const Timer = () => {
-  const [timer, setTimer] = useState(3600);
+const Timer = ({time}) => {
+  
+  const [timer, setTimer] = useState(time);
   const [isActive, setIsActive] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const increment = useRef(null);
-
+  
   const handleStart = () => {
     setIsActive(true);
     setIsPaused(true);
@@ -26,17 +27,13 @@ const Timer = () => {
 
   const handleResume = () => {
     setIsPaused(true);
+  
     increment.current = setInterval(() => {
       setTimer((timer) => timer - 1);
     }, 1000);
   };
 
-  const handleReset = () => {
-    clearInterval(increment.current);
-    setIsActive(false);
-    setIsPaused(false);
-    setTimer(3600);
-  };
+
 
   const formatTime = () => {
     const getSeconds = `0${timer % 60}`.slice(-2);
@@ -48,9 +45,8 @@ const Timer = () => {
   };
 
   return (
-    <div className="timer">
-      <h3> Stopwatch {element}</h3>
-      <div className="stopwatch-card">
+  
+      <div className="stopwatch-card" style={{display:"flex", flexDirection:"column" , height:"200px", width:"200px"}}>
         <p>{formatTime()}</p>
         <div className="ctrs">
           {!isActive && !isPaused ? (
@@ -60,13 +56,10 @@ const Timer = () => {
           ) : (
             <button onClick={handleResume}>Resume</button>
           )}
-          <button onClick={handleReset} disabled={!isActive}>
-            Reset
-          </button>
+    
         </div>
       </div>
-    </div>
-  );
+   );
 };
 
 export default Timer;
