@@ -53,7 +53,7 @@ exports.userLogin = async (req,res)=>{
 
 
 exports.authstatus = async (req, res)=>{
-       console.log("auth status is called")
+       console.log("auth status is called for sure")
        res.status(200).json({
            authorized : true , 
        })

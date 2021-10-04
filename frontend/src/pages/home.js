@@ -8,19 +8,42 @@ import { Link, Redirect, useHistory } from "react-router-dom";
 import { v4 } from "uuid";
 import { AppBar, IconButton, Toolbar } from "@material-ui/core";
 import { AppContext, AppContextUpdate, AppLogout } from "../components/context";
+import axios from "axios";
 export default function HomePage() {
   const history = useHistory();
   const data = useContext(AppContext);
   const [usedata, setusedata] = useState(
     localStorage.getItem("appContextdata")
   );
+  // verify token and if not verified return to the signin page 
+  // else go to home page
+  useEffect(()=>{
+    console.log("is auth status getting  called? ")
+    const url = "http://localhost:3001/authstatus"; 
+    
+    async function checkauth(){
+      console.log("check login function here")
+      const x =  await axios.post(url,{}, {
+       headers:{
+       'Authorization': localStorage.getItem("jwt")
+     }})
+      
+    if(x.data.authorized){
+         console.log(" I am authorized for this route mf")
+         history.push("/home"); 
+       }else {
+         history.push("/signin")
+       }
+  
+    }  
+     checkauth();  
+   }, [])
+
   const [link, setlink] = useState("");
   function logout() {
     localStorage.removeItem("jwt");
     localStorage.removeItem("appContextdata");
-    if (!localStorage.getItem("jwt")) {
-      history.push("/signin");
-    }
+     history.push("/signin") 
   }
 
 

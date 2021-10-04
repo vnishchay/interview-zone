@@ -2,6 +2,7 @@ import React from "react";
 import "../styles/signup.css";
 import { useRef } from "react";
 import { Redirect, useHistory } from "react-router-dom";
+// import { useEffect } from "react/cjs/react.development";
 const axios = require("axios");
 
 export default function Register() {
@@ -13,8 +14,11 @@ export default function Register() {
   const history = useHistory(); 
   const url = "http://localhost:3001/signup";
 
+
+
   const signup = async (event) => {
-    
+    localStorage.removeItem("jwt"); 
+    localStorage.removeItem("appContextdata")
     // const handleSubmit = event => {
     //   if (value) {
     //     setList(list.concat(value));
