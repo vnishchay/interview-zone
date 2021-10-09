@@ -130,6 +130,7 @@ export default function Video() {
 	const leaveCall = () => {
 		setisvedio(false); 
 		setCallEnded(true)
+	    // connectionRef.current.removeAllListeners('close'); 
 		connectionRef.current.destroy()
 	}
 

@@ -14,6 +14,9 @@ const verifyToken = async(req, res, next) => {
         const token = requestTokenHeader.substring(7);
         console.log(token + "  this is token")
             //verifying Details
+
+        //TODO verfify if token is expired. if so don't accept the request
+        //TODO refresh token need to be added 
         console.log(config.TOKEN_KEY)
         const jwtDetails = await jwt.verify(token, config.TOKEN_KEY);
         console.log(jwtDetails);
