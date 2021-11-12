@@ -4,6 +4,7 @@
 
 
 Setup 
+
      git clone http://codernishchay/interview-zone 
      cd interview-zone 
      cd InterviewService 
