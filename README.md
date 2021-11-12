@@ -1,28 +1,24 @@
 # Interview-zone
 
-An Interview platform where two people can conduct interview( one as Interviewer other as candidate). 
+    An Interview platform where two people can conduct interview( one as Interviewer other as candidate). 
 
-###Routes 
 
-###endpoints : 
+#Backend endpoints : 
+     
+     /login 
+     /sigup
+     /addUser 
+     /saveInterviewDetails  
+     /getquestions 
+     /savequestions
+     /getUser?id="" 
 
-     userlogin 
-
-     userAddition 
-
-    savingInterviewDetails  
-
-    getquestions 
-
-    savingquestions 
-
-    savingUser 
-
-###middleware 
+Middleware 
 
      verifyToken 
 
-###frontend Routes 
+
+Frontend Routes 
 
      <Route path="/notfound" component={page_not_found}></Route>
 
