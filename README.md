@@ -2,78 +2,38 @@
 
 An Interview platform where two people can conduct interview( one as Interviewer other as candidate). 
 
-Routes 
+###Routes 
 
-router.route("/signup").post(userAddition);
+###endpoints : 
 
-router.route("/login").post(userLogin);
+     userlogin 
 
-router.route("/authstatus").post(verifyToken, authstatus);
+     userAddition 
 
-// ?
+    savingInterviewDetails  
 
-router.route("/addUser").post(verifyToken, savingUser);
+    getquestions 
 
-router.route("/addquestion").post(verifyToken, savingQuestion);
+    savingquestions 
 
-// route to get question
+    savingUser 
 
-router.route("/getquestion").post(verifyToken, getQuestions);
+###middleware 
 
-// webscraping route
+     verifyToken 
 
-router.route("/scrap").get(verifyToken, webscrapping);
+###frontend Routes 
 
-//interview details adding route
+     <Route path="/notfound" component={page_not_found}></Route>
 
-router.route("/addInterviewDetails").post(verifyToken, savingInterviewDetails);
+     <Route path="/home" component={HomePage} />
 
- 
+     <Route path="/signup" component={Register} />
 
-endpoints : 
+     <Route path="/signin" component={Login} />
 
- userlogin 
+     <Route path="/addproblem" component={addQuestion} />
 
- userAddition 
+     <Route path="/interview/:id" component={InterviewPage} />
 
-savingInterviewDetails  
-
-getquestions 
-
-savingquestions 
-
-savingUser 
-
-middleware 
-
-verifyToken 
-
-sockets-event-listeners 
-
-socket.on(videoCall) 
-
-socket.on(chat-room)  
-
-on get-document 
-
-on audio-call 
-
-on callUser 
-
-on answerCall 
-
-frontend Routes 
-
-<Route path="/notfound" component={page_not_found}></Route>
-
-<Route path="/home" component={HomePage} />
-
-<Route path="/signup" component={Register} />
-
-<Route path="/signin" component={Login} />
-
-<Route path="/addproblem" component={addQuestion} />
-
-<Route path="/interview/:id" component={InterviewPage} />
-
-<Route path="/timer" component={Timer} />
+     <Route path="/timer" component={Timer} />
