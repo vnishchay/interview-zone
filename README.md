@@ -3,7 +3,7 @@
     An Interview platform where two people can conduct interview( one as Interviewer other as candidate). 
 
 
-#Backend endpoints : 
+Backend endpoints : 
      
      /login 
      /sigup
