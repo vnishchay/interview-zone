@@ -3,6 +3,21 @@
     An Interview platform where two people can conduct interview( one as Interviewer other as candidate). 
 
 
+Setup 
+     git clone http://codernishchay/interview-zone 
+     cd interview-zone 
+     cd InterviewService 
+     npm i  // install packages required. 
+     yarn dev 
+     // http://localhost://3001 
+     
+     cd frontend   // new terminal tab 
+     npm i 
+     yarn start   
+     // http://localhost:3000 
+     
+
+
 Backend endpoints : 
      
      /login 
