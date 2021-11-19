@@ -9,13 +9,7 @@ export function AppContextProvider({ children }) {
   function updateData(data) {
     setData(data);
   }
-
-//   function logout() {
-//     localStorage.removeItem("jwt");
-//     localStorage.removeItem("appContextdata");
-//     return "loggedout";
-//   }
-
+  
   return (
     <AppContext.Provider value={data}>
       <AppContextUpdate.Provider value={updateData}>
