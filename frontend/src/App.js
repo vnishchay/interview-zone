@@ -19,12 +19,13 @@ function App() {
             path="/"
             render={() => {
               if (localStorage.getItem("jwt")) {
+                //TODO : what to do if jwt is expired 
                 return <Redirect to="/home" />;
               }
               return <Redirect to="/signin" />;
             }}
           />
-        
+        //TODO : authenitcate other routes 
           <Route path="/notfound" component={page_not_found}></Route>
           <Route path="/home" component={HomePage} />
           <Route path="/signup" component={Register} />
