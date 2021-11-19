@@ -63,13 +63,12 @@ export default function HomePage() {
       </AppBar>
       <main>
         <div>
-          <imp class="" src="/home/nishi/project/interview-zone/frontend/src/pages/illustrations-1.png" ></imp>
           <Container
             maxWidth="xl"
             style={{ margin: "auto", padding: "15%", justifyContent: "center" }}
           >
             <div>
-              <Grid container spacing={2} justifyContent="center">
+              <Grid container spacing={2} justifyContent="center" >
                 <Button
                   onClick={() =>   navigator.clipboard.writeText( 'http://localhost:3000'+link)}
                   variant="contained"
@@ -100,6 +99,5 @@ export default function HomePage() {
         <Container maxWidth="md"></Container>
       </main>
     </div>
-    
   );
 }
