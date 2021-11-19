@@ -47,9 +47,7 @@ Interview Service
 
 Frontend Routes 
 
-     <Route path="/notfound" component={page_not_found}></Route>
-
-     <Route path="/home" component={HomePage} />
+      <Route path="/home" component={HomePage} />
 
      <Route path="/signup" component={Register} />
 
@@ -58,5 +56,3 @@ Frontend Routes
      <Route path="/addproblem" component={addQuestion} />
 
      <Route path="/interview/:id" component={InterviewPage} />
-
-     <Route path="/timer" component={Timer} />
