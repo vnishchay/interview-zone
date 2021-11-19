@@ -15,8 +15,7 @@ export default function HomePage() {
   const [usedata, setusedata] = useState(
     localStorage.getItem("appContextdata")
   );
-  // verify token and if not verified return to the signin page 
-  // else go to home page
+
   useEffect(()=>{
     console.log("is auth status getting  called? ")
     const url = "http://localhost:3001/authstatus"; 
@@ -64,6 +63,7 @@ export default function HomePage() {
       </AppBar>
       <main>
         <div>
+          <imp class="" src="/home/nishi/project/interview-zone/frontend/src/pages/illustrations-1.png" ></imp>
           <Container
             maxWidth="xl"
             style={{ margin: "auto", padding: "15%", justifyContent: "center" }}
@@ -78,10 +78,11 @@ export default function HomePage() {
                 >
                   {link !== "" ? "http://localhost:3000" + link : "Create Link"}
                 </Button>
+                <Button onClick={()=>  setlink(`/interview/${v4()}`)}>Generate Link</Button>
+
               </Grid>
 
-              <Button onClick={()=>  setlink(`/interview/${v4()}`)}>Generate Link</Button>
-
+            
               <Grid container spacing={2} justifyContent="center">
                 <Link to={link}>
                   <Button
@@ -99,5 +100,6 @@ export default function HomePage() {
         <Container maxWidth="md"></Container>
       </main>
     </div>
+    
   );
 }

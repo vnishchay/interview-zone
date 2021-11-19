@@ -10,8 +10,7 @@ const ChatRoom = () => {
 
   const handleNewMessageChange = (event) => {
     setNewMessage( event.target.value);
-	 // setMessages((messages) => [...messages, messageBod]);
-	console.log(event.target.value)
+		console.log(event.target.value)
   };
 
   const handleSendMessage = () => {
@@ -30,7 +29,7 @@ const ChatRoom = () => {
                  message.ownedByCurrentUser ? "my-message" : "received-message"
               }`}
             >
-               {message.ownedByCurrentUser ? "hello there": "hello here"}
+               {message.ownedByCurrentUser}
               {message.body}
             </li>
           ))}

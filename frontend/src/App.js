@@ -8,7 +8,7 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import addQuestion from "./pages/addQuestion";
 import Timer from "./components/timer";
-import AppContext, { AppContextProvider } from "./components/context";
+import  { AppContextProvider } from "./components/context";
 function App() {
    return (
       <AppContextProvider>
