@@ -6,6 +6,8 @@ import { useParams } from "react-router-dom";
 import sock from "..";
 import "../styles/texteditor.css";
 
+
+// TODO: authentication on sockets ? figure it out 
 export default function Texteditor(props) {
   const { id: documentID } = useParams();
   const [quill, setquill] = useState();

@@ -46,7 +46,6 @@ export default function Video() {
       });
   }, [isvedio]);
 
-  // to create call
   const callUser = () => {
     setisvedio(true);
     const peer = new Peer({
@@ -99,8 +98,7 @@ export default function Video() {
     connectionRef.current = peer;
   };
 
-  // to answer the calls
-  const answerCall = () => {
+   const answerCall = () => {
     setCallAccepted(true);
     const peer = new Peer({
       initiator: false,

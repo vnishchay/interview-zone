@@ -4,7 +4,7 @@ import { faClock } from "@fortawesome/free-regular-svg-icons";
 import "../styles/timer.css";
 
 const element = <FontAwesomeIcon icon={faClock} />;
-
+// TODO : complete this timer function and put it on interview
 const Timer = ({ time }) => {
   const [timer, setTimer] = useState(time);
   const [isActive, setIsActive] = useState(false);

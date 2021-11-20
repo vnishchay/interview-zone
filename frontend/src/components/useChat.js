@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
 import sock from "..";
 
-// https://stackoverflow.com/questions/36788831/authenticating-socket-io-connections-using-jwt
-
 const useChat = (roomId) => {
   const [messages, setMessages] = useState([]);
-
   useEffect(() => {
     sock.emit("chat-room", roomId);
   }, []);
@@ -23,7 +20,7 @@ const useChat = (roomId) => {
       sock.disconnect();
     };
   }, [roomId]);
-
+  
   const sendMessage = (messageBody) => {
     sock.emit("NEW_CHAT_MESSAGE_EVENT", {
       body: messageBody,

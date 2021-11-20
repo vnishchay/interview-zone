@@ -4,8 +4,6 @@ const jwt = require("jsonwebtoken");
 const userModel = require("../models/userModel"); 
 const dotEnv = require("dotenv");
 
-dotEnv.config()
-
 exports.userAddition = async (req,res)=>{
     if(req.body.password === null || req.body.username === null || req.body.email == null || req.body.userName === null) res.status(403).json({data : "all empty"}) 
     console.log(req.body)
