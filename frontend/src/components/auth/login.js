@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
-import "../styles/register.css";
+import "./register.css";
 import { useRef } from "react";
-import { AppContextUpdate } from "../components/context";
 import { useHistory } from "react-router";
 const axios = require("axios");
 
@@ -11,8 +10,6 @@ export default function Login() {
   const password = useRef();
   const url = "http://localhost:3001/login";
   const history = useHistory();
-  const updateAppContext = useContext(AppContextUpdate); 
-
 
   const submitlogin = async (e) => {
     e.preventDefault(); 
@@ -28,7 +25,7 @@ export default function Login() {
             localStorage.setItem("jwt", response.data.jwt);
             const obj =       username.current.value;
             localStorage.setItem("appContextdata", obj)   
-            updateAppContext(obj); 
+            // updateAppContext(obj); 
             history.push('/home');
           }
         });

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-regular-svg-icons": "^6.0.0-beta2",
     "@fortawesome/react-fontawesome": "^0.1.15",
     "@material-ui/core": "^4.12.3",
@@ -14,12 +15,12 @@
     "browserlist": "^1.0.1",
     "clsx": "^1.1.1",
     "cors": "^2.8.5",
-    "peerjs": "^1.3.2",
     "prop-types": "^15.7.2",
     "quill": "^1.3.7",
     "react": "^17.0.2",
     "react-copy-to-clipboard": "^5.0.4",
     "react-dom": "^17.0.2",
+    "react-fontawesome": "^1.7.1",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
     "simple-peer": "^9.11.0",
@@ -28,10 +29,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "react-scripts start"
   },
   "eslintConfig": {
     "extends": [

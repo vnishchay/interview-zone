@@ -1,5 +1,5 @@
 import React from 'react'
-import "../styles/usertile.css"
+import "userTile.css"
 export default function UserTile({name}) {
     return (
         <div>

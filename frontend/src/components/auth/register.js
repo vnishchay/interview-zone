@@ -1,8 +1,7 @@
 import React from "react";
-import "../styles/signup.css";
+import "./signup.css";
 import { useRef } from "react";
-import { Redirect, useHistory } from "react-router-dom";
-// import { useEffect } from "react/cjs/react.development";
+import { useHistory } from "react-router-dom";
 const axios = require("axios");
 
 export default function Register() {

@@ -1,5 +1,5 @@
 import React from 'react'
-import "../styles/register.css"; 
+import "./addQuestion.css"; 
 
 export default function addQuestion() {
    

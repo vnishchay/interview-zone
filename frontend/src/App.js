@@ -1,17 +1,17 @@
 // import './App.css';
 import React from "react";
-import HomePage from "./pages/home";
-import InterviewPage from "./pages/InterviewPage";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import page_not_found from "./components/page_not_found";
-import Login from "./pages/login";
-import Register from "./pages/register";
-import addQuestion from "./pages/addQuestion";
-import Timer from "./components/timer";
-import  { AppContextProvider } from "./components/context";
+import page_not_found from "./components/pagenotfound/page_not_found";
+import HomePage from "./components/home/home";
+import Login from "./components/auth/login";
+import Register from "./components/auth/register";
+import InterviewPage from "./components/interviewpage/InterviewPage";
+import addQuestion from "./components/question/addQuestion";
+import Timer from "./components/timer/timer";
+
 function App() {
    return (
-      <AppContextProvider>
+      // <AppContextProvider>
       <BrowserRouter>
         <Switch>
           <Route
@@ -35,7 +35,7 @@ function App() {
           <Route path="/timer" component={Timer} />
         </Switch>
       </BrowserRouter>
-      </AppContextProvider>
+      // </AppContextProvider>
     
       );
 }
