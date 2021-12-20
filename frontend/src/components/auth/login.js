@@ -1,37 +1,17 @@
-import React, { useContext } from "react";
+import React  from "react";
 import "./register.css";
 import { useRef } from "react";
-import { useHistory } from "react-router";
-const axios = require("axios");
+import { useAuth } from "./authContext";
 
-export default function Login() {
+
+export default function Login(props) {
   
   const username = useRef();
   const password = useRef();
-  const url = "http://localhost:3001/login";
-  const history = useHistory();
-
+  const auth = useAuth() ; 
   const submitlogin = async (e) => {
     e.preventDefault(); 
-    try {
-      await axios
-        .post(url, {
-          username: username.current.value,
-          password: password.current.value,
-        })
-        .then((response) => {
-          console.log(response.data.jwt);
-          if (response.data.successfulLogin) {
-            localStorage.setItem("jwt", response.data.jwt);
-            const obj =       username.current.value;
-            localStorage.setItem("appContextdata", obj)   
-            // updateAppContext(obj); 
-            history.push('/home');
-          }
-        });
-    } catch (e) {
-      alert(e.message);
-    }
+    auth.signin(username, password); 
   };
   return (
     <div className="login-container" style={{ marginBottom: "2%" }}>

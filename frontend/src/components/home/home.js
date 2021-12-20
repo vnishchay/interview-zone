@@ -1,28 +1,26 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, {useState } from "react";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import { v4 } from "uuid";
-import { Link } from "react-router-dom";
-import { AppBar, IconButton, Toolbar } from "@material-ui/core";
 
 export default function HomePage() {
-
+  const [link, setlink] = useState("")
   return (
     <div>
-      <AppBar>
+      {/* <AppBar>
         <Toolbar>
           <IconButton
             size="small"
             edge="start"
             color="grey"
             sx={{ mr: 2 }}
-            // onClick={log}
+            onClick={log}
           >
-            {/* {usedata ? "logout" : "login"} */}
+            {usedata ? "logout" : "login"}
           </IconButton>
         </Toolbar>
-      </AppBar>
+      </AppBar> */}
       <main>
         <div>
           <Container
@@ -32,14 +30,14 @@ export default function HomePage() {
             <div>
               <Grid container spacing={2} justifyContent="center" >
                 <Button
-                  // onClick={() =>   navigator.clipboard.writeText( 'http://localhost:3000'+link)}
+                  onClick={() =>   navigator.clipboard.writeText( 'http://localhost:3000'+link)}
                   variant="contained"
                   color="primary"
                   style={{ padding: "3%" }}
                 >
-                  {/* {link !== "" ? "http://localhost:3000" + link : "Create Link"} */}
+                  {link !== "" ? "http://localhost:3000" + link : "Create Link"}
                 </Button>
-                {/* <Button onClick={()=>  setlink(`/interview/${v4()}`)}>Generate Link</Button> */}
+                <Button onClick={()=>  setlink(`/interview/${v4()}`)}>Generate Link</Button>
 
               </Grid>
 

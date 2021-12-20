@@ -1,59 +1,22 @@
 import React from "react";
 import "./signup.css";
 import { useRef } from "react";
-import { useHistory } from "react-router-dom";
-const axios = require("axios");
+import { useAuth } from "./authContext";
 
 export default function Register() {
+
   const username = useRef();
   const password = useRef();
   const fname = useRef();
   const country = useRef();
   const email = useRef();
-  const history = useHistory(); 
-  const url = "http://localhost:3001/signup";
 
+  const auth = useAuth()
+  onsubmit = () =>{
+      const user = {username, password, country, email, fname} ; 
+      auth.signUp(user); 
+  }
 
-
-  const signup = async (event) => {
-    localStorage.removeItem("jwt"); 
-    localStorage.removeItem("appContextdata")
-    // const handleSubmit = event => {
-    //   if (value) {
-    //     setList(list.concat(value));
-    //   }
-   
-    //   setValue('');
-   
-      event.preventDefault();
-    // };
-
-
-    if (
-      username.current.value === null ||
-      password.current.value === null ||
-      email.current.value === null ||
-      fname.current.value === null
-    ) return;
-
-    try {
-    await axios
-      .post(url, {
-        username: username.current.value,
-        password: password.current.value,
-        email: email.current.value,
-        country: country.current.value,
-        normalName: fname.current.value,
-      },)
-      .then(()=> {
-          history.push('/signin');
-      })
-    }
-    catch(e) {
-      console.log("this is getting called ");
-      console.log(e);
-    };
-  };
   return (
     <div>
       <div className="signup-container">
@@ -114,7 +77,7 @@ export default function Register() {
                 minLength="5"
               />
               <br />
-              <button id="signup" onClick={(e)=>signup(e)}>
+              <button id="signup" onClick={onsubmit} >
                 <span className="signup">Sign up</span>
               </button>
               <div id="btnmodal" className="modal">
