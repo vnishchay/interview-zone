@@ -3,7 +3,7 @@ import IconButton from "@material-ui/core/IconButton";
 import PhoneIcon from "@material-ui/icons/Phone";
 import React, { useEffect, useRef, useState } from "react";
 import Peer from "simple-peer";
-import sock from "../../index";
+import sock from "../..";
 import "../styles/video.css";
 import { useParams } from "react-router";
 import UserTile from "../usertile/userTile";

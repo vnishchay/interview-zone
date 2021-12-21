@@ -12,9 +12,11 @@ export default function Register() {
   const email = useRef();
 
   const auth = useAuth()
-  onsubmit = () =>{
-      const user = {username, password, country, email, fname} ; 
+  onsubmit = (e) =>{
+      e.preventDefault()
+      const user = {username, password, country, email} ; 
       auth.signUp(user); 
+      window.history.back()
   }
 
   return (

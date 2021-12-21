@@ -9,9 +9,11 @@ export default function Login(props) {
   const username = useRef();
   const password = useRef();
   const auth = useAuth() ; 
+
   const submitlogin = async (e) => {
     e.preventDefault(); 
-    auth.signin(username, password); 
+    auth.signIn(username, password); 
+    window.history.back()
   };
   return (
     <div className="login-container" style={{ marginBottom: "2%" }}>
@@ -44,7 +46,7 @@ export default function Login(props) {
           />
           Keep me Signed in
         </label>
-        <button className="login__submit" onClick={(e) => submitlogin(e)}>
+        <button className="login__submit" onClick={submitlogin}>
           Sign in
         </button>
       </form>

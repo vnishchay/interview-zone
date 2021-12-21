@@ -1,6 +1,6 @@
 
-
 const socketconnection = (Server) =>{
+
 const io = require("socket.io")(Server, {
         cors : {
             origin: "http://localhost:3000", 
