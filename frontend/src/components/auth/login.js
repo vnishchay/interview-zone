@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { useAuth } from "./authContext";
 
 
-export default function Login(props) {
+export default function Login() {
   
   const username = useRef();
   const password = useRef();
@@ -13,7 +13,7 @@ export default function Login(props) {
   const submitlogin = async (e) => {
     e.preventDefault(); 
     auth.signIn(username, password); 
-    window.history.back()
+    // window.history.back()
   };
   return (
     <div className="login-container" style={{ marginBottom: "2%" }}>

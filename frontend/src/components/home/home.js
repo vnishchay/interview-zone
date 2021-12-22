@@ -3,13 +3,18 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import { v4 } from "uuid";
+import { useAuth } from "../auth/authContext";
+// import { AppBar, Toolbar, IconButton } from "@material-ui/core";
 
 export default function HomePage() {
   const [link, setlink] = useState("")
+  const auth = useAuth() ; 
+  console.log(auth.user)
   return (
     <div>
       {/* <AppBar>
         <Toolbar>
+          <h3>{username}</h3>
           <IconButton
             size="small"
             edge="start"

@@ -9,7 +9,6 @@ exports.savingQuestion = async (req,res)=>{
     await question.save((err, question)=>{
           if(err){
               console.log(err)
-
           }else {
               res.send(question)
           }

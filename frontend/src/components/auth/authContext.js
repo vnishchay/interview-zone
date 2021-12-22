@@ -42,33 +42,28 @@ export const getUser = (user) => {
 };
 
 const Auth = () => {
-      const [user, setuser] = useState() ; 
+    const [user, setuser] = useState() ; 
     
     const signIn = async (username, password) => {
       console.log("sign iN function")
        try {
-              // console.log(url)
-              await axios
+            await axios
                 .post( "http://localhost:3001/login", {
                   username: username.current.value,
                   password: password.current.value,
                 })
                 .then((response) => {
-                  // console.log(response.data.jwt);
-                  if (response.data.successfulLogin) {
+                    console.log(response.data); 
+                    console.log(" whats is going onn mffffffffffffffffffffsdkjglfdkjslkjdfdfsg      sdfsadfsdsfdsafdsf  / ")
+                    setuser(response.data)
                     localStorage.setItem("jwt", response.data.jwt);
-                    setuser(response.data); 
-                  }
-                  // console.log(response.data)
-                  return response.data
+                  
                 });
             } catch (e) {
               console.log("getting some error?? ")
               alert(e.message);
         }
     }
-
-
 
   const signUp =  async (user) => {
     console.log(user)
