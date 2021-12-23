@@ -4,7 +4,7 @@ import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import { useParams } from "react-router-dom";
 import sock from "../..";
-import "texteditor.css";
+import "./texteditor.css";
 
 
 // TODO: authentication on sockets ? figure it out 

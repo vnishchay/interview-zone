@@ -2,6 +2,7 @@ import React  from "react";
 import "./register.css";
 import { useRef } from "react";
 import { useAuth } from "./authContext";
+import { useHistory } from "react-router-dom";
 
 
 export default function Login() {
@@ -9,12 +10,15 @@ export default function Login() {
   const username = useRef();
   const password = useRef();
   const auth = useAuth() ; 
-
+  const history = useHistory(); 
   const submitlogin = async (e) => {
     e.preventDefault(); 
     auth.signIn(username, password); 
-    // window.history.back()
+    history.push('/');
   };
+
+  
+
   return (
     <div className="login-container" style={{ marginBottom: "2%" }}>
       <form action="" className="form-login">

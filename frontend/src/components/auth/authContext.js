@@ -1,5 +1,5 @@
 import React, { useState, createContext, useContext } from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Route, Redirect} from "react-router-dom";
 
 const axios = require('axios')
 const AuthContext = createContext();
@@ -21,7 +21,8 @@ export const PrivateRoute = ({ children, ...rest }) => {
     <Route
       {...rest}
       render={({ location }) =>
-        auth.user.successfulLogin ? (
+       
+        auth.user !== undefined && auth.user.successfulLogin ? (
           children
         ) : (
           <Redirect
@@ -42,7 +43,7 @@ export const getUser = (user) => {
 };
 
 const Auth = () => {
-    const [user, setuser] = useState() ; 
+    const [user, setuser] = useState(); 
     
     const signIn = async (username, password) => {
       console.log("sign iN function")
@@ -53,11 +54,11 @@ const Auth = () => {
                   password: password.current.value,
                 })
                 .then((response) => {
-                    console.log(response.data); 
-                    console.log(" whats is going onn mffffffffffffffffffffsdkjglfdkjslkjdfdfsg      sdfsadfsdsfdsafdsf  / ")
-                    setuser(response.data)
+                  if (response.data.successfulLogin) {
                     localStorage.setItem("jwt", response.data.jwt);
-                  
+                    localStorage.setItem("username", response.data.username); 
+                    setuser(response.data)
+                  }
                 });
             } catch (e) {
               console.log("getting some error?? ")

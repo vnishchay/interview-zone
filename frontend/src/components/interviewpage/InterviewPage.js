@@ -1,4 +1,8 @@
 import React from "react";
+import TextEditor from "../texteditor/textEditor";
+import Video from "../chat/video";
+import Questions from "../question/questions";
+import ChatRoom from "../chat/chat";
 
 export default function InterviewPage() {
 
@@ -15,12 +19,12 @@ export default function InterviewPage() {
       >
 
         <div style={{ width: "50%", height: "100%", padding: "1%" }}>
-          <h1> Hello there how are you guys</h1>
-          {/* < TextEditor /> */}
+            < TextEditor />
+     
          </div>
         <div style={{ width: "50%", height: "100%" }}>
           <div style={{ height: "30%", padding: "1%" }}>
-            {/* < Video/> */}
+            < Video/>
           </div>
           <div
             style={{
@@ -32,10 +36,10 @@ export default function InterviewPage() {
             }}
           >
             <div style={{ width: "60%", height: "100%", padding: "1%" }}>
-              {/* < Questions /> */}
+             <Questions/>
             </div>
             <div style={{ width: "40%", padding: "1%" }}>
-              {/* < ChatRoom /> */}
+              < ChatRoom />
             </div>
           </div>
         </div>

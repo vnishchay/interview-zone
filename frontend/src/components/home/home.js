@@ -1,31 +1,36 @@
-import React, {useState } from "react";
+import React, {useState , useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import { v4 } from "uuid";
 import { useAuth } from "../auth/authContext";
-// import { AppBar, Toolbar, IconButton } from "@material-ui/core";
+import { AppBar, Toolbar, Link} from "@material-ui/core";
+import { useHistory } from "react-router-dom";
 
 export default function HomePage() {
   const [link, setlink] = useState("")
   const auth = useAuth() ; 
-  console.log(auth.user)
+  const [username, setusername] = useState(); 
+  const history  = useHistory() ; 
+
+  useEffect(() => {
+    if (auth.user === null || auth.user === undefined){
+         setusername("guest"); 
+    }else {
+      setusername(auth.user.username);
+    }
+  }, [auth])
+ const route = ()=>{
+   history.push(link)
+ }
+
   return (
     <div>
-      {/* <AppBar>
+      <AppBar>
         <Toolbar>
-          <h3>{username}</h3>
-          <IconButton
-            size="small"
-            edge="start"
-            color="grey"
-            sx={{ mr: 2 }}
-            onClick={log}
-          >
-            {usedata ? "logout" : "login"}
-          </IconButton>
+         <h3>{username}</h3>
         </Toolbar>
-      </AppBar> */}
+      </AppBar>
       <main>
         <div>
           <Container
@@ -48,13 +53,14 @@ export default function HomePage() {
 
             
               <Grid container spacing={2} justifyContent="center">
-                {/* <Link to={link}> */}
+              {/* <Link to={link}> */}
                   <Button
+                    onClick={route}
                     variant="contained"
                     color="primary"
                     style={{ padding: "3%" }}
                   >
-                    {/* Go to interview + {usedata ? usedata : data} */}
+                    Go to interview 
                   </Button>
                 {/* </Link> */}
               </Grid>

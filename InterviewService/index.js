@@ -12,9 +12,7 @@ var cors = require('cors');
 app.use(cors()) //
 app.use(express.json());
 
-// console.log("this is working")
 socketconnection(Server); 
-// console.log("is this working")
 
 databaseConfiguration()
     .then((e)=>console.log("Interview Service Connected To Database"))
