@@ -1,10 +1,10 @@
-import React, {useState , useEffect } from "react";
+import React, {useState , useEffect, useRef } from "react";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import { v4 } from "uuid";
 import { useAuth } from "../auth/authContext";
-import { AppBar, Toolbar, Link} from "@material-ui/core";
+import { AppBar, Toolbar} from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 
 export default function HomePage() {
@@ -12,6 +12,7 @@ export default function HomePage() {
   const auth = useAuth() ; 
   const [username, setusername] = useState(); 
   const history  = useHistory() ; 
+  const joinmeet = useRef(""); 
 
   useEffect(() => {
     if (auth.user === null || auth.user === undefined){
@@ -20,8 +21,14 @@ export default function HomePage() {
       setusername(auth.user.username);
     }
   }, [auth])
- const route = ()=>{
-   history.push(link)
+
+  const route = (e)=>{
+    e.preventDefault(); 
+    history.push(link); 
+  }
+ const joinMeet = (e)=>{
+   e.preventDefault(); 
+   history.push(joinmeet.current.value); 
  }
 
   return (
@@ -40,7 +47,7 @@ export default function HomePage() {
             <div>
               <Grid container spacing={2} justifyContent="center" >
                 <Button
-                  onClick={() =>   navigator.clipboard.writeText( 'http://localhost:3000'+link)}
+                  onClick={() =>   navigator.clipboard.writeText(link)}
                   variant="contained"
                   color="primary"
                   style={{ padding: "3%" }}
@@ -50,10 +57,9 @@ export default function HomePage() {
                 <Button onClick={()=>  setlink(`/interview/${v4()}`)}>Generate Link</Button>
 
               </Grid>
-
             
               <Grid container spacing={2} justifyContent="center">
-              {/* <Link to={link}> */}
+          
                   <Button
                     onClick={route}
                     variant="contained"
@@ -62,8 +68,23 @@ export default function HomePage() {
                   >
                     Go to interview 
                   </Button>
-                {/* </Link> */}
+        
               </Grid>
+
+               
+              <Grid container spacing={5} justifyContent="center">
+                <input ref={joinmeet}></input>
+                  <Button
+                    onClick={joinMeet}
+                    variant="contained"
+                    color="primary"
+                    style={{ padding: "3%" }}
+                  >
+                   Join Meet 
+                  </Button>
+              </Grid>
+
+
             </div>
           </Container>
         </div>
