@@ -7,14 +7,26 @@ import Login from "./components/auth/login";
 import Register from "./components/auth/register";
 import InterviewPage from "./components/interviewpage/InterviewPage";
 import { AuthProvider, PrivateRoute } from "./components/auth/authContext"
-import { AppBar, Toolbar } from "@material-ui/core";
+import { AppBar, Toolbar, Button } from "@material-ui/core";
+import { Backspace, Home } from "@mui/icons-material";
+import { useHistory } from "react-router";
 // import ResponsiveAppBar from "./components/appbar/appbar";
 function App() {
+   const history = useHistory(); 
    return (
       <AuthProvider>
       <BrowserRouter>
        <AppBar>
-         <Toolbar></Toolbar>
+         <Toolbar>
+         <Button
+              variant="contained"
+              onClick={() => window.history.back()        }
+              color="primary"
+              startIcon={<Backspace />}
+            >
+              back
+            </Button>
+         </Toolbar>
        </AppBar>
         <Switch>
         <Route exact path="/" component={HomePage} />

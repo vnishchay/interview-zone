@@ -14,6 +14,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useHistory } from "react-router-dom";
 
 const theme = createTheme();
 
@@ -23,10 +24,11 @@ export default function Login() {
   const username = useRef();
   const password = useRef();
   const auth = useAuth() ; 
+  const history = useHistory(); 
   const handleSubmit = async (e) => {
     e.preventDefault(); 
     auth.signIn(username, password); 
-    window.history.back();
+    window.history.back(); 
   };
 
   
