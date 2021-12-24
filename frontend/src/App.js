@@ -7,11 +7,15 @@ import Login from "./components/auth/login";
 import Register from "./components/auth/register";
 import InterviewPage from "./components/interviewpage/InterviewPage";
 import { AuthProvider, PrivateRoute } from "./components/auth/authContext"
-
+import { AppBar, Toolbar } from "@material-ui/core";
+// import ResponsiveAppBar from "./components/appbar/appbar";
 function App() {
    return (
       <AuthProvider>
       <BrowserRouter>
+       <AppBar>
+         <Toolbar></Toolbar>
+       </AppBar>
         <Switch>
         <Route exact path="/" component={HomePage} />
           <PrivateRoute path='/interview/:id'>

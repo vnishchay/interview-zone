@@ -1,7 +1,21 @@
-import React from "react";
-import "./signup.css";
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { useAuth } from "./authContext";
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme();
+
 
 export default function Register() {
 
@@ -12,86 +26,118 @@ export default function Register() {
   const email = useRef();
 
   const auth = useAuth()
-  onsubmit = (e) =>{
+  const handleSubmit = (e) =>{
       e.preventDefault()
       const user = {username, password, country, email} ; 
       auth.signUp(user); 
       window.history.back()
+      
   }
 
   return (
-    <div>
-      <div className="signup-container">
-        <div className="sidenav">
-          <div className="content">
-            <h1>Welcome!</h1>
-            <br />
-            <p className="line"></p> <br />
-       
-            <br />
-          </div>
-        </div>
-
-        <div className="signupform">
-          <h1>Sign Up</h1>
-          <div>
-            <form method="post">
-              <input
-                type="text"
-                placeholder="Name"
-                id="fname"
-                ref={fname}
-                name="fname"
+    <ThemeProvider theme={theme}>
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <Box
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign up
+        </Typography>
+        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
+              <TextField
+                autoComplete="username"
+                name="username"
+                required
+                inputRef={username}
+                fullWidth
+                id="username"
+                label="Username"
+                autoFocus
               />
-              <br />
-              <input
-                type="text"
-                placeholder="Email"
-                id="email"
-                ref={email}
-                name="email"
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                autoComplete="given-name"
+                name="firstName"
+                required
+                inputRef={fname}
+                fullWidth
+                id="firstName"
+                label="First Name"
+                autoFocus
               />
-              <br />
-
-              <input
-                type="text"
-                placeholder="Country"
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                fullWidth
                 id="country"
-                ref={country}
+                label="country"
                 name="country"
+                inputRef={country}
+                autoComplete="country"
               />
-              <br />
-              <hr />
-              <input
-                type="text"
-                placeholder="Username"
-                id="uname"
-                ref={username}
-                name="uname"
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
+                id="email"
+                inputRef={email}
+                label="Email Address"
+                name="email"
+                autoComplete="email"
               />
-              <br />
-              <input
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
+                name="password"
+                label="Password"
                 type="password"
-                placeholder="Password"
-                id="pwd"
-                name="pwd"
-                ref={password}
-                minLength="5"
+                inputRef={password}
+                id="password"
+                autoComplete="new-password"
               />
-              <br />
-              <button id="signup" onClick={onsubmit} >
-                <span className="signup">Sign up</span>
-              </button>
-              <div id="btnmodal" className="modal">
-                <div className="modal-content">
-                  <span className="close">&times;</span>
-                  <p>Thanks for signing up!</p>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+            </Grid>
+            <Grid item xs={12}>
+              <FormControlLabel
+                control={<Checkbox value="allowExtraEmails" color="primary" />}
+                label="I want to receive inspiration, marketing promotions and updates via email."
+              />
+            </Grid>
+          </Grid>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Sign Up
+          </Button>
+          <Grid container justifyContent="flex-end">
+            <Grid item>
+              <Link href="/login" variant="body2">
+                Already have an account? Sign in
+              </Link>
+            </Grid>
+          </Grid>
+        </Box>
+      </Box>
+      {/* <Copyright sx={{ mt: 5 }} /> */}
+    </Container>
+  </ThemeProvider>
   );
 }
