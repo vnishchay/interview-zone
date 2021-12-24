@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import sock from "../..";
+import sock from "../socket";
 
 const useChat = (roomId) => {
   const [messages, setMessages] = useState([]);

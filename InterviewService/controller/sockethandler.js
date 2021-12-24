@@ -8,6 +8,7 @@ const io = require("socket.io")(Server, {
         }
     })
 io.on("connection", socket => {
+    console.log("Socket connection established ")
     socket.on('get-document', documentID =>{
       const data = ""
       socket.join(documentID)
@@ -23,7 +24,6 @@ io.on("connection", socket => {
         socket.broadcast.to(chatID).emit('get-message', message);
        })
    })
- 
    socket.on('video-call', videoID =>{
        socket.join(videoID)
        socket.on("callUser", (data) => {
@@ -38,8 +38,5 @@ io.on("connection", socket => {
  
    })
  })
- 
-
-
 }
 module.exports = socketconnection;  
