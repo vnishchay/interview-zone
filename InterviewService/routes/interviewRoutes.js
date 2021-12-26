@@ -14,7 +14,6 @@ const verifyToken = require("../middleware/auth.js");
 
 router.route("/signup").post(userAddition);
 router.route("/login").post(userLogin);
-router.route("/authstatus").post(verifyToken, authstatus);
 router.route("/addUser").post(verifyToken, savingUser);
 router.route("/addquestion").post(verifyToken, savingQuestion);
 router.route("/getquestion").post(verifyToken, getQuestions);

@@ -12,9 +12,6 @@ const verifyToken = async(req, res, next) => {
     try {
         //Extracting Actual Token
         const token = requestTokenHeader.substring(7);
-        console.log(token + "  this is token")
-            //verifying Details
-
         //TODO verfify if token is expired. if so don't accept the request
         //TODO refresh token need to be added 
         console.log(config.TOKEN_KEY)
@@ -27,6 +24,5 @@ const verifyToken = async(req, res, next) => {
         res.status(400).json({ message: "Invalid Token" });
     }
 }
-
 
 module.exports = verifyToken;

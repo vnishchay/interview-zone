@@ -3,12 +3,12 @@ import { useCallback, useEffect, useState } from "react";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import { useParams } from "react-router-dom";
-import sock from "..";
-import "../styles/texteditor.css";
+import sock from "../socket";
+import "./texteditor.css";
 
 
 // TODO: authentication on sockets ? figure it out 
-export default function Texteditor(props) {
+export default function TextEditor(props) {
   const { id: documentID } = useParams();
   const [quill, setquill] = useState();
   const [socket, setSocket] = useState();

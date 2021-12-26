@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-regular-svg-icons";
-import "../styles/timer.css";
+import "./timer.css";
 
 const element = <FontAwesomeIcon icon={faClock} />;
 // TODO : complete this timer function and put it on interview

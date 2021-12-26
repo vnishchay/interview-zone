@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/questions.css";
+import "./questions.css";
 import { useEffect, useState, useRef } from "react";
 const axios = require("axios");
 
