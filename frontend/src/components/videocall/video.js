@@ -6,8 +6,6 @@ import Peer from "simple-peer";
 import sock from "../socket";
 import "./video.css";
 import { useParams } from "react-router";
-// import UserTile from "../usertile/userTile";
-import UserTile from "../usertile/userTile";
 
 export default function Video() {
   const { id: videoID } = useParams();
@@ -20,12 +18,13 @@ export default function Video() {
   const myVideo = useRef();
   const userVideo = useRef();
   const connectionRef = useRef();
-  const [isvedio, setisvedio] = useState(false);
-
+  // const [initiateCall, setinitiateCall] = useState(false); 
+  
   useEffect(() => {
+
     sock.emit("video-call", videoID);
     sock.on("callUser", (data) => {
-      setisvedio(true);
+    //   setisvedio(true);
       setReceivingCall(true);
       setName(data.name);
       setCallerSignal(data.signal);
@@ -36,24 +35,35 @@ export default function Video() {
       setName(data.name);
       setCallerSignal(data.signal);
     });
-  }, []);
 
-  useEffect(() => {
-    navigator.mediaDevices
-      .getUserMedia({ video: isvedio, audio: true })
+
+  
+      navigator.mediaDevices
+      .getUserMedia({ video: true , audio: true })
       .then((stream) => {
         setStream(stream);
         myVideo.current.srcObject = stream;
       });
-  }, [isvedio]);
+  
+       return () => {
+         setStream(undefined); 
+       }
 
-  const callUser = () => {
-    setisvedio(true);
+  }, []);
+
+
+
+  const callUser = () => {    
+    setinitiateCall(true); 
+    setCallEnded(false); 
     const peer = new Peer({
       initiator: true,
       trickle: false,
       stream: stream,
     });
+    console.log("stream forn callig user")
+    console.log(stream)
+    
     peer.on("signal", (data) => {
       sock.emit("callUser", {
         userToCall: videoID,
@@ -61,6 +71,7 @@ export default function Video() {
         name: name,
       });
     });
+    console.log(userVideo  + "is uservideo")
     if (userVideo == null) return;
     peer.on("stream", (stream) => {
       userVideo.current.srcObject = stream;
@@ -73,44 +84,26 @@ export default function Video() {
     connectionRef.current = peer;
   };
 
-  const audiocallUser = () => {
-    setisvedio(false);
-    const peer = new Peer({
-      initiator: true,
-      trickle: false,
-      stream: stream,
-    });
-    peer.on("signal", (data) => {
-      sock.emit("audiocallUser", {
-        userToCall: videoID,
-        signalData: data,
-        name: name,
-      });
-    });
-    if (userVideo == null) return;
-    peer.on("stream", (stream) => {
-      userVideo.current.srcObject = stream;
-    });
-    sock.on("callAccepted", (signal) => {
-      setCallAccepted(true);
-      peer.signal(signal);
-    });
-
-    connectionRef.current = peer;
-  };
 
    const answerCall = () => {
-    setCallAccepted(true);
+    setinitiateCall(true); 
     const peer = new Peer({
       initiator: false,
       trickle: false,
       stream: stream,
     });
+    console.log("stream is here"); 
+    console.log(stream); 
+    setCallAccepted(true);
+    setCallEnded(false); 
     peer.on("signal", (data) => {
       sock.emit("answerCall", { signal: data, to: videoID });
     });
+    console.log("userViedo is here"); 
+    console.log(userVideo)
     if (userVideo == null) return;
     peer.on("stream", (stream) => {
+  
       userVideo.current.srcObject = stream;
     });
 
@@ -119,16 +112,20 @@ export default function Video() {
   };
   // to leave the  call
   const leaveCall = () => {
-    setisvedio(false);
+    setinitiateCall(false); 
     setCallEnded(true);
-    // connectionRef.current.removeAllListeners('close');
-    connectionRef.current.destroy();
+    setCallAccepted(false); 
+    setReceivingCall(false); 
+    userVideo.current = undefined ; 
+    connectionRef.current = undefined ; 
+    myVideo.current = undefined ; 
+    setCallerSignal(undefined);     
   };
 
   return (
     <div
       className="root-container"
-      style={{ display: "flex", flexDirection: "row", height: "100%" }}
+      style={{ display: "flex", flexDirection: "row", height: "100%" , margin:"10%"}}
     >
       <div
         className="root-container"
@@ -149,7 +146,7 @@ export default function Video() {
               style={{ height: "100%" }}
             />
           ) : (
-            <UserTile name={"nishchay"} />
+            <div/>
           )}
         </div>
         <div className="video">
@@ -180,13 +177,7 @@ export default function Video() {
               <PhoneIcon fontSize="small" />
             </IconButton>
           )}
-          <IconButton
-            color="primary"
-            aria-label="call"
-            onClick={() => audiocallUser()}
-          >
-            <PhoneIcon fontSize="small" />
-          </IconButton>
+     
         </div>
       </div>
       <div>
