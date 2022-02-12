@@ -1,31 +1,31 @@
-.container .ql-editor {
-     
-     height: 6.0in;
-    width: 7.0in;
-    /* padding: 1in; */
-    margin: 0.3rem;
-    margin-top: auto;
-    color: rgb(70, 96, 209);
-    box-shadow: 0 0 5px 0 rgba(0,0,0,0.5);
-    background-color: rgba(153, 61, 61, 0.712);
+.ql-editor {
+  height: 95vh;
+  width: 100%;
+
+  /* width: auto; */
+  /* width: 7in; */
+  /* padding: 1in; */
+  /* margin: 0.3rem; */
+  /* margin-top: auto; */
+  background: white;
+  color: rgb(8, 5, 55);
+  /* border-radius: 0 0 0.5rem 0.5rem; */
+}
+.ql-container.ql-snow {
+  border: none;
+  display: flex;
+  padding: 0;
+  justify-content: center;
+  z-index: 0;
+  background-color: rgb(181, 181, 189);
 }
 
-.container .ql-container.ql-snow {
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(80, 73, 73, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-    border: none;
-    display: flex;
-    justify-content: center;
-    z-index: 0;
-    background-color: rgb(181, 181, 189);
-}
-
-.container .ql-toolbar.ql-snow 
-{
-     display: flex;
-    position:static; 
-    top: 0;
-    width: auto;
-    z-index: 0 ; 
-    background-color: rgb(252, 250, 250);
-    border: none;
+.ql-toolbar.ql-snow {
+  display: flex;
+  position: static;
+  top: 0;
+  width: auto;
+  z-index: 1;
+  background-color: rgb(252, 250, 250);
+  border: none;
 }

@@ -1,0 +1,115 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  border-radius: 1px;
+  /* background: #141616;
+  
+  
+  */
+
+  border-radius: 5px;
+  background: #050527;
+
+  margin: 0;
+  padding: 0;
+  /* height: 100vh; */
+  display: grid;
+  grid-template-columns: 1.8fr 1.6fr;
+  grid-template-rows: 0.2fr 0.8fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  border-radius: 0;
+}
+
+.TextArea {
+  grid-area: 1 / 1 / 4 / 2;
+  padding: 1em;
+}
+
+.Tools {
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.buttons {
+  height: 4em;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  max-height: max-content;
+  text-align: center;
+  justify-content: center;
+}
+
+.Video-Call {
+  /* height: 100vh; */
+  background: black;
+  grid-area: 2 / 2 / 3 / 4;
+}
+
+.Questions {
+  height: auto;
+  /* background: blue; */
+  grid-area: 3 / 2 / 4 / 3;
+}
+
+.VideoCall {
+  /* width: 40em; */
+  /* padding: 1em; */
+  height: 13em;
+  /* height: 1em; */
+  border-radius: 5px;
+  background: #c7d6db;
+  box-shadow: inset -5px -5px 10px #6d7678, inset 5px 5px 10px #ffffff;
+
+  grid-area: 2 / 2 / 3 / 4;
+}
+
+/* .call-buttons {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "b11"
+    "b12"
+    "b13";
+  grid-area: 2 / 3 / 3 / 4;
+}
+
+.b11 {
+  grid-area: b11;
+}
+
+.b12 {
+  grid-area: b12;
+}
+
+.b13 {
+  grid-area: b13;
+} */
+
+.Questionsfull {
+  grid-area: 2 / 2 / 4 / 3;
+}
+
+/* .messages {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    ". Final-Messages Final-Messages"
+    ". Final-Messages Final-Messages"
+    ". Final-Messages Final-Messages";
+  grid-area: 3 / 2 / 4 / 4;
+} */
+/* 
+.Final-Messages {
+  grid-area: Final-Messages;
+} */

@@ -1,4 +1,3 @@
-import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import PhoneIcon from "@material-ui/icons/Phone";
 import React, { useEffect, useRef, useState } from "react";
@@ -18,13 +17,13 @@ export default function Video() {
   const myVideo = useRef();
   const userVideo = useRef();
   const connectionRef = useRef();
-  // const [initiateCall, setinitiateCall] = useState(false); 
-  
+  const [initiateCall, setinitiateCall] = useState(false);
+
   useEffect(() => {
 
     sock.emit("video-call", videoID);
     sock.on("callUser", (data) => {
-    //   setisvedio(true);
+      //   setisvedio(true);
       setReceivingCall(true);
       setName(data.name);
       setCallerSignal(data.signal);
@@ -37,33 +36,31 @@ export default function Video() {
     });
 
 
-  
-      navigator.mediaDevices
-      .getUserMedia({ video: true , audio: true })
+
+    navigator.mediaDevices
+      .getUserMedia({ video: true, audio: true })
       .then((stream) => {
         setStream(stream);
         myVideo.current.srcObject = stream;
       });
-  
-       return () => {
-         setStream(undefined); 
-       }
 
+    return () => {
+      setStream(undefined);
+    }
   }, []);
 
 
 
-  const callUser = () => {    
-    setinitiateCall(true); 
-    setCallEnded(false); 
+  const callUser = () => {
+    setinitiateCall(true);
+    setCallEnded(false);
     const peer = new Peer({
       initiator: true,
       trickle: false,
       stream: stream,
     });
-    console.log("stream forn callig user")
     console.log(stream)
-    
+
     peer.on("signal", (data) => {
       sock.emit("callUser", {
         userToCall: videoID,
@@ -71,7 +68,6 @@ export default function Video() {
         name: name,
       });
     });
-    console.log(userVideo  + "is uservideo")
     if (userVideo == null) return;
     peer.on("stream", (stream) => {
       userVideo.current.srcObject = stream;
@@ -85,25 +81,22 @@ export default function Video() {
   };
 
 
-   const answerCall = () => {
-    setinitiateCall(true); 
+  const answerCall = () => {
+    setinitiateCall(true);
     const peer = new Peer({
       initiator: false,
       trickle: false,
       stream: stream,
     });
-    console.log("stream is here"); 
-    console.log(stream); 
+
+    console.log(stream);
     setCallAccepted(true);
-    setCallEnded(false); 
+    setCallEnded(false);
     peer.on("signal", (data) => {
       sock.emit("answerCall", { signal: data, to: videoID });
     });
-    console.log("userViedo is here"); 
-    console.log(userVideo)
     if (userVideo == null) return;
     peer.on("stream", (stream) => {
-  
       userVideo.current.srcObject = stream;
     });
 
@@ -112,84 +105,85 @@ export default function Video() {
   };
   // to leave the  call
   const leaveCall = () => {
-    setinitiateCall(false); 
+    setinitiateCall(false);
     setCallEnded(true);
-    setCallAccepted(false); 
-    setReceivingCall(false); 
-    userVideo.current = undefined ; 
-    connectionRef.current = undefined ; 
-    myVideo.current = undefined ; 
-    setCallerSignal(undefined);     
+    setCallAccepted(false);
+    setReceivingCall(false);
+    userVideo.current = undefined;
+    connectionRef.current = undefined;
+    myVideo.current = undefined;
+    setCallerSignal(undefined);
   };
 
   return (
-    <div
-      className="root-container"
-      style={{ display: "flex", flexDirection: "row", height: "100%" , margin:"10%"}}
-    >
-      <div
-        className="root-container"
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          height: "100%",
-          width: "90%",
-        }}
-      >
-        <div className="video">
+    <div className="container-2 ">
+      <div className="button" style={{ width: "50 px" }}>
+        <div className="b1">
+          {receivingCall && !callAccepted ?
+            (
+              <div>
+                <h1>{name} is calling...</h1>
+                <button onClick={answerCall}>
+                  Answer
+                </button>
+              </div>
+            ) : null}
+
+        </div>
+        <div className="b2">
+
+          {callAccepted && !callEnded ? (
+            <button onClick={leaveCall}>
+              End Call
+            </button>
+          ) : (<IconButton className="b12"
+            color="primary"
+            aria-label="call"
+            onClick={() => callUser()}
+          >
+            <PhoneIcon fontSize="small" />
+          </IconButton>
+          )}
+
+        </div>
+        <div className="b3"></div>
+      </div>
+      <div className="v1">
+        <div className="video-1 ">
           {stream ? (
-            <video
+            <video className="video-1"
               playsInline
               muted
               ref={myVideo}
               autoPlay
-              style={{ height: "100%" }}
+              style={{ height: "auto", width: "15em" }}
             />
           ) : (
-            <div/>
-          )}
+
+            < div />
+          )
+          }
         </div>
-        <div className="video">
-          {callAccepted && !callEnded ? (
-            <video
-              playsInline
-              ref={userVideo}
-              autoPlay
-              style={{ height: "100%" }}
-            />
-          ) : null}
-          {/* </div> */}
-        </div>
+
       </div>
-      <div className="myId">
-        {/* <Timer time={100}/> */}
-        <div className="call-button">
-          {callAccepted && !callEnded ? (
-            <Button variant="contained" color="secondary" onClick={leaveCall}>
-              End Call
-            </Button>
-          ) : (
-            <IconButton
-              color="primary"
-              aria-label="call"
-              onClick={() => callUser()}
-            >
-              <PhoneIcon fontSize="small" />
-            </IconButton>
-          )}
-     
+      <div className="v2">
+
+
+        <div className="video-2">
+          {/* {callAccepted && !callEnded ? */}
+
+          <video className="video-2"
+            playsInline
+            ref={userVideo}
+            autoPlay
+            style={{ height: "auto", width: "15em" }}
+          />
+          {/* : null
+          } */}
+
         </div>
-      </div>
-      <div>
-        {receivingCall && !callAccepted ? (
-          <div className="caller">
-            <h1>{name} is calling...</h1>
-            <Button variant="contained" color="primary" onClick={answerCall}>
-              Answer
-            </Button>
-          </div>
-        ) : null}
       </div>
     </div>
-  );
+  )
 }
+

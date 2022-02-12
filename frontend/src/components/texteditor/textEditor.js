@@ -73,7 +73,12 @@ export default function TextEditor(props) {
 
   return (
     <div>
-      <div className="container" ref={wrapperref}></div>
+      <div ref={wrapperref}>
+      </div>
     </div>
   );
 }
+
+
+
+

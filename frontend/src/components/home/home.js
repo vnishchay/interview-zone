@@ -8,6 +8,9 @@ import { AppBar, Toolbar } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import { Login } from "@mui/icons-material";
 import { Padding } from "@mui/icons-material";
+import { IconButton } from "@mui/material";
+import BoopButton from "../notifications/sound";
+import HomeAppBar from "./appbar"
 
 export default function HomePage() {
   const [link, setlink] = useState("");
@@ -15,6 +18,7 @@ export default function HomePage() {
   const [username, setusername] = useState();
   const history = useHistory();
   const joinmeet = useRef("");
+
 
   useEffect(() => {
     if (auth.user === null || auth.user === undefined) {
@@ -33,28 +37,10 @@ export default function HomePage() {
     history.push(joinmeet.current.value);
   };
 
-  return (
-    <div>
-      <AppBar>
-        <Toolbar>
-          <h3>{username}</h3>
-          <Padding  variant="outlined" > </Padding>
-          {username === "guest" ? (
-          
-            <Button
-              variant="contained"
-              onClick={() => history.push("/login")}
-              color="primary"
-              startIcon={<Login />}
-            >
-              SignIn/SignUp
-            </Button>
-          ) : (
-            <div></div>
-          )}
-        </Toolbar>
-      </AppBar>
 
+  return (
+    <div className="homepage">
+      <HomeAppBar variant="inherit" username={username} />
       <main>
         <div>
           <Container
@@ -116,6 +102,7 @@ export default function HomePage() {
             </div>
           </Container>
         </div>
+
         <Container maxWidth="md"></Container>
       </main>
     </div>

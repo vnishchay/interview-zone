@@ -1,49 +1,27 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import "./chat.css";
-import useChat from "./useChat";
+import { Widget, addResponseMessage } from "react-chat-widget";
+import { useEffect } from "react";
+
+import 'react-chat-widget/lib/styles.css';
 
 const ChatRoom = () => {
-  const { id : chatID } =  useParams();
-  const { messages, sendMessage } = useChat(chatID);
-  const [newMessage, setNewMessage] = React.useState("");
+  useEffect(() => {
+    addResponseMessage('Welcome to this **awesome** chat!');
+  }, []);
 
-  const handleNewMessageChange = (event) => {
-    setNewMessage( event.target.value);
-		console.log(event.target.value)
+  const handleNewUserMessage = (newMessage) => {
+    console.log(`New message incoming! ${newMessage}`);
+    // Now send the message throught the backend API
   };
-
-  const handleSendMessage = () => {
-    sendMessage(newMessage);
-    setNewMessage("");
-  };
-
   return (
-    <div className="chat-room-container">
-      <div className="messages-container">
-        <ol className="messages-list">
-          {messages.map((message, i) => (
-            <li
-              key={i}
-              className={`message-item ${
-                 message.ownedByCurrentUser ? "my-message" : "received-message"
-              }`}
-            >
-               {message.ownedByCurrentUser}
-              {message.body}
-            </li>
-          ))}
-        </ol>
-      </div>
-      <textarea
-        value={newMessage}
-        onChange={handleNewMessageChange}
-        placeholder="Write message..."
-        className="new-message-input-field"
+    <div>
+      <Widget
+        resizable={true}
+        handleNewUserMessage={handleNewUserMessage}
+        // profileAvatar={logo}
+        title="My new awesome title"
+        subtitle="And my cool subtitle"
       />
-      <button onClick={handleSendMessage} className="send-message-button">
-        Send
-      </button>
+
     </div>
   );
 };

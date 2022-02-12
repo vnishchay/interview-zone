@@ -1,45 +1,46 @@
-.video-container {
-  padding: 0;
-  margin: 0;
-
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+.container-2 {
+  padding: 10px;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 0.4fr;
+  grid-template-rows: 0.8fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas: "v1 v2 button";
+  width: auto;
+  height: 16em;
 }
 
-.root-container {
-     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-     background-color: rgb(162, 150, 165);
+.button {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "b1"
+    "b2"
+    "b3";
+  grid-area: button;
+  /* width: 10em; */
+  /* height: 15em; */
 }
 
- .video {
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-    background-color: rgb(21, 4, 53);
-    padding: 3%;
- }
- .myId{
-  box-shadow: rgba(79, 79, 79, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-    padding: 1%; 
-    
-    background-color: rgb(221, 221, 221);
- }.video-container {
-  padding: 0;
-  margin: 0;
-
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+.b1 {
+  grid-area: b1;
 }
 
-.root-container {
-     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-     background-color: rgb(162, 150, 165);
+.b2 {
+  grid-area: b2;
 }
 
- .video {
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-    background-color: rgb(21, 4, 53);
-    padding: 3%;
- }
- .myId{
-  box-shadow: rgba(79, 79, 79, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-    padding: 1%; 
-    
-    background-color: rgb(221, 221, 221);
- }
+.b3 {
+  grid-area: b3;
+}
+
+.v1 {
+  grid-area: v1;
+}
+
+.v2 {
+  grid-area: v2;
+}

@@ -1,0 +1,179 @@
+.search-container {
+  max-width: 600px;
+}
+
+header {
+  background-color: #1e3352;
+  color: #efefef;
+  margin-bottom: 20px;
+  padding-bottom: 30px;
+}
+
+header > .search-container {
+  text-align: center;
+}
+
+header h1 {
+  text-transform: uppercase;
+  font-size: 56px;
+  font-weight: 700;
+}
+
+header p {
+  font-size: 20px;
+  color: #dedede;
+  padding-bottom: 10px;
+}
+
+.search-row {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+#filter {
+  width: 60%;
+  height: 36px;
+  border: 1px solid #1e3352;
+  padding-left: 8px;
+  font-size: 16px;
+}
+
+.selectors-row {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.user-row {
+  margin: 3px auto;
+  padding: 10px 0;
+}
+
+.not-online {
+  background-color: #9f8249;
+  color: #eee;
+}
+
+.online {
+  background-color: #4a6c9f;
+}
+
+.logo {
+  border: 1px solid #eee;
+}
+
+.streaming,
+.not-online,
+span {
+  color: #eee;
+}
+
+#usuario > a {
+  text-decoration: none;
+  color: #0f0f0f;
+  font-weight: 800;
+  font-size: 16px;
+}
+
+#usuario > a:hover {
+  color: #dedede;
+}
+
+/* Botones */
+
+.btn {
+  font-weight: 600;
+  border-radius: 0;
+}
+
+.btn-group .btn.btn-default {
+  padding: 6px 18px;
+  margin-right: 5px;
+}
+
+#all-users:hover {
+  background-color: #1e3352;
+  color: #eee;
+}
+
+#all-users:focus {
+  outline: none;
+  /*background-color: #fff;*/
+  border-bottom: 6px solid #222;
+}
+
+#online-users {
+  background-color: #4a6c9f;
+}
+
+#online-users:hover,
+#offline-users:hover {
+  background-color: #eee;
+}
+
+#online-users:hover {
+  border: 1px solid #4a6c9f;
+}
+
+#offline-users:hover {
+  border: 1px solid #9f8249;
+}
+
+#online-users:focus,
+#offline-users:focus {
+  outline: none;
+  border-bottom: 6px solid #222;
+}
+
+#offline-users {
+  background-color: #9f8249;
+}
+
+footer {
+  background-color: #1e3352;
+  color: #efefef;
+  margin-top: 30px;
+  padding: 10px;
+}
+
+footer > .container {
+  text-align: center;
+}
+
+/** Media queries **/
+
+@media screen and (max-width: 368px) {
+  .logo {
+    width: 45px;
+    height: 45px;
+  }
+  header {
+    margin-bottom: 10px;
+  }
+  header h1 {
+    font-size: 48px;
+  }
+  footer p {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  #usuario > a,
+  span {
+    padding-left: 10px;
+  }
+  .streaming {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  /*.streaming {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }*/
+  #usuario > a {
+    padding-top: 8px;
+  }
+}

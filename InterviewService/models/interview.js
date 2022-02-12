@@ -2,12 +2,12 @@ const mongoose = require("mongoose");
 
 const InterviewProblems = new mongoose.Schema({
     questions: {
-        type : [QuestionSchema ],
-        required : false
+        type: [QuestionSchema],
+        required: false
     },
-    questionsLevel : {
-        type : String ,
-        required : true
+    questionsLevel: {
+        type: String,
+        required: true
     },
 });
-module.exports = mongoose.model("question",QuestionSchema);
+module.exports = mongoose.model("question", QuestionSchema);

@@ -2,45 +2,39 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import page_not_found from "./components/pagenotfound/page_not_found";
-import HomePage from "./components/home/home";
 import Login from "./components/auth/login";
 import Register from "./components/auth/register";
 import InterviewPage from "./components/interviewpage/InterviewPage";
-import { AuthProvider, PrivateRoute } from "./components/auth/authContext"
-import { AppBar, Toolbar, Button } from "@material-ui/core";
-import { Backspace, Home } from "@mui/icons-material";
-import { useHistory } from "react-router";
+import ProfilePage from "./components/profile/profilepage";
+import AddQuestion from "./components/question/addQuestion";
+import HomePage from "./components/home/home";
+import { PrivateRoute } from "./components/auth/authContext";
+import { AuthProvider } from "./components/auth/authContext";
+import SearchPeerPage from "./components/searchPeer/serachPeer";
+import BoopButton from "./components/notifications/sound"
+
 // import ResponsiveAppBar from "./components/appbar/appbar";
 function App() {
-   const history = useHistory(); 
-   return (
-      <AuthProvider>
+  return (
+    <AuthProvider>
       <BrowserRouter>
-       <AppBar>
-         <Toolbar>
-         <Button
-              variant="contained"
-              onClick={() => window.history.back()        }
-              color="primary"
-              startIcon={<Backspace />}
-            >
-              back
-            </Button>
-         </Toolbar>
-       </AppBar>
         <Switch>
-        <Route exact path="/" component={HomePage} />
+          <Route exact path="/" component={HomePage} ></Route>
           <PrivateRoute path='/interview/:id'>
             <InterviewPage></InterviewPage>
           </PrivateRoute>
-           <Route path="/register" component={Register} />
+          <Route path="/profile" component={ProfilePage} ></Route>
+          <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
+          <Route path="/search" component={SearchPeerPage}></Route>
+          <Route path="/addproblem" component={AddQuestion} ></Route>
+
+          <Route path="/boop" component={BoopButton} ></Route>
           <Route path="*" component={page_not_found}></Route>
-         
-         </Switch>
+        </Switch>
       </BrowserRouter>
-     </AuthProvider>
-    
-      );
+    </AuthProvider>
+
+  );
 }
 export default App;

@@ -1,36 +1,53 @@
+const Question = require("./questionModel")
 const mongoose = require("mongoose");
-const moment = require("moment");
-const date = `${moment().format("DD/MM/YYYY").split("/")[0]}-${moment().format("DD/MM/YYYY").split("/")[1]}-${moment().format("DD/MM/YYYY").split("/")[2]}`
+const Schema = mongoose.Schema
 
-const schema = new mongoose.Schema({
-    typeOfInterview : {
-        type : String ,
-        required : true
+const schema = new Schema({
+    typeOfInterview: {
+        type: String,
+        required: false,
+        ref: 'typeOfInterview'
     },
-    numberOfQuestions : {
-        type : String ,
-        required : true
+    numberOfQuestions: {
+        type: String,
+        required: false
+        ,
+        ref: 'numberOfQuestions'
     },
-    levelOfQuestions : {
-        type : String ,
-        default : "EASY"
+    levelOfQuestions: {
+        type: String,
+        default: "EASY",
+        ref: 'levelOfQuestions'
     },
-    questions : {
-        type : Array
+    questions: {
+        type: [{ type: Schema.Types.ObjectId }],
+        ref: 'questions'
+
     },
-    idOfOrganiser : {
-        type : String ,
-        required : true
+    idOfHost: {
+        type: Schema.Types.ObjectId,
+        required: false,
+        ref: 'host'
     },
-    idOfParticipant : {
-        type : String ,
-        required : true
+    idOfParticipant: {
+        type: Schema.Types.ObjectId,
+        ref: 'participant'
     },
-    dateOfInterview : {
-        type : String ,
-        default : date
-    }
+}
+);
+
+schema.method('toJSON', function () {
+    const {
+        _id, __v, ...object
+    } = this.toObject({ virtuals: true });
+    object.id = _id;
+
+    return object;
 });
-const InterviewModel =  mongoose.model("interview",schema);
 
-module.exports = InterviewModel ; 
+const InterviewModel = mongoose.model("interview", schema);
+
+module.exports = InterviewModel;
+
+
+
