@@ -51,11 +51,11 @@ Interview Page
 
 Landing Page
 
-![Screenshot from 2022-02-14 00-41-06.png](Untitled%20654756a9769f4094a5a3d1e7418ec7fc/Screenshot_from_2022-02-14_00-41-06.png)
+![https://codernishchay.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fbb3b37ef-cd6c-4471-85aa-a234efd5b569%2FScreenshot_from_2022-02-14_00-41-06.png?table=block&id=464472ed-b043-47b6-abc0-3ed81497bf78&spaceId=bb2818e2-90d3-47ce-bb54-03844794f930&width=2000&userId=&cache=v2](https://codernishchay.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fbb3b37ef-cd6c-4471-85aa-a234efd5b569%2FScreenshot_from_2022-02-14_00-41-06.png?table=block&id=464472ed-b043-47b6-abc0-3ed81497bf78&spaceId=bb2818e2-90d3-47ce-bb54-03844794f930&width=2000&userId=&cache=v2)
 
 Login/Sign up Page
 
-![Screenshot from 2022-02-14 00-54-45.png](Untitled%20654756a9769f4094a5a3d1e7418ec7fc/Screenshot_from_2022-02-14_00-54-45.png)
+![https://codernishchay.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F7b5efd99-34f4-4d60-82e0-f92b3009d894%2FScreenshot_from_2022-02-14_00-54-45.png?table=block&id=00c84d67-7606-4e92-aaed-7a758ab60bb7&spaceId=bb2818e2-90d3-47ce-bb54-03844794f930&width=2000&userId=&cache=v2](https://codernishchay.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F7b5efd99-34f4-4d60-82e0-f92b3009d894%2FScreenshot_from_2022-02-14_00-54-45.png?table=block&id=00c84d67-7606-4e92-aaed-7a758ab60bb7&spaceId=bb2818e2-90d3-47ce-bb54-03844794f930&width=2000&userId=&cache=v2)
 
 High level Diagram
 
