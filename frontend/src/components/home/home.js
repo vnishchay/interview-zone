@@ -20,6 +20,7 @@ export default function HomePage() {
   const joinmeet = useRef("");
 
 
+
   useEffect(() => {
     if (auth.user === null || auth.user === undefined) {
       setusername("guest");
@@ -40,6 +41,7 @@ export default function HomePage() {
 
   return (
     <div className="homepage">
+
       <HomeAppBar variant="inherit" username={username} />
       <main>
         <div>
@@ -106,5 +108,6 @@ export default function HomePage() {
         <Container maxWidth="md"></Container>
       </main>
     </div>
+
   );
 }

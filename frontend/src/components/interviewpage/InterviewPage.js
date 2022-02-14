@@ -9,6 +9,10 @@ import { useAuth } from "../auth/authContext";
 import useSound from "use-sound"
 import Video from "../videocall/video"
 import PrimarySearchAppBar from "./appbar";
+
+
+
+
 /**
  * @props  user1 
  * @returns Interview Page 
@@ -18,10 +22,14 @@ import PrimarySearchAppBar from "./appbar";
  * @param {} param0 
  * @returns 
  */
+
+
+
 export default function InterviewPage() {
   const [time, settime] = useState();
   const [interview, setinterview] = useState();
   const [play] = useSound('notify.mp3');
+
 
   const auth = useAuth();
   const data =
@@ -55,7 +63,6 @@ export default function InterviewPage() {
 
   useEffect(() => {
     saveInterviewData();
-    setTimeout(play, 1000)
     settime(time);
   }, [])
 
@@ -64,6 +71,7 @@ export default function InterviewPage() {
       <div className="TextArea ">
         <TextEditor />
       </div>
+
       {/* <div className="Tools "></div> */}
       <div className="buttons">
         <PrimarySearchAppBar />
