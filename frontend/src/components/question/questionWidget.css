@@ -3,12 +3,10 @@
   background: #e8e8e8;
   border: #e8e8e8;
 
-  /* box-shadow: inset 5px 5px 2px #e3e3e3, inset -5px -5px 2px #ededed; */
-  padding: 2%;
   align-items: center;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 0.4fr 2.3fr 0.3fr;
+  /* grid-template-columns: 1fr 1fr 1fr; */
+  /* grid-template-rows: 0.4fr 2.3fr 0.3fr; */
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
@@ -17,24 +15,12 @@
     "buttons buttons buttons";
 }
 
-.q-buttons {
-  grid-area: buttons;
-
-  background: #e8e8e8;
-  /* box-shadow: inset 5px 5px 2px #e3e3e3, inset -5px -5px 2px #ededed; */
-}
-
 .questioninfo {
+  padding: 3%;
   grid-area: questioninfo;
 
   background: #e8e8e8;
   width: 100%;
+
   /* box-shadow: inset 5px 5px 2px #e3e3e3, inset -5px -5px 2px #ededed; */
-}
-
-.statement-with-example {
-  width: 7rem;
-  grid-area: statement-with-example;
-
-  background: #e8e8e8;
 }
