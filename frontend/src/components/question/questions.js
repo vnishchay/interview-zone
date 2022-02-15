@@ -6,29 +6,7 @@ const axios = require("axios");
 
 
 
-export default function Questions() {
-  const [questions, setquestions] = useState();
-
-  useEffect(() => {
-    const getquestion = async () => {
-      const url = "http://localhost:3001/question/get";
-      await axios
-        .get(
-          url)
-        .then((res) => {
-          // if (res.message === "Invalid Token") {
-          //   console.log("Invalid Token");
-          // }
-          setquestions(res.data.data);
-          // console.log(res.data)
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-    getquestion();
-    // setquestions(quests)
-  }, []);
+export default function Questions({ questions }) {
 
   return (
     <div className="questions-box">

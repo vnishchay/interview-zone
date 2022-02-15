@@ -118,7 +118,7 @@ export default function Video() {
   return (
     <div className="container-2 ">
       <div className="button" style={{ width: "50 px" }}>
-        <div className="b1">
+        <div>
           {receivingCall && !callAccepted ?
             (
               <div>
@@ -151,13 +151,17 @@ export default function Video() {
       <div className="v1">
         <div className="video-1 ">
           {stream ? (
-            <video className="video-1"
-              playsInline
-              muted
-              ref={myVideo}
-              autoPlay
-              style={{ height: "auto", width: "15em" }}
-            />
+            <div>
+              <video className="video-1"
+                playsInline
+                muted
+                ref={myVideo}
+                autoPlay
+                style={{ height: "auto", width: "15em" }}
+              />
+              <div>Interviwer</div>
+            </div>
+
           ) : (
 
             < div />
@@ -178,6 +182,7 @@ export default function Video() {
             autoPlay
             style={{ height: "auto", width: "15em" }}
           />
+          <div>Candidate</div>
           {/* : null
           } */}
 

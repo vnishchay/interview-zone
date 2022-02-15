@@ -2,6 +2,7 @@
   /* border-radius: 6px; */
   background: #e8e8e8;
   border: #e8e8e8;
+
   /* box-shadow: inset 5px 5px 2px #e3e3e3, inset -5px -5px 2px #ededed; */
   padding: 2%;
   align-items: center;
@@ -27,31 +28,13 @@
   grid-area: questioninfo;
 
   background: #e8e8e8;
+  width: 100%;
   /* box-shadow: inset 5px 5px 2px #e3e3e3, inset -5px -5px 2px #ededed; */
 }
 
 .statement-with-example {
+  width: 7rem;
   grid-area: statement-with-example;
 
   background: #e8e8e8;
-  /* box-shadow: inset 5px 5px 2px #e3e3e3,.scroller-outer {
-  height: 65vh;
-  position: relative;
-  overflow: hidden;
-}
-
-.scroller-inner {
-  position: absolute;
-
-  height: 100%;
-  width: 100%;
-  box-sizing: border-box;
-  font-family: sans-serif;
-  line-height: 2;
-  font-size: 18px;
-
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
- inset -5px -5px 2px #ededed; */
 }

@@ -6,30 +6,13 @@ import ChatRoom from "../chat/chat";
 import "./interview.css"
 import { useEffect } from "react"
 import { useAuth } from "../auth/authContext";
-import useSound from "use-sound"
 import Video from "../videocall/video"
 import PrimarySearchAppBar from "./appbar";
-
-
-
-
-/**
- * @props  user1 
- * @returns Interview Page 
- */
-/**
- * todo : sound effect
- * @param {} param0 
- * @returns 
- */
-
-
 
 export default function InterviewPage() {
   const [time, settime] = useState();
   const [interview, setinterview] = useState();
-  const [play] = useSound('notify.mp3');
-
+  const [questionid, setquestionid] = useState();
 
   const auth = useAuth();
   const data =
@@ -39,6 +22,33 @@ export default function InterviewPage() {
     "levelOfQuestions": "medium", //
     "idOfHost": auth.user.userid
   }
+
+  const [questions, setquestions] = useState();
+
+  useEffect(() => {
+    const getquestion = async () => {
+      const url = "http://localhost:3001/question/get";
+      await axios
+        .get(
+          url)
+        .then((res) => {
+          setquestions(res.data.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    getquestion();
+
+    if (questions && questions.length > 0) {
+      for (let i = 0; i < questions.length; i++) {
+        setquestionid((pre) => [...pre, questions["id"]]);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+  }, [questions])
 
   const saveInterviewData = async () => {
     try {
@@ -78,7 +88,7 @@ export default function InterviewPage() {
       </div>
       {/* if video call will be on this will show up otherwise not */}
       <div className="Video-Call "> </div>
-      <div className="Questions"><Questions /></div>
+      <div className="Questions"><Questions questions={questions} /></div>
       <div className="VideoCall "><Video /></div>
       <div className="Questionsfull"></div>
       <div className="messages">
