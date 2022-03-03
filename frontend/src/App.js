@@ -23,7 +23,7 @@ function App() {
           <PrivateRoute path='/interview/:id'>
             <InterviewPage></InterviewPage>
           </PrivateRoute>
-          <Route path="/profile" component={ProfilePage} ></Route>
+          {/* <Route path="/profile" component={ProfilePage} ></Route> */}
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
           <Route path="/search" component={SearchPeerPage}></Route>

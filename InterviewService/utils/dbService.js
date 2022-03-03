@@ -348,29 +348,6 @@ const getSingleDocument = async (model, filter = {}, options = {}) => {
   return result;
 };
 
-/*
- * @description : find all the mongoose document
- * @param  {obj} model   : mongoose model
- * @param {obj} query    : {}
- * @param {obj} options  : {}
- * @return Promise
- */
-const findAllDocuments = (model, filter = {}, options = {}) => new Promise((resolve, reject) => {
-  let query = model.find(filter);
-  if (options.select) {
-    query = query.select(options.select);
-  }
-  if (options.populate) {
-    query = query.populate(options.populate);
-  }
-  if (options.lean) {
-    query = query.lean();
-  }
-  query.exec((err, data) => {
-    if (err) reject(err);
-    else resolve(data);
-  });
-});
 
 module.exports = {
   createDocument,
@@ -389,5 +366,4 @@ module.exports = {
   findOneAndDeleteDocument,
   deleteMany,
   getSingleDocument,
-  findAllDocuments,
 };

@@ -7,10 +7,7 @@ const Question = require('../models/questionModel');
 const validation = require('../utils/validateRequest')
 const dbService = require('../utils/dbService');
 const ObjectID = require('mongodb').ObjectID;
-const utils = require('../utils/common.js');
 const { requestValidated } = require('../utils/messages');
-
-
 /**
  * @description : create document of Question in mongodb collection.
  * @param {obj} req : request including body for creating document.
