@@ -21,6 +21,12 @@ Setup
  npm i
  yarn start
  // <http://localhost:3000>
+ add to .env in InterviewService : DATABASE_URL=mongodb+srv://@cluster0.zjfve.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+
+
+
+
+
 
 ```
 
@@ -44,7 +50,6 @@ Middleware
  verifyToken
 
 ```
-
 
 Landing Page
 
