@@ -95,23 +95,6 @@ const getQuestionCount = async (req, res) => {
     }
 };
 
-/**
- * @description : fetch data from database along with aggregation pipelines
- * @param {obj} req : request of aggregation API. ex. pipelines as query.
- * @param {obj} res : response of aggregation API.
- * @return {obj} : response of aggregation. {status, message, data}
- */
-// const getQuestionByAggregate = async (req, res) => {
-//     try {
-//         let result = await dbService.getDocumentByAggregation(Question, req.body);
-//         if (result) {
-//             return res.ok({ data: result });
-//         }
-//         return res.recordNotFound();
-//     } catch (error) {
-//         return res.failureResponse({ data: error.message });
-//     }
-// };
 
 
 const getQuestionByAggregate = async (req, res) => {
