@@ -66,8 +66,8 @@ const Auth = () => {
           }
         });
     } catch (e) {
-      console.log("getting some error?? ")
-      alert(e.message);
+      console.log(e)
+      alert("Login Request Failed : 400");
       // }
     }
   }
