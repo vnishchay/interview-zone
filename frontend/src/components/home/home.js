@@ -10,7 +10,6 @@ import { Login } from "@mui/icons-material";
 import { Padding } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
 import BoopButton from "../notifications/sound";
-import HomeAppBar from "./appbar"
 
 export default function HomePage() {
   const [link, setlink] = useState("");
@@ -42,7 +41,7 @@ export default function HomePage() {
   return (
     <div className="homepage">
 
-      <HomeAppBar variant="inherit" username={username} />
+      {/* <HomeAppBar variant="inherit" username={username} /> */}
       <main>
         <div>
           <Container
@@ -52,7 +51,7 @@ export default function HomePage() {
             <div>
               <Grid container spacing={40} justify="center">
                 <Grid item spacing={20}>
-                  <Button
+                  {/* <Button
                     onClick={() => navigator.clipboard.writeText(link)}
                     variant="contained"
                     color="primary"
@@ -61,7 +60,16 @@ export default function HomePage() {
                     {link !== ""
                       ? "http://localhost:3000" + link
                       : "Create Link"}
-                  </Button>
+                  </Button> */}
+                  <div className="mb-2">
+                    <Button variant="primary" size="lg">
+                      Large button
+                    </Button>{' '}
+                    <Button variant="secondary" size="lg">
+                      Large button
+                    </Button>
+                  </div>
+                  <div></div>
                 </Grid>
               </Grid>
               <Padding> </Padding>
