@@ -4,7 +4,7 @@ const dotEnv = require("dotenv");
 dotEnv.config()
 
 const connection = async () => {
-    await mongoose.connect(process.env.DATABASE_URL, {
+    await mongoose.connect('mongodb+srv://nishi:1BiIdsSOgboS6OwP@cluster0.zjfve.mongodb.net/interview', {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });

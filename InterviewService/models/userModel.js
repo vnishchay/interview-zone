@@ -23,8 +23,8 @@ const schema = new mongoose.Schema({
     dateOfJoining: {
         type: String,
     },
-    numberOfInterviews: {
-        type: [Schema.Types.ObjectID]
-    }
+    interviews: [
+        { type: [Schema.Types.ObjectID] }
+    ]
 });
 module.exports = mongoose.model("user", schema);

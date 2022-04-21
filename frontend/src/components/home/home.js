@@ -1,15 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import Container from "@material-ui/core/Container";
 import { v4 } from "uuid";
 import { useAuth } from "../auth/authContext";
-import { AppBar, Toolbar } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
-import { Login } from "@mui/icons-material";
-import { Padding } from "@mui/icons-material";
-import { IconButton } from "@mui/material";
-import BoopButton from "../notifications/sound";
+import "./home.css"
 
 export default function HomePage() {
   const [link, setlink] = useState("");
@@ -21,7 +14,7 @@ export default function HomePage() {
 
 
   useEffect(() => {
-    if (auth.user === null || auth.user === undefined) {
+    if (localStorage.getItem("jwt") == undefined || auth.user === undefined) {
       setusername("guest");
     } else {
       setusername(auth.user.username);
@@ -36,84 +29,78 @@ export default function HomePage() {
     e.preventDefault();
     history.push(joinmeet.current.value);
   };
-
+  const interviewID = v4();
 
   return (
     <div className="homepage">
-
-      {/* <HomeAppBar variant="inherit" username={username} /> */}
       <main>
-        <div>
-          <Container
-            maxWidth="xl"
-            style={{ margin: "auto", padding: "15%", justifyContent: "center" }}
+        <div className="box1">
+          <img className="img-hm" src="images/undraw_augmented_reality_re_f0qd.svg"></img>
+
+          <div className="card" id="col1"
           >
             <div>
-              <Grid container spacing={40} justify="center">
-                <Grid item spacing={20}>
-                  {/* <Button
+              <div justify="center">
+                <div >
+                  <button
+
+                    className="raise"
                     onClick={() => navigator.clipboard.writeText(link)}
-                    variant="contained"
-                    color="primary"
-                    style={{ padding: "3%" }}
+
+
                   >
                     {link !== ""
                       ? "http://localhost:3000" + link
                       : "Create Link"}
-                  </Button> */}
+                  </button>
                   <div className="mb-2">
-                    <Button variant="primary" size="lg">
-                      Large button
-                    </Button>{' '}
-                    <Button variant="secondary" size="lg">
-                      Large button
-                    </Button>
+
                   </div>
                   <div></div>
-                </Grid>
-              </Grid>
-              <Padding> </Padding>
-              <Grid container spacing={2} justifyContent="center">
-                <Button
-                  variant="outlined"
-                  color="primary"
-                  onClick={() => setlink(`/interview/${v4()}`)}
+                </div>
+              </div>
+
+              <div container spacing={2} justifyContent="center">
+                <button
+                  className="raise"
+
+                  onClick={() => setlink(`/interview/${interviewID}`)}
                 >
                   Generate Link
-                </Button>
-              </Grid>
+                </button>
+              </div>
 
-              <Padding> </Padding>
 
-              <Grid container spacing={2} justifyContent="center">
-                <Button
+
+              <div container spacing={2} justifyContent="center">
+                <button
+                  className="raise"
                   onClick={route}
-                  variant="contained"
-                  color="primary"
-                  style={{ padding: "3%" }}
+
                 >
                   Go to interview
-                </Button>
-              </Grid>
+                </button>
+              </div>
 
-              <Padding> </Padding>
 
-              <Grid container spacing={5} justifyContent="center">
-                <input ref={joinmeet}></input>
-                <Button
+
+              <div className="bx-jnm" >
+                <input className="inp-hm" ref={joinmeet}></input>
+                <button
+                  className="raise btn-meet"
                   onClick={joinMeet}
-                  variant="contained"
-                  color="primary"
-                  style={{ padding: "3%" }}
+
                 >
                   Join Meet
-                </Button>
-              </Grid>
+                </button>
+              </div>
             </div>
-          </Container>
+          </div>
+
+
         </div>
 
-        <Container maxWidth="md"></Container>
+        <div maxWidth="md"></div>
       </main>
     </div>
 

@@ -33,6 +33,9 @@ const schema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'participant'
     },
+    interviewID: {
+        type: String
+    }
 }
 );
 

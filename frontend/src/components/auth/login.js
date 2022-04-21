@@ -21,7 +21,6 @@ const theme = createTheme();
 
 
 export default function Login() {
-  // const alert = useAlert();
   const username = useRef();
   const password = useRef();
   const auth = useAuth();

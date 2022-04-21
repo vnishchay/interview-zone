@@ -13,6 +13,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState } from "react";
 
 const theme = createTheme();
 
@@ -24,15 +25,15 @@ export default function Register() {
   const fname = useRef();
   const country = useRef();
   const email = useRef();
+  const [status, setstatus] = useState(false);
 
   const auth = useAuth()
   const handleSubmit = (e) => {
     e.preventDefault()
-    const user = { username, password, country, email };
-    auth.signUp(user);
-    window.history.back()
+    auth.signUp({ username, password, country, email });
 
   }
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -58,10 +59,7 @@ export default function Register() {
                 <TextField
                   autoComplete="username"
                   name="username"
-                  required
                   inputRef={username}
-                  fullWidth
-                  id="username"
                   label="Username"
                   autoFocus
                 />
@@ -134,6 +132,7 @@ export default function Register() {
           </Box>
         </Box>
         {/* <Copyright sx={{ mt: 5 }} /> */}
+        {status && <Button onClick={window.history.back()}></Button>}
       </Container>
     </ThemeProvider>
   );

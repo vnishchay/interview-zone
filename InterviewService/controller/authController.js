@@ -5,21 +5,29 @@ const userModel = require("../models/userModel");
 const dotEnv = require("dotenv");
 
 exports.userAddition = async (req, res) => {
-    const userFound = await userModel.findOne({ username: req.body.username });
-    if (userFound) {
-        return res.status(400).json({
-            message: "user exists"
+    try {
+        console.log(req.body)
+        const userFound = await userModel.findOne({ username: req.body.username });
+        if (userFound) {
+            return res.status(400).json({
+                message: "user exists"
+            })
+        }
+        if (req.body.password === null || req.body.username === null) res.status(403).json({ data: "all empty" })
+        const salt = await bcrypt.genSalt(10);
+        req.body.password = await bcrypt.hash(req.body.password, salt);
+        var auth = userModel(req.body)
+        await auth.save();
+        return res.status(201).json({
+            status: "Passed",
+            Message: "User Registered"
+        })
+    } catch (err) {
+        res.status(400).json({
+            message: err.message,
+            status: 'fail'
         })
     }
-    if (req.body.password === null || req.body.username === null) res.status(403).json({ data: "all empty" })
-    const salt = await bcrypt.genSalt(10);
-    req.body.password = await bcrypt.hash(req.body.password, salt);
-    var auth = userModel(req.body)
-    await auth.save();
-    return res.status(201).json({
-        status: "Passed",
-        Message: "User Registered"
-    })
 }
 
 exports.userLogin = async (req, res) => {

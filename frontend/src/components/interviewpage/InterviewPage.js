@@ -8,18 +8,20 @@ import { useEffect } from "react"
 import { useAuth } from "../auth/authContext";
 import Video from "../videocall/video"
 import PrimarySearchAppBar from "./appbar";
+import { useParams } from "react-router-dom";
 
 export default function InterviewPage() {
   const [time, settime] = useState();
   const [interview, setinterview] = useState();
   const [questionid, setquestionid] = useState();
-
+  const { interviewId } = useParams();
   const auth = useAuth();
   const data =
   {
     "typeOfInterview": "Job",
     "numberOfQuestions": 8, //
     "levelOfQuestions": "medium", //
+    "interviewID": interviewId,
     "idOfHost": auth.user.userid
   }
 
@@ -52,18 +54,16 @@ export default function InterviewPage() {
 
   const saveInterviewData = async () => {
     try {
-      console.log(auth.user.jwt)
       axios.post("http://localhost:3001/interview/create",
         data,
         {
           headers: {
             'Content-Type': 'application/json',
-            "Authorization": `Bearer ${auth.user.jwt}`
+            "Authorization": `Bearer ` + localStorage.getItem("jwt")
           },
         }
         // data
       ).then((res) => {
-        console.log(res);
         setinterview(res.data.data);
       })
     } catch (err) {
