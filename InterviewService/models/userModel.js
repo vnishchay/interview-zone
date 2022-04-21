@@ -4,7 +4,7 @@ const schema = new mongoose.Schema({
     username: {
         type: String,
         unique: true,
-        required: true
+        required: false
     },
     normalName: String,
     country: {
@@ -13,7 +13,8 @@ const schema = new mongoose.Schema({
     language: String,
     email: {
         type: String,
-        required: false,
+        unique: true,
+        required: true,
     },
     ratings: Number,
     password: {
@@ -23,8 +24,8 @@ const schema = new mongoose.Schema({
     dateOfJoining: {
         type: String,
     },
-    interviews: [
-        { type: [Schema.Types.ObjectID] }
-    ]
+    numberOfInterviews: {
+        type: [Schema.Types.ObjectID]
+    }
 });
 module.exports = mongoose.model("user", schema);

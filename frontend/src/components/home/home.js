@@ -3,11 +3,12 @@ import { v4 } from "uuid";
 import { useAuth } from "../auth/authContext";
 import { useHistory } from "react-router-dom";
 import "./home.css"
+import { Link } from "react-router-dom";
 
 export default function HomePage() {
   const [link, setlink] = useState("");
   const auth = useAuth();
-  const [username, setusername] = useState();
+  const [email, setemail] = useState();
   const history = useHistory();
   const joinmeet = useRef("");
 
@@ -15,9 +16,9 @@ export default function HomePage() {
 
   useEffect(() => {
     if (localStorage.getItem("jwt") == undefined || auth.user === undefined) {
-      setusername("guest");
+      setemail("guest");
     } else {
-      setusername(auth.user.username);
+      setemail(auth.user.email);
     }
   }, [auth]);
 
@@ -30,15 +31,28 @@ export default function HomePage() {
     history.push(joinmeet.current.value);
   };
   const interviewID = v4();
-
+  const handleLogout = () => {
+    auth.logout();
+    history.push('/')
+  }
   return (
     <div className="homepage">
+
       <main>
         <div className="box1">
-          <img className="img-hm" src="images/undraw_augmented_reality_re_f0qd.svg"></img>
+          <img className="img-hm" src="images/undraw_positive_attitude_re_wu7d.svg"></img>
 
           <div className="card" id="col1"
           >
+            <div className="logout-button">
+              {
+                localStorage.getItem("jwt") ? <button className="pulse" onClick={handleLogout}> logout </button> :
+                  <Link to="/login"><button className="pulse"> Sign In</button></Link>
+              }
+              {
+                localStorage.getItem("jwt") && <button className="pulse" >Account</button>
+              }
+            </div>
             <div>
               <div justify="center">
                 <div >
@@ -46,8 +60,6 @@ export default function HomePage() {
 
                     className="raise"
                     onClick={() => navigator.clipboard.writeText(link)}
-
-
                   >
                     {link !== ""
                       ? "http://localhost:3000" + link
@@ -69,9 +81,6 @@ export default function HomePage() {
                   Generate Link
                 </button>
               </div>
-
-
-
               <div container spacing={2} justifyContent="center">
                 <button
                   className="raise"

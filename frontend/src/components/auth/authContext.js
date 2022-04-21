@@ -6,18 +6,13 @@ const AuthContext = createContext();
 
 
 export const AuthProvider = (props) => {
-
-
   const auth = Auth();
-
   return (
     <AuthContext.Provider value={auth}>{props.children}</AuthContext.Provider>
   );
 };
 
 export const useAuth = () => useContext(AuthContext);
-
-//***************** Redirect review item to signIn ************************
 export const PrivateRoute = ({ children, ...rest }) => {
   const auth = useAuth();
   return (
@@ -40,8 +35,8 @@ export const PrivateRoute = ({ children, ...rest }) => {
 };
 
 export const getUser = (user) => {
-  const { username, successfulLogin, jwt, userid } = user;
-  return { username, successfulLogin, jwt, userid };
+  const { email, successfulLogin, jwt, userid } = user;
+  return { email, successfulLogin, jwt, userid };
 };
 
 const Auth = () => {
@@ -49,17 +44,17 @@ const Auth = () => {
 
 
 
-  const signIn = async (username, password) => {
+  const signIn = async (email, password) => {
     try {
       await axios
         .post("http://localhost:3001/login", {
-          username: username.current.value,
+          email: email.current.value,
           password: password.current.value,
         })
         .then((response) => {
           if (response.data.successfulLogin) {
             localStorage.setItem("jwt", response.data.jwt);
-            localStorage.setItem("username", response.data.username);
+            localStorage.setItem("email", response.data.email);
             console.log(response)
             setuser(response.data)
           }
@@ -74,14 +69,14 @@ const Auth = () => {
 
   const signUp = async (user) => {
     if (
-      user.username.current.value === null ||
+      user.email.current.value === null ||
       user.password.current.value === null
     )
       return;
     try {
       await axios
         .post("http://localhost:3001/signup", {
-          username: user.username.current.value,
+          email: user.email.current.value,
           password: user.password.current.value,
         }).then((response) => {
           console.log(response)

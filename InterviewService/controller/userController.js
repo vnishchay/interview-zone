@@ -13,7 +13,7 @@ exports.savingUser = async (req, res) => {
             console.log(err)
         }
         else {
-            res.send({
+            res.status(201).json({
                 success: true,
                 message: "User Added To Database",
                 data: req.body
