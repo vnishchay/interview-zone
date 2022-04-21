@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react'
 import { useForm } from "react-hook-form";
+import { headers } from '../config';
 import "./addQuestion.css";
 
 
@@ -9,7 +10,7 @@ export default function AddQuestion() {
 
   const { register, handleSubmit } = useForm({ shouldUseNativeValidation: true });
   const onSubmit = async data => {
-    axios.post("http://localhost:3001/question/create", data).then((res) => {
+    axios.post("http://localhost:3001/question/create", data, headers).then((res) => {
       console.log(res.data)
     })
   };

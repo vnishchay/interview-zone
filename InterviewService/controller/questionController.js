@@ -7,7 +7,6 @@ const Question = require('../models/questionModel');
 const validation = require('../utils/validateRequest')
 const dbService = require('../utils/dbService');
 const ObjectID = require('mongodb').ObjectID;
-const { requestValidated } = require('../utils/messages');
 /**
  * @description : create document of Question in mongodb collection.
  * @param {obj} req : request including body for creating document.
@@ -17,7 +16,6 @@ const { requestValidated } = require('../utils/messages');
 const addQuestion = async (req, res) => {
     console.log(req.body)
     try {
-        console.log("??? ")
         let data = new Question({
             ...req.body
         });

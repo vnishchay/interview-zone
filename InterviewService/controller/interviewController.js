@@ -8,11 +8,9 @@ const dbService = require("../utils/dbService")
  * @return {obj} : created interview. {status, message, data}
  */
 const addInterview = async (req, res) => {
-    console.log(req.body)
     try {
         let data = new interview({
             ...req.body
-            // , addedBy: req.user.id
         });
         let result = await dbService.createDocument(interview, data);
         return res.ok({ data: result });

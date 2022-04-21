@@ -6,7 +6,10 @@
 const express = require('express');
 const router = express.Router();
 const questionController = require('../controller/questionController');
+const authController = require('../controller/authController');
 
+
+router.use(authController.protect)
 router.route('/question/create').post(questionController.addQuestion)
 router.route('/question/update/:id').put(questionController.updateQuestion)
 router.route('/question/get/:id').get(questionController.getQuestion)

@@ -24,3 +24,7 @@ databaseConfiguration()
 app.use("/", router);
 const PORT = 3001 || process.env.PORT;
 Server.listen(PORT);
+
+
+// const decoded = jwt.verify(token, process.env.JWT_SECRET);
+// console.log(decoded);

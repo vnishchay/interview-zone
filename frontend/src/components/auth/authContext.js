@@ -46,15 +46,17 @@ const Auth = () => {
 
   const signIn = async (email, password) => {
     try {
+      console.log(email.current.value)
+      console.log(password.current.value)
       await axios
         .post("http://localhost:3001/login", {
           email: email.current.value,
           password: password.current.value,
         })
         .then((response) => {
-          if (response.data.successfulLogin) {
-            localStorage.setItem("jwt", response.data.jwt);
-            localStorage.setItem("email", response.data.email);
+          if (response.data.statusCode === 200) {
+            localStorage.setItem("jwt", response.data.token);
+            localStorage.setItem("email", response.data);
             console.log(response)
             setuser(response.data)
           }

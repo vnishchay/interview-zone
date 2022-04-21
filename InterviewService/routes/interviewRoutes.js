@@ -1,11 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const interview = require("../controller/interviewController");
-const verifyToken = require("../middleware/auth.js");
+const authController = require('../controller/authController');
 
-router.route("/interview/get").post(verifyToken, interview.findAllinterview);
+
+router.use(authController.protect)
+router.route("/interview/get").post(interview.findAllinterview);
 router.route("/interview/create").post(interview.addInterview);
-router.route("/interview/update/:id").patch(verifyToken, interview.updateinterview);
+router.route("/interview/update/:id").patch(interview.updateinterview);
 
 module.exports = router;
 

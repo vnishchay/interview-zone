@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
+const bcrypt = require('bcryptjs')
 const Schema = mongoose.Schema;
 const schema = new mongoose.Schema({
     username: {
         type: String,
-        unique: true,
+        unique: false,
         required: false
     },
     normalName: String,
@@ -27,5 +28,27 @@ const schema = new mongoose.Schema({
     numberOfInterviews: {
         type: [Schema.Types.ObjectID]
     }
+}
+);
+
+
+schema.pre('save', async function (next) {
+    if (!this.isModified('password')) return next();
+    this.password = await bcrypt.hash(this.password, 12);
+    this.passwordConfirm = undefined;
+    next();
 });
-module.exports = mongoose.model("user", schema);
+
+schema.methods.addUsername = async function () {
+    return bcrypt.hash(this.password.substr(4), 6);
+}
+
+schema.methods.CheckPass = async function (
+    candidatePassword,
+    userPassword
+) {
+    return await bcrypt.compare(candidatePassword, userPassword);
+};
+
+
+module.exports = mongoose.model("User", schema, 'User Model');

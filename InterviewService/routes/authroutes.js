@@ -6,6 +6,6 @@ const { userAddition, userLogin } = require('../controller/authController')
 
 router.route("/signup").post(userAddition);
 router.route("/login").post(userLogin);
-router.route("/addUser").post(verifyToken, savingUser);
+router.route("/addUser").post(savingUser);
 
 module.exports = router
