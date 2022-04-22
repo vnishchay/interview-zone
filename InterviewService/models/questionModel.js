@@ -35,7 +35,6 @@ const schema = new Schema(
         bestSolution: {
             type: String,
             required: false,
-            // ref: 'bestSolution'
         },
     },
     {

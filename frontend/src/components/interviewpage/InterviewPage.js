@@ -24,8 +24,8 @@ export default function InterviewPage() {
   const data =
   {
     "typeOfInterview": "Job",
-    "numberOfQuestions": 8, //
-    "levelOfQuestions": "medium", //
+    "numberOfQuestions": 8,
+    "levelOfQuestions": "medium",
     "interviewID": interviewID,
     "idOfHost": auth.user.userid
   }
@@ -59,7 +59,6 @@ export default function InterviewPage() {
 
   const saveInterviewData = async () => {
     try {
-      console.log(auth.user.jwt)
       axios.post("http://localhost:3001/interview/create", data, headers).then((res) => {
         console.log(res);
         setinterview(res.data.data);
@@ -68,7 +67,6 @@ export default function InterviewPage() {
       console.log("error on interview page" + err)
     }
   }
-
   useEffect(() => {
     saveInterviewData();
     settime(time);
@@ -85,7 +83,6 @@ export default function InterviewPage() {
       <div className="Video-Call"> </div>
       <div className="Questions"><Questions questions={questions} /></div>
       <div className="VideoCall "><Video constraints={constraints} /></div>
-      {/* <div className="Questionsfull"></div> */}
       <div className="messages">
         <div className="Final-Messages ">
           <ChatRoom />
