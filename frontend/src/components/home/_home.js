@@ -4,6 +4,8 @@ import { useAuth } from "../auth/authContext";
 import { useHistory } from "react-router-dom";
 import "./home.css"
 import { Link } from "react-router-dom";
+const axios = require('axios')
+const { headers } = require("../config")
 
 export default function HomePage() {
   const [link, setlink] = useState("");
@@ -11,6 +13,8 @@ export default function HomePage() {
   const [email, setemail] = useState();
   const history = useHistory();
   const joinmeet = useRef("");
+  const [loading, setloading] = useState()
+  const [interview, setinterview] = useState();
 
   useEffect(() => {
     if (localStorage.getItem("jwt") == undefined || auth.user === undefined) {
@@ -20,19 +24,53 @@ export default function HomePage() {
     }
   }, [auth]);
 
+  const data =
+  {
+    "typeOfInterview": "Job",
+    "numberOfQuestions": 8,
+    "levelOfQuestions": "medium",
+    "interviewID": link,
+    "idOfHost": auth.user.userid
+  }
+
   const route = (e) => {
     e.preventDefault();
     history.push(link);
   };
+
+
   const joinMeet = (e) => {
     e.preventDefault();
     history.push(joinmeet.current.value);
   };
+
   const interviewID = v4();
+
+
   const handleLogout = () => {
     auth.logout();
     history.push('/')
   }
+
+  const saveInterviewData = async () => {
+    setloading(true)
+    try {
+      axios.post("http://localhost:3001/interview/create", data, headers).then((res) => {
+        setinterview(res.data.data);
+        setloading(false)
+      })
+    } catch (err) {
+      console.log("Can't Create an Interview" + err)
+      setloading(false)
+    }
+  }
+
+
+  useEffect(() => {
+    saveInterviewData();
+  }, [])
+
+
   return (
     <div className="homepage">
 
@@ -71,40 +109,46 @@ export default function HomePage() {
               </div>
 
               <div container spacing={2} justifyContent="center">
-                <button
+                {!loading ? <button
                   className="raise"
 
-                  onClick={() => setlink(`/setup/${interviewID}`)}
+                  onClick={() => {
+                    setlink(`/setup/${interviewID}`)
+                    saveInterviewData();
+                  }}
                 >
-                  Generate Link
-                </button>
+                  Create Interview
+                </button> : <img src="/images/buffering.png"></img>}
               </div>
               <div container spacing={2} justifyContent="center">
-                <button
+                {!loading && <button
                   className="raise"
                   onClick={route}
 
                 >
                   Go to interview
                 </button>
+                }
               </div>
 
 
 
-              <div className="bx-jnm" >
+
+              {!loading && <div className="bx-jnm" >
                 <input className="inp-hm" ref={joinmeet}></input>
                 <button
                   className="raise btn-meet"
                   onClick={joinMeet}
-
                 >
                   Join Meet
                 </button>
               </div>
+              }
 
               <Link to={'/setupInterview'}> <button className="offset"> Setup Interview </button>  </Link>
 
             </div>
+
 
           </div>
 

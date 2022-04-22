@@ -2,12 +2,9 @@ import React from 'react'
 import "./questionWidget.css"
 
 export default function QuestionWidget({ question }) {
-    console.log(question)
-
     return (
         <div>
             <div className="question-container">
-
                 <div className="q-buttons"></div>
                 <ul>
                     <li>      <div className="questioninfo"> <h3>{question['questionTitle']}</h3></div>

@@ -6,7 +6,8 @@ import Register from "./components/auth/register";
 import InterviewPage from "./components/interviewpage/InterviewPage";
 import ProfilePage from "./components/profile/profilepage";
 import AddQuestion from "./components/question/addQuestion";
-import HomePage from "./components/home/home";
+import HomePage from "./components/home/_home";
+import Home from "./components/home/Home";
 import { PrivateRoute } from "./components/auth/authContext";
 import { AuthProvider } from "./components/auth/authContext";
 import SearchPeerPage from "./components/searchPeer/serachPeer";
@@ -20,13 +21,15 @@ function App() {
       <AuthProvider>
         <BrowserRouter>
           <Switch>
-            <Route exact path="/" component={HomePage} ></Route>
+            <Route exact path="/" component={Home} ></Route>
             <PrivateRoute path='/setup/:id'>
               <SetupPage />
             </PrivateRoute>
             <PrivateRoute path='/interview/:id'>
               <InterviewPage />
             </PrivateRoute>
+            <Route path="/find-host" component={HomePage} ></Route>
+            <Route path="/find-candidate" component={HomePage} ></Route>
             <Route path="/profile" component={ProfilePage} ></Route>
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />

@@ -17,18 +17,9 @@ export default function InterviewPage() {
   const location = useLocation()
   const { constraints } = location.state
   const [time, settime] = useState();
-  const [interview, setinterview] = useState();
   const [questionid, setquestionid] = useState();
   const { interviewID } = useParams();
   const auth = useAuth();
-  const data =
-  {
-    "typeOfInterview": "Job",
-    "numberOfQuestions": 8,
-    "levelOfQuestions": "medium",
-    "interviewID": interviewID,
-    "idOfHost": auth.user.userid
-  }
 
   const [questions, setquestions] = useState();
 
@@ -56,21 +47,6 @@ export default function InterviewPage() {
 
   useEffect(() => {
   }, [questions])
-
-  const saveInterviewData = async () => {
-    try {
-      axios.post("http://localhost:3001/interview/create", data, headers).then((res) => {
-        console.log(res);
-        setinterview(res.data.data);
-      })
-    } catch (err) {
-      console.log("error on interview page" + err)
-    }
-  }
-  useEffect(() => {
-    saveInterviewData();
-    settime(time);
-  }, [])
 
   return (
     <div className="container">
