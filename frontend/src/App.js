@@ -12,28 +12,33 @@ import { PrivateRoute } from "./components/auth/authContext";
 import { AuthProvider } from "./components/auth/authContext";
 import SearchPeerPage from "./components/searchPeer/serachPeer";
 import BoopButton from "./components/notifications/sound"
+import SetupPage from "./components/interviewpage/setupPage";
 
 // import ResponsiveAppBar from "./components/appbar/appbar";
 function App() {
   return (
-    <AuthProvider>
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/" component={HomePage} ></Route>
-          <PrivateRoute path='/interview/:id'>
-            <InterviewPage></InterviewPage>
-          </PrivateRoute>
-          {/* <Route path="/profile" component={ProfilePage} ></Route> */}
-          <Route path="/register" component={Register} />
-          <Route path="/login" component={Login} />
-          <Route path="/search" component={SearchPeerPage}></Route>
-          <Route path="/addproblem" component={AddQuestion} ></Route>
-
-          <Route path="/boop" component={BoopButton} ></Route>
-          <Route path="*" component={page_not_found}></Route>
-        </Switch>
-      </BrowserRouter>
-    </AuthProvider>
+    <div>
+      <AuthProvider>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/" component={HomePage} ></Route>
+            <PrivateRoute path='/setup/:id'>
+              <SetupPage />
+            </PrivateRoute>
+            <PrivateRoute path='/interview/:id'>
+              <InterviewPage />
+            </PrivateRoute>
+            <Route path="/profile" component={ProfilePage} ></Route>
+            <Route path="/register" component={Register} />
+            <Route path="/login" component={Login} />
+            <Route path="/search" component={SearchPeerPage}></Route>
+            <Route path="/addproblem" component={AddQuestion} ></Route>
+            <Route path="/boop" component={BoopButton} ></Route>
+            <Route path="*" component={page_not_found}></Route>
+          </Switch>
+        </BrowserRouter>
+      </AuthProvider>
+    </div>
 
   );
 }

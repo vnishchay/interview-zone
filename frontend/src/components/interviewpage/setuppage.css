@@ -1,0 +1,34 @@
+.local-video {
+  height: 50vh;
+  position: relative;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  border: 2px solid rgb(22, 3, 32);
+}
+
+.setup-button {
+  height: 80px;
+  width: 80px;
+}
+
+.row {
+  flex-direction: row;
+  display: flex;
+}
+
+.joinbutton {
+  height: 70px;
+  width: 200px;
+}
+
+.component {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  margin-top: 10%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* border: 4px solid rgb(32, 9, 9); */
+}

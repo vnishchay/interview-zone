@@ -1,7 +1,7 @@
 import IconButton from "@material-ui/core/IconButton";
 import PhoneIcon from "@material-ui/icons/Phone";
 import React, { useEffect, useRef, useState } from "react";
-import Peer from "simple-peer";
+import Peer from "peerjs";
 import sock from "../socket";
 import "./video.css";
 import { useParams } from "react-router";
@@ -174,8 +174,6 @@ export default function Video() {
 
 
         <div className="video-2">
-          {/* {callAccepted && !callEnded ? */}
-
           <video className="video-2"
             playsInline
             ref={userVideo}
@@ -183,9 +181,6 @@ export default function Video() {
             style={{ height: "auto", width: "15em" }}
           />
           <div>Candidate</div>
-          {/* : null
-          } */}
-
         </div>
       </div>
     </div>

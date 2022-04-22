@@ -76,7 +76,7 @@ export default function HomePage() {
                 <button
                   className="raise"
 
-                  onClick={() => setlink(`/interview/${interviewID}`)}
+                  onClick={() => setlink(`/setup/${interviewID}`)}
                 >
                   Generate Link
                 </button>
