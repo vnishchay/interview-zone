@@ -12,8 +12,6 @@ export default function HomePage() {
   const history = useHistory();
   const joinmeet = useRef("");
 
-
-
   useEffect(() => {
     if (localStorage.getItem("jwt") == undefined || auth.user === undefined) {
       setemail("guest");

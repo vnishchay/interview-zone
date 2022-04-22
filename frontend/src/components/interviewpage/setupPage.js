@@ -58,16 +58,15 @@ export default function SetupPage() {
 
 
     return (
-
         <div className='setuppage'>
             <div className='component'>
                 <video className='local-video' ref={videoRef} />
                 <div className='col'>
                     <div className='row'>
-                        {isvideo && <button className='slide setup-button row' onClick={handleTogglevideo}><img className='setup-button' src='images/video.png'></img></button>}
-                        {!isvideo && <button className='slide setup-button row' onClick={handleTogglevideo}><img className='setup-button' src='images/novideo.png'></img></button>}
-                        {isaudio && <button className='slide setup-button row' onClick={handleToggleaudio}><img className='setup-button' src='images/microphone.png'></img></button>}
-                        {!isaudio && <button className='slide setup-button row' onClick={handleToggleaudio}><img className='setup-button' src='images/mute.png'></img></button>}
+                        {isvideo && <button className='slide setup-button row' onClick={handleTogglevideo}><img className='setup-button' src='/images/video.png'></img></button>}
+                        {!isvideo && <button className='slide setup-button row' onClick={handleTogglevideo}><img className='setup-button' src='/images/novideo.png'></img></button>}
+                        {isaudio && <button className='slide setup-button row' onClick={handleToggleaudio}><img className='setup-button' src='/images/microphone.png'></img></button>}
+                        {!isaudio && <button className='slide setup-button row' onClick={handleToggleaudio}><img className='setup-button' src='/images/mute.png'></img></button>}
                     </div>
                     <Link
                         to={{
@@ -77,11 +76,8 @@ export default function SetupPage() {
                     >
                         <button className='offset joinbutton'  > Join Now </button>
                     </Link>
-
                 </div>
             </div>
-
         </div >
-
     )
 }

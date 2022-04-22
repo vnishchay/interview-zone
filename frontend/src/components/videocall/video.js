@@ -1,12 +1,13 @@
 import IconButton from "@material-ui/core/IconButton";
 import PhoneIcon from "@material-ui/icons/Phone";
 import React, { useEffect, useRef, useState } from "react";
-import Peer from "peerjs";
+import Peer from 'simple-peer'
 import sock from "../socket";
 import "./video.css";
 import { useParams } from "react-router";
+import { element } from "prop-types";
 
-export default function Video() {
+export default function Video({ constraints }) {
   const { id: videoID } = useParams();
   const [stream, setStream] = useState();
   const [receivingCall, setReceivingCall] = useState(false);
@@ -19,11 +20,12 @@ export default function Video() {
   const connectionRef = useRef();
   const [initiateCall, setinitiateCall] = useState(false);
 
-  useEffect(() => {
+  const [isvideo, setisvideo] = useState(constraints.isvideo);
+  const [isaudio, setisaudio] = useState(constraints.isaudio);
 
+  useEffect(() => {
     sock.emit("video-call", videoID);
     sock.on("callUser", (data) => {
-      //   setisvedio(true);
       setReceivingCall(true);
       setName(data.name);
       setCallerSignal(data.signal);
@@ -35,10 +37,8 @@ export default function Video() {
       setCallerSignal(data.signal);
     });
 
-
-
     navigator.mediaDevices
-      .getUserMedia({ video: true, audio: true })
+      .getUserMedia(constraints)
       .then((stream) => {
         setStream(stream);
         myVideo.current.srcObject = stream;
@@ -48,6 +48,18 @@ export default function Video() {
       setStream(undefined);
     }
   }, []);
+
+
+  useEffect(() => {
+    if (stream !== undefined) {
+      stream.getAudioTracks().forEach(element => element.enabled = !element.enabled);
+    }
+  }, [isaudio, myVideo])
+  useEffect(() => {
+    if (stream !== undefined) {
+      stream.getVideoTracks().forEach(element => element.enabled = !element.enabled)
+    }
+  }, [isvideo, myVideo])
 
 
 
@@ -81,7 +93,8 @@ export default function Video() {
   };
 
 
-  const answerCall = () => {
+  const answerCall = (e) => {
+    e.preventDefault()
     setinitiateCall(true);
     const peer = new Peer({
       initiator: false,
@@ -115,23 +128,39 @@ export default function Video() {
     setCallerSignal(undefined);
   };
 
-  return (
-    <div className="container-2 ">
-      <div className="button" style={{ width: "50 px" }}>
-        <div>
-          {receivingCall && !callAccepted ?
-            (
-              <div>
-                <h1>{name} is calling...</h1>
-                <button onClick={answerCall}>
-                  Answer
-                </button>
-              </div>
-            ) : null}
+  const handleToggleaudio = (e) => {
+    e.preventDefault();
+    setisaudio(!isaudio);
+    return isaudio;
+  }
 
+  const handleTogglevideo = (e) => {
+    e.preventDefault();
+    setisvideo(!isvideo);
+    return isvideo;
+  }
+
+
+  return (
+    <div className="container-2">
+      <div className="" style={{ width: "50 px" }}>
+        <div>
+          {receivingCall && !callAccepted &&
+            <button className="fill" onClick={answerCall}>
+              Answer
+            </button>
+          }
+        </div>
+
+        <div className='col'>
+          <div className='row'>
+            {isvideo && <button className='slide setup-button row' onClick={handleTogglevideo}><img className='setup-button' src='/images/video.png'></img></button>}
+            {!isvideo && <button className='slide setup-button row' onClick={handleTogglevideo}><img className='setup-button' src='/images/novideo.png'></img></button>}
+            {isaudio && <button className='slide setup-button row' onClick={handleToggleaudio}><img className='setup-button' src='/images/microphone.png'></img></button>}
+            {!isaudio && <button className='slide setup-button row' onClick={handleToggleaudio}><img className='setup-button' src='/images/mute.png'></img></button>}
+          </div>
         </div>
         <div className="b2">
-
           {callAccepted && !callEnded ? (
             <button onClick={leaveCall}>
               End Call
@@ -171,8 +200,6 @@ export default function Video() {
 
       </div>
       <div className="v2">
-
-
         <div className="video-2">
           <video className="video-2"
             playsInline

@@ -9,10 +9,13 @@ import { useAuth } from "../auth/authContext";
 import Video from "../videocall/video"
 import PrimarySearchAppBar from "./appbar";
 import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 const { headers } = require("../config")
 
 
 export default function InterviewPage() {
+  const location = useLocation()
+  const { constraints } = location.state
   const [time, settime] = useState();
   const [interview, setinterview] = useState();
   const [questionid, setquestionid] = useState();
@@ -79,10 +82,10 @@ export default function InterviewPage() {
       <div className="buttons">
         <PrimarySearchAppBar />
       </div>
-      <div className="Video-Call "> </div>
+      <div className="Video-Call"> </div>
       <div className="Questions"><Questions questions={questions} /></div>
-      <div className="VideoCall "><Video /></div>
-      <div className="Questionsfull"></div>
+      <div className="VideoCall "><Video constraints={constraints} /></div>
+      {/* <div className="Questionsfull"></div> */}
       <div className="messages">
         <div className="Final-Messages ">
           <ChatRoom />
