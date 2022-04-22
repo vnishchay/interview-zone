@@ -1,4 +1,3 @@
-// import './App.css';
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import page_not_found from "./components/pagenotfound/page_not_found";
@@ -13,8 +12,8 @@ import { AuthProvider } from "./components/auth/authContext";
 import SearchPeerPage from "./components/searchPeer/serachPeer";
 import BoopButton from "./components/notifications/sound"
 import SetupPage from "./components/interviewpage/setupPage";
+import SetQuestionsPage from "./components/setupInterview/selectProblemPage"
 
-// import ResponsiveAppBar from "./components/appbar/appbar";
 function App() {
   return (
     <div>
@@ -34,12 +33,12 @@ function App() {
             <Route path="/search" component={SearchPeerPage}></Route>
             <Route path="/addproblem" component={AddQuestion} ></Route>
             <Route path="/boop" component={BoopButton} ></Route>
+            <Route path={'/setupInterview'} component={SetQuestionsPage}></Route>
             <Route path="*" component={page_not_found}></Route>
           </Switch>
         </BrowserRouter>
       </AuthProvider>
     </div>
-
   );
 }
 export default App;

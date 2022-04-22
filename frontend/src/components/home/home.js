@@ -101,9 +101,12 @@ export default function HomePage() {
                   Join Meet
                 </button>
               </div>
-            </div>
-          </div>
 
+              <Link to={'/setupInterview'}> <button className="offset"> Setup Interview </button>  </Link>
+
+            </div>
+
+          </div>
 
         </div>
 

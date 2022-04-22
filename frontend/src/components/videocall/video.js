@@ -61,8 +61,6 @@ export default function Video({ constraints }) {
     }
   }, [isvideo, myVideo])
 
-
-
   const callUser = () => {
     setinitiateCall(true);
     setCallEnded(false);

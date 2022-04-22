@@ -1,0 +1,40 @@
+/*----------------------
+  $NAVBAR
+    basic navbar styling
+  ----------------------*/
+
+nav ul {
+  text-align: center;
+  margin: 0;
+}
+
+nav ul li {
+  display: inline-block;
+  padding: 0 3em;
+  line-height: 3em;
+}
+
+nav ul li:hover {
+  background: #639597;
+}
+
+/*----------------------
+  $BODY
+  ----------------------*/
+
+/* body {
+  background: #0b6ad4;
+} */
+
+/*----------------------
+  $MISC
+  ----------------------*/
+
+.filler {
+  width: 1px;
+  height: 200px;
+}
+
+.two {
+  height: 3000px;
+}
