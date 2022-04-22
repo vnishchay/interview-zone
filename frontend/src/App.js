@@ -14,6 +14,8 @@ import SearchPeerPage from "./components/searchPeer/serachPeer";
 import BoopButton from "./components/notifications/sound"
 import SetupPage from "./components/interviewpage/setupPage";
 import SetQuestionsPage from "./components/setupInterview/selectProblemPage"
+import FindCandiate from "./components/home/find-candidate";
+import FindHost from "./components/home/find-host";
 
 function App() {
   return (
@@ -28,8 +30,8 @@ function App() {
             <PrivateRoute path='/interview/:id'>
               <InterviewPage />
             </PrivateRoute>
-            <Route path="/find-host" component={HomePage} ></Route>
-            <Route path="/find-candidate" component={HomePage} ></Route>
+            <Route path="/find-host" component={FindHost} ></Route>
+            <Route path="/find-candidate" component={FindCandiate} ></Route>
             <Route path="/profile" component={ProfilePage} ></Route>
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
