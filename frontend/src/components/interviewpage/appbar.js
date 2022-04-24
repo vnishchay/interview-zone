@@ -6,7 +6,7 @@ import "./appbar.css"
 export default function PrimarySearchAppBar() {
     return (
         <>
-            <div class="fill"></div>
+            <div className="fill"></div>
             <nav id="navbar">
                 <ul>
                     <button className='fill'>One</button>
@@ -14,7 +14,7 @@ export default function PrimarySearchAppBar() {
                     <button className='fill'>One</button>
                 </ul>
             </nav>
-            <div class="filler two"></div>
+            <div className="filler two"></div>
         </>
     );
 }

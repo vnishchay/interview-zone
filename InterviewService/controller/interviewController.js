@@ -1,6 +1,6 @@
 const interview = require("../models/interviewModel");
 const dbService = require("../utils/dbService")
-
+const InterviewModel = require('../models/interviewModel')
 /**
  * @description : create document of interview in mongodb collection.
  * @param {obj} req : request including body for creating document.
@@ -64,41 +64,25 @@ const updateinterview = async (req, res) => {
     }
 };
 
-/**
- * @description : find all documents of interview from collection based on query and options.
- * @param {obj} req : request including option and query. {query, options : {page, limit, pagination, populate}, isCountOnly}
- * @param {obj} res : response contains data found from collection.
- * @return {obj} : found interview(s). {status, message, data}
- */
-const findAllinterview = async (req, res) => {
+const findInterview = async (req, res) => {
     try {
-        let options = {};
-        let query = {};
-
-        if (typeof req.body.query === 'object' && req.body.query !== null) {
-            query = { ...req.body.query };
-        }
-        if (req.body.isCountOnly) {
-            let totalRecords = await dbService.countDocument(interview, query);
-            return res.ok({ data: { totalRecords } });
-        }
-
-        if (req.body && typeof req.body.options === 'object' && req.body.options !== null) {
-            options = { ...req.body.options };
-        }
-        let result = await dbService.getAllDocuments(interview, query, options);
-        if (result && result.data && result.data.length) {
-            return res.ok({ data: result });
-        }
-        return res.recordNotFound();
-    } catch (error) {
-        return res.failureResponse({ data: error.message });
+        const interview = await InterviewModel.find();
+        return res.status(200).json({
+            data: interview,
+            status: 'success'
+        })
     }
-};
+    catch (e) {
+        return res.status(400).json({
+            message: e.message,
+            status: 'fail'
+        })
+    }
+}
 
 
 module.exports = {
     addInterview,
-    updateinterview,
-    findAllinterview
+    findInterview,
+    updateinterview
 }

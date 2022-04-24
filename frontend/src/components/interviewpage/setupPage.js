@@ -9,12 +9,12 @@ export default function SetupPage() {
     const [isaudio, setisaudio] = useState(true);
     const [isvideo, setisvideo] = useState(true)
     const [stream, setstream] = useState()
-    const [constraints, setconstraints] = useState({ audio: isaudio, video: isvideo })
+    // const [constraints, setconstraints] = useState({ audio: isaudio, video: isvideo })
     const [isstarted, setisstarted] = useState(false)
     const getVideo = async () => {
         setisstarted(true);
         await navigator.mediaDevices
-            .getUserMedia(constraints)
+            .getUserMedia({ video: isvideo, audio: isaudio })
             .then(stream => {
                 let video = videoRef.current;
                 video.srcObject = stream;
@@ -47,13 +47,11 @@ export default function SetupPage() {
     const handleToggleaudio = (e) => {
         e.preventDefault();
         setisaudio(!isaudio);
-        return isaudio;
     }
 
     const handleTogglevideo = (e) => {
         e.preventDefault();
         setisvideo(!isvideo);
-        return isvideo;
     }
 
 
@@ -71,7 +69,7 @@ export default function SetupPage() {
                     <Link
                         to={{
                             pathname: `/interview/${id}`,
-                            state: { constraints: constraints }
+                            state: { constraints: { 'video': isvideo, 'audio': isaudio } }
                         }}
                     >
                         <button className='offset joinbutton'  > Join Now </button>

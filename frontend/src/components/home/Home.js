@@ -10,43 +10,58 @@ const { headers } = require("../config")
 export default function Home() {
     return (
         <div>
-             //todo : add signin / sign up button on right corner
-            <section class="c-section">
-                <h2 class="c-section__title"><span>Interview Zone </span></h2>
-                <ul class="c-services">
-                    <li class="c-services__item">
+            {/* //todo : add signin / sign up button on right corner */}
+            <section className="c-section">
+                <h2 className="c-section__title"><span>Interview Zone </span></h2>
+                <ul className="c-services">
+                    <div className="c-services__item">
                         <h3>practice, prepare for interview</h3>
                         <p>We leverage the concept of mobile-first design. Through our work, we focus on designing an experience that works across different screen sizes.</p>
-                    </li>
-                    <li class="c-services__item">
+                    </div>
+                    <div className="c-services__item">
                         <a href="/find-host"> <h3>Take Interview </h3>
                             <button className="raise"> Start Now </button>
                         </a>
-                    </li>
+                    </div>
 
-                    <li class="c-services__item">
+                    <div className="c-services__item">
                         <h3>Audio Call feature</h3>
                         <p>We are Front End masters with a deep focus on HTML, CSS. The result of our work is a responsive, accessible, and performant websites. Either you have the design ready and want us to code it, or you want us to do both design and code, we&rsquo;re happy to do so.</p>
-                    </li>
-                    <li class="c-services__item">
-                        <h3>Video Call feature</h3>
-                        <p>If you don&rsquo;t know what kind of service to request from us, don&rsquo;t worry. We can help and see what fits your business and your budget.</p>
-                    </li>
-                    <li class="c-services__item">
+                    </div>
+                    <div className="c-services__item" style={{ background: "#7DEBB7" }}>
+                        <h3>Join using Link</h3>
+                        <br></br>
+                        <div className="inputWithButton">
+                            <div className="item">
+                                <input className="searchInpt" type="text" placeholder="Join Interview" />
+                            </div>
+                            <div className="item">
+                                <button className="btnSearch btnAqua">
+
+                                    <i className="icon">
+                                        <svg width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M0 3.76172H10.6172L7.94531 1.05469L9 0L13.5 4.5L9 9L7.94531 7.94531L10.6172 5.23828H0V3.76172Z" fill="white" />
+                                        </svg>
+                                    </i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="c-services__item">
                         <h3>Screen Sharing : future </h3>
                         <p>To reach more customers and the goals of your business, a mobile application is necessary these days. We will work on the app design from scratch to final tested prototype.</p>
-                    </li>
-                    <li class="c-services__item">
+                    </div>
+                    <div className="c-services__item">
                         <a href="/find-candidate">
                             <h3>Get Interview Now</h3>
                             <button className="raise">Start Now</button>
                         </a>
-                    </li>
+                    </div>
                 </ul>
             </section>
-            <footer>
-                Design : https://codepen.io/ahmadnasr/pen/KKpvNGY
-            </footer>
+            {/* <footer> */}
+            {/* Design : https://codepen.io/ahmadnasr/pen/KKpvNGY */}
+            {/* </footer> */}
         </div>
 
     );

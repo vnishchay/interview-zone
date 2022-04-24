@@ -43,7 +43,6 @@ const Auth = () => {
   const [user, setuser] = useState([]);
 
 
-
   const signIn = async (email, password) => {
     try {
       console.log(email.current.value)

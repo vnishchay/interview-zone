@@ -14,7 +14,22 @@ export default function FindHost() {
     const history = useHistory();
     const joinmeet = useRef("");
     const [loading, setloading] = useState()
-    const [interview, setinterview] = useState();
+    const [interviewList, setinterviewList] = useState([]);
+
+    const [interview, setinterview] = useState([]);
+
+
+    useEffect(() => {
+        axios.get('http://localhost:3001/interview/find', headers).then((res) => {
+            var data = res.data.data;
+            if (res && data) {
+                console.log(data)
+                data.forEach(element => setinterviewList((interviewList) => [...interviewList, element]));
+            }
+            console.log(interviewList)
+        })
+    }, [])
+
 
     useEffect(() => {
         if (localStorage.getItem("jwt") == undefined || auth.user === undefined) {
@@ -111,7 +126,6 @@ export default function FindHost() {
                             <div container spacing={2} justifyContent="center">
                                 {!loading ? <button
                                     className="raise"
-
                                     onClick={() => {
                                         setlink(`/setup/${interviewID}`)
                                         saveInterviewData();
@@ -124,7 +138,6 @@ export default function FindHost() {
                                 {!loading && <button
                                     className="raise"
                                     onClick={route}
-
                                 >
                                     Go to interview
                                 </button>
@@ -144,6 +157,28 @@ export default function FindHost() {
                             <Link to={'/setupInterview'}> <button className="offset"> Setup Interview </button>  </Link>
                         </div>
                     </div>
+
+                </div>
+                <div>
+                    <h1>Find Candidates </h1>
+                    {
+                        // id: "62651a67f21f90f0bcc4ba31"
+                        // interviewID: ""
+                        // levelOfQuestions: "medium"
+                        // numberOfQuestions: "8"
+                        // questions: []
+                        // typeOfInterview: "Job"
+                        interviewList.length > 0 && interviewList.map((interview) => {
+                            return <div className="card-interview"><ul key={interview._id}>
+                                <li><h2>Interview ID</h2> {interview.interviewID}</li>
+                                <li><h2>Level of Question</h2> {interview.levelOfQuestions}</li>
+                                <li><h2>Number of questions</h2> {interview.numberOfQuestions}</li>
+                                <li><h2>Type of Interview</h2> {interview.typeOfInterview}</li>
+                                <button className="offset">Send Request</button>
+                            </ul>
+                            </div>
+                        })
+                    }
                 </div>
                 <div maxWidth="md"></div>
             </main>

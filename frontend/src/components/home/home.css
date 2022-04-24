@@ -1,13 +1,9 @@
-.homepage {
-  height: 100vh;
-  /* width: auto; */
-}
 .box1 {
   display: flex;
   flex-direction: row;
 }
 .img-hm {
-  flex: 1.5;
+  flex: 1.2;
 }
 .card {
   background-color: #747c9b;
@@ -20,6 +16,15 @@
   align-items: center;
   text-align: center;
   display: flex;
+}
+.card-interview {
+  background-color: #747c9b;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 0.5%;
+  border: #747c9b;
+  box-shadow: #1973bc;
 }
 
 .pulse:hover,
@@ -122,7 +127,6 @@ button:focus {
   flex: 1;
 }
 button {
-  background: none;
   border: 2px solid;
   font: inherit;
   line-height: 1;
@@ -131,10 +135,60 @@ button {
 }
 
 h1 {
-  font-weight: 400;
+  font-weight: 300;
 }
 
 code {
-  color: #e4cb58;
+  color: #3a3003;
   font: inherit;
+}
+
+.inputWithButton {
+  background-color: #fff;
+  display: flex;
+  border: 1px solid #b5b5b5;
+  border-radius: 5px;
+  align-items: center;
+  overflow: hidden;
+  width: 500px;
+}
+.inputWithButton .searchInpt {
+  height: 100%;
+  width: 100%;
+  min-height: 60px;
+  border: none;
+  padding: 0 50px 0 20px;
+  color: #6a6a6a;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 400;
+}
+.inputWithButton .searchInpt:focus {
+  outline: none;
+}
+.inputWithButton .btnSearch {
+  margin: 10px;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 13px;
+  line-height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.inputWithButton .btnSearch.btnOrange {
+  background: #fd942b;
+}
+.inputWithButton .btnSearch.btnAqua {
+  background: #0de8a6;
+}
+.inputWithButton .btnSearch .icon {
+  margin-left: 10px;
+  display: inline-flex;
+}
+.inputWithButton .item:first-child {
+  flex-grow: 1;
 }

@@ -14,7 +14,20 @@ export default function FindCandiate() {
     const history = useHistory();
     const joinmeet = useRef("");
     const [loading, setloading] = useState()
-    const [interview, setinterview] = useState();
+    const [interview, setinterview] = useState([]);
+    const [interviewList, setinterviewList] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:3001/interview/find', headers).then((res) => {
+            var data = res.data.data;
+            if (res && data) {
+                console.log(data)
+                data.forEach(element => setinterviewList((interviewList) => [...interviewList, element]));
+            }
+            console.log(interviewList)
+        })
+    }, [])
+
 
     useEffect(() => {
         if (localStorage.getItem("jwt") == undefined || auth.user === undefined) {
@@ -42,22 +55,21 @@ export default function FindCandiate() {
         e.preventDefault();
         history.push(joinmeet.current.value);
     };
-    const interviewID = v4();
 
+    const interviewID = v4()
     const handleLogout = () => {
         auth.logout();
         history.push('/')
-
-
     }
 
     const saveInterviewData = async () => {
         setloading(true)
         try {
-            axios.post("http://localhost:3001/interview/create", data, headers).then((res) => {
-                setinterview(res.data.data);
-                setloading(false)
-            })
+            if (data.interviewID !== undefined && data.idOfHost !== undefined)
+                axios.post("http://localhost:3001/interview/create", data, headers).then((res) => {
+                    setinterview(res.data.data);
+                    setloading(false)
+                })
         } catch (err) {
             console.log("Can't Create an Interview" + err)
             setloading(false)
@@ -95,9 +107,8 @@ export default function FindCandiate() {
                                     <div></div>
                                 </div>
                             </div>
-
                             <div container spacing={2} justifyContent="center">
-                                {!loading ? <button
+                                <button
                                     className="raise"
 
                                     onClick={() => {
@@ -106,17 +117,17 @@ export default function FindCandiate() {
                                     }}
                                 >
                                     Create Interview
-                                </button> : <img src="/images/buffering.png"></img>}
+                                </button>
                             </div>
                             <div container spacing={2} justifyContent="center">
-                                {!loading && <button
+                                {<button
                                     className="raise"
                                     onClick={route}>
                                     Go to interview
                                 </button>
                                 }
                             </div>
-                            {!loading && <div className="bx-jnm" >
+                            {<div className="bx-jnm" >
                                 <input className="inp-hm" ref={joinmeet}></input>
                                 <button
                                     className="raise btn-meet"
@@ -129,6 +140,27 @@ export default function FindCandiate() {
                             <Link to={'/setupInterview'}> <button className="offset"> Setup Interview </button>  </Link>
                         </div>
                     </div>
+                </div>
+                <div>
+                    <h1>Find Interviewer</h1>
+                    {
+                        // id: "62651a67f21f90f0bcc4ba31"
+                        // interviewID: ""
+                        // levelOfQuestions: "medium"
+                        // numberOfQuestions: "8"
+                        // questions: []
+                        // typeOfInterview: "Job"
+                        interviewList.length > 0 && interviewList.map((interview) => {
+                            return <div className="card-interview"><ul key={interview._id}>
+                                <li><h2>Interview ID</h2> {interview.interviewID}</li>
+                                <li><h2>Level of Question</h2> {interview.levelOfQuestions}</li>
+                                <li><h2>Number of questions</h2> {interview.numberOfQuestions}</li>
+                                <li><h2>Type of Interview</h2> {interview.typeOfInterview}</li>
+                                <button className="offset">Send Request</button>
+                            </ul>
+                            </div>
+                        })
+                    }
                 </div>
                 <div maxWidth="md"></div>
             </main>

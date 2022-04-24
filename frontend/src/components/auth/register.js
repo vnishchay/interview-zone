@@ -15,10 +15,10 @@ export default function Register() {
   return (
     <>
 
-      <div class="container" onclick="onclick">
-        <div class="top"></div>
-        <div class="bottom"></div>
-        <div class="center">
+      <div className="container" onclick="onclick">
+        <div className="top"></div>
+        <div className="bottom"></div>
+        <div className="center">
           <h2>Please Sign up</h2>
           <input type="email" ref={email} placeholder="email" />
           <input type="password" ref={password} placeholder="password" />
