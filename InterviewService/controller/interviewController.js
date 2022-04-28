@@ -37,7 +37,7 @@ const updateinterview = async (req, res) => {
         delete req.body['addedBy'];
         delete req.body['updatedBy'];
         let data = {
-            updatedBy: req.user.id,
+            idOfParticipant: req.user,
             ...req.body,
         };
         let validateRequest = validation.validateParamsWithJoi(
@@ -79,6 +79,8 @@ const findInterview = async (req, res) => {
         })
     }
 }
+
+
 
 
 module.exports = {

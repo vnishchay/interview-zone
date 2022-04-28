@@ -2,9 +2,11 @@
   display: flex;
   flex-direction: row;
 }
+
 .img-hm {
   flex: 1.2;
 }
+
 .card {
   background-color: #747c9b;
   height: 100vh;
@@ -17,14 +19,19 @@
   text-align: center;
   display: flex;
 }
+
+.find-peers {
+  display: grid;
+  grid-gap: 10px 15px;
+  grid-template-columns: repeat(2, 1fr 2fr);
+  grid-template-rows: repeat(2, 100px auto 20%);
+}
+
 .card-interview {
   background-color: #747c9b;
   justify-content: center;
   align-items: center;
   text-align: center;
-  border-radius: 0.5%;
-  border: #747c9b;
-  box-shadow: #1973bc;
 }
 
 .pulse:hover,

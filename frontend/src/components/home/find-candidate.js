@@ -80,6 +80,18 @@ export default function FindCandiate() {
         saveInterviewData();
     }, [])
 
+    const handlereqcuest = (id) => {
+        try {
+            axios.put(`http://localhost:3001/interview/update/${id}`, headers).then((res) => {
+                if (res.data.status == 'success') {
+                    console.log('success')
+                }
+            })
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
 
     return (
         <div className="homepage">
@@ -143,24 +155,22 @@ export default function FindCandiate() {
                 </div>
                 <div>
                     <h1>Find Interviewer</h1>
-                    {
-                        // id: "62651a67f21f90f0bcc4ba31"
-                        // interviewID: ""
-                        // levelOfQuestions: "medium"
-                        // numberOfQuestions: "8"
-                        // questions: []
-                        // typeOfInterview: "Job"
-                        interviewList.length > 0 && interviewList.map((interview) => {
-                            return <div className="card-interview"><ul key={interview._id}>
-                                <li><h2>Interview ID</h2> {interview.interviewID}</li>
-                                <li><h2>Level of Question</h2> {interview.levelOfQuestions}</li>
-                                <li><h2>Number of questions</h2> {interview.numberOfQuestions}</li>
-                                <li><h2>Type of Interview</h2> {interview.typeOfInterview}</li>
-                                <button className="offset">Send Request</button>
-                            </ul>
-                            </div>
-                        })
-                    }
+
+                    <div className="find-peers">
+                        {
+                            interviewList.length > 0 && interviewList.map((interview) => {
+                                return <div className="card-interview"><ul key={interview.id}>
+                                    <li><h2>Interview ID</h2> {interview.interviewID}</li>
+                                    <li><h2>Level of Question</h2> {interview.levelOfQuestions}</li>
+                                    <li><h2>Number of questions</h2> {interview.numberOfQuestions}</li>
+                                    <li><h2>Type of Interview</h2> {interview.typeOfInterview}</li>
+                                    <button className="offset" onClick={() => handlereqcuest(interview.id)} >Send Request</button>
+                                </ul>
+                                </div>
+                            })
+                        }
+                    </div>
+
                 </div>
                 <div maxWidth="md"></div>
             </main>
