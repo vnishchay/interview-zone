@@ -1,6 +1,4 @@
-# Untitled
-
-# Interview-zone
+#  Interview-zone
 
 ```
 An Interview platform where two people can conduct interview( one as Interviewer other as candidate).
